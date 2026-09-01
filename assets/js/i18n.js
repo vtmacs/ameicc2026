@@ -108,7 +108,7 @@
     "lecture01.ho2.s3.title": "STEP 3：curl で質問する",
     "lecture01.ho2.s3.desc": "以下のコマンドをコピーして実行します。エンドポイント・認証・リクエスト・レスポンスの4つがどこに書かれているか確認しましょう。",
     "lecture01.ho2.s4.title": "STEP 4：プロンプトを書き換えて再実行",
-    "lecture01.ho2.s4.desc": "messages 部分を書き換えて、もう一度実行します。",
+    "lecture01.ho2.s4.desc": "プロンプトを書き換えた完全なコマンドをコピーして実行します。",
     "lecture01.ho2.params.title": "リクエストパラメータの意味",
     "lecture01.ho2.params.meaning": "意味",
     "lecture01.ho2.params.model": "使用する AI モデル名",

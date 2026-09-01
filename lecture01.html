@@ -284,15 +284,19 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
       </li>
       <li>
         <strong data-i18n="lecture01.ho2.s4.title">STEP 4: Edit the Prompt and Run Again</strong>
-        <p data-i18n="lecture01.ho2.s4.desc">Edit the messages part and run the command again.</p>
-        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">  --data &#x27;{
-      &quot;model&quot;: &quot;gpt-oss-120b&quot;,
-      &quot;messages&quot;: [
-        { &quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;You are a helpful travel guide.&quot; },
-        { &quot;role&quot;: &quot;user&quot;,   &quot;content&quot;: &quot;Recommend three famous tourist attractions in Thailand.&quot; }
+        <p data-i18n="lecture01.ho2.s4.desc">Copy and run the following complete command with the edited prompt.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl --location https://api.ai.sakura.ad.jp/v1/chat/completions \
+  --header 'Accept: application/json' \
+  --header "Authorization: Bearer ${AI_ENGINE_TOKEN}" \
+  --header 'Content-Type: application/json' \
+  --data '{
+      "model": "gpt-oss-120b",
+      "messages": [
+        { "role": "system", "content": "You are a helpful travel guide." },
+        { "role": "user",   "content": "Recommend three famous tourist attractions in Thailand." }
       ],
-      &quot;max_tokens&quot;: 300
-    }&#x27; </code></pre></div>
+      "max_tokens": 300
+    }' </code></pre></div>
       </li>
     </ol>
 
