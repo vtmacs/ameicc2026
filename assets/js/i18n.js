@@ -466,7 +466,7 @@
 };
 
   function applyLang(lang) {
-    if (lang !== 'ja' && lang !== 'th') {
+    if (lang !== 'ja') {
       // English is the default content in HTML; reset if previously translated
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
@@ -496,7 +496,7 @@
         if (dict[key]) el.title = dict[key];
       }
     });
-    document.documentElement.lang = lang === 'ja' ? 'ja' : (lang === 'th' ? 'th' : 'en');
+    document.documentElement.lang = lang === 'ja' ? 'ja' : 'en';
     localStorage.setItem('site-lang', lang);
     const select = document.getElementById('lang-switcher');
     if (select) select.value = lang;
