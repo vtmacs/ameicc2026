@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n-title="lecture02.pageTitle">SAKURA AI Engine Hands-On 2</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="site-title" href="index.html" data-i18n="site.title">SAKURA AI Engine Hands-On Support Site</a>
+    <nav class="main-nav">
+      <a href="index.html" class=" " data-i18n="nav.home">Home</a>
+      <a href="lecture01.html" class=" " data-i18n="nav.lecture1">Lecture 1</a>
+      <a href="lecture02.html" class="active " data-i18n="nav.lecture2">Lecture 2</a>
+      <a href="#" class=" disabled" data-i18n="nav.lecture3">Lecture 3</a>
+      <a href="#" class=" disabled" data-i18n="nav.lecture4">Lecture 4</a>
+    </nav>
+    <select id="lang-switcher" aria-label="Language">
+      <option value="en">English</option>
+      <option value="ja">日本語</option>
+      <option value="th" disabled>ภาษาไทย</option>
+    </select>
+  </div>
+</header>
+<main>
+<section class="hero">
+  <div class="container">
+    <p class="label" data-i18n="lecture02.hero.label">Intermediate Course Session 4</p>
+    <h1 data-i18n="lecture02.hero.title">SAKURA AI Engine Hands-On 2</h1>
+    <p class="lead" data-i18n="lecture02.hero.lead">Hands-On Speech Transcription</p>
+    <p data-i18n="lecture02.hero.desc">In 90 minutes you will transcribe audio with the SAKURA AI Engine API, compare English and Thai accuracy, and see how transcription errors affect summarization.</p>
+    <span class="badge" data-i18n="lecture02.hero.duration">90 minutes</span>
+  </div>
+</section>
+<section class="section" id="how-it-works">
+  <div class="container">
+    <h2 data-i18n="lecture02.how.title">How This Class Works</h2>
+    <p data-i18n="lecture02.how.desc">Keep the slides open to see the current task. Use this site for detailed steps, copy-and-paste commands, extra challenges, and downloads.</p>
+    <ul>
+      <li data-i18n="lecture02.how.l1">Slides: explanations and the current task</li>
+      <li data-i18n="lecture02.how.l2">Website: detailed steps, commands, and worksheets</li>
+      <li data-i18n="lecture02.how.l3">A recording app is used to capture your own voice</li>
+      <li data-i18n="lecture02.how.l4">If you get stuck, search Troubleshooting or ask the instructor/TA</li>
+    </ul>
+  </div>
+</section>
+<section class="section section-alt" id="schedule">
+  <div class="container">
+    <h2 data-i18n="lecture02.schedule.title">Schedule (90 Minutes)</h2>
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th data-i18n="lecture02.schedule.time">Time</th>
+          <th data-i18n="lecture02.schedule.content">Content</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0 - 10</td>
+          <td data-i18n="lecture02.schedule.r1">Overview 1: What Is Voice AI?</td>
+        </tr>
+        <tr>
+          <td>10 - 25</td>
+          <td data-i18n="lecture02.schedule.r2">Hands-On 1: Transcribe sample audio</td>
+        </tr>
+        <tr>
+          <td>25 - 33</td>
+          <td data-i18n="lecture02.schedule.r3">Overview 2: Passing audio to the API</td>
+        </tr>
+        <tr>
+          <td>33 - 55</td>
+          <td data-i18n="lecture02.schedule.r4">Hands-On 2: English vs Thai accuracy</td>
+        </tr>
+        <tr>
+          <td>55 - 63</td>
+          <td data-i18n="lecture02.schedule.r5">Overview 3: Transcription accuracy and beyond</td>
+        </tr>
+        <tr>
+          <td>63 - 85</td>
+          <td data-i18n="lecture02.schedule.r6">Hands-On 3: Check and summarize</td>
+        </tr>
+        <tr>
+          <td>85 - 90</td>
+          <td data-i18n="lecture02.schedule.r7">Summary</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="section" id="overview1">
+  <div class="container">
+    <h2 data-i18n="lecture02.ov1.title">Overview 1: What Is Voice AI?</h2>
+
+    <h3 data-i18n="lecture02.ov1.stt.title">What Is Transcription (STT/ASR)?</h3>
+    <p data-i18n="lecture02.ov1.stt.desc">Voice AI transcribes spoken audio into text. This is also called STT (Speech to Text) or ASR (Automatic Speech Recognition). Once audio becomes text, it can be searched, analyzed, and summarized.</p>
+    <ul>
+      <li data-i18n="lecture02.ov1.stt.l1">Audio alone cannot be searched or analyzed</li>
+      <li data-i18n="lecture02.ov1.stt.l2">Transcription is a preprocessing step for generative AI</li>
+      <li data-i18n="lecture02.ov1.stt.l3">This class uses the Whisper speech recognition model</li>
+    </ul>
+
+    <h3 data-i18n="lecture02.ov1.whisper.title">Whisper Model</h3>
+    <p data-i18n="lecture02.ov1.whisper.desc">SAKURA AI Engine provides the Whisper speech recognition model. We will use whisper-large-v3-turbo, a faster derivative of the large-v3 model.</p>
+    <ul>
+      <li data-i18n="lecture02.ov1.whisper.l1">Open-source model released by OpenAI</li>
+      <li data-i18n="lecture02.ov1.whisper.l2">Internally processes audio in about 30-second units</li>
+      <li data-i18n="lecture02.ov1.whisper.l3">API limit: 30 minutes or 30 MB per request</li>
+    </ul>
+    <div class="warning-box">
+      <h4 data-i18n="lecture02.ov1.limit.title">30 seconds vs 30 minutes</h4>
+      <p data-i18n="lecture02.ov1.limit.desc">30 seconds is Whisper's internal processing unit, not the upload limit. You can send up to 30 minutes (30 MB) in one API request.</p>
+    </div>
+
+    <h3 data-i18n="lecture02.ov1.processing.title">Real-Time vs Batch Processing</h3>
+    <table class="info-table">
+      <thead>
+        <tr>
+          <th data-i18n="lecture02.ov1.processing.type">Type</th>
+          <th data-i18n="lecture02.ov1.processing.note">Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-i18n="lecture02.ov1.processing.realtime">Real-time</td>
+          <td data-i18n="lecture02.ov1.processing.realtime_note">Transcribes while speaking; used for subtitles and interpretation</td>
+        </tr>
+        <tr>
+          <td data-i18n="lecture02.ov1.processing.batch">Batch</td>
+          <td data-i18n="lecture02.ov1.processing.batch_note">Records first, then transcribes later; simpler and suited for meeting minutes</td>
+        </tr>
+      </tbody>
+    </table>
+    <p data-i18n="lecture02.ov1.processing.summary">This class uses synchronous batch processing: send a file and wait for the result.</p>
+
+    <h3 data-i18n="lecture02.ov1.accuracy.title">Factors Affecting Accuracy</h3>
+    <p data-i18n="lecture02.ov1.accuracy.desc">Even the same AI can produce very different results depending on conditions.</p>
+    <ul>
+      <li data-i18n="lecture02.ov1.accuracy.l1"><strong>Sound quality:</strong> background noise and distance from the microphone</li>
+      <li data-i18n="lecture02.ov1.accuracy.l2"><strong>Speaking style:</strong> speed, volume, and overlapping voices</li>
+      <li data-i18n="lecture02.ov1.accuracy.l3"><strong>Words:</strong> technical terms, proper nouns, abbreviations, hesitations</li>
+      <li data-i18n="lecture02.ov1.accuracy.l4"><strong>Language:</strong> differences between English and Thai, mixed languages</li>
+    </ul>
+
+    <h3 data-i18n="lecture02.ov1.business.title">Business Use Cases</h3>
+    <p data-i18n="lecture02.ov1.business.desc">Transcription solves the problem of not being able to search or analyze audio directly.</p>
+    <ul>
+      <li data-i18n="lecture02.ov1.business.l1">Preparing meeting minutes</li>
+      <li data-i18n="lecture02.ov1.business.l2">Call center call records</li>
+      <li data-i18n="lecture02.ov1.business.l3">Video subtitle creation</li>
+    </ul>
+  </div>
+</section>
+<section class="section section-alt" id="ho1">
+  <div class="container">
+    <h2 data-i18n="lecture02.ho1.title">Hands-On 1: Transcribe Sample Audio</h2>
+    <p data-i18n="lecture02.ho1.goal">Transcribe prepared English audio files with curl and compare short and long samples.</p>
+
+    <h3 data-i18n="lecture02.ho1.req.title">Required</h3>
+    <ul>
+      <li data-i18n="lecture02.ho1.req.l1">Create the work folder 02_AI_ASR</li>
+      <li data-i18n="lecture02.ho1.req.l2">Download a short sample audio file</li>
+      <li data-i18n="lecture02.ho1.req.l3">Run the Transcription API with curl</li>
+      <li data-i18n="lecture02.ho1.req.l4">Run the same command on long sample audio and compare</li>
+    </ul>
+
+    <h3 data-i18n="lecture02.ho1.prep.title">Prerequisites</h3>
+    <p data-i18n="lecture02.ho1.prep.desc">We use the environment created in Lecture 1. Make sure your Account Token environment variable is set.</p>
+    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">echo $AI_ENGINE_TOKEN
+# If nothing appears, set it again
+export AI_ENGINE_TOKEN="&lt;issued account token&gt;"</code></pre></div>
+
+    <h3 data-i18n="lecture02.ho1.steps.title">Steps</h3>
+    <ol class="steps">
+      <li>
+        <strong data-i18n="lecture02.ho1.s1.title">STEP 1: Create the work folder and download sample audio</strong>
+        <p data-i18n="lecture02.ho1.s1.desc">Create 02_AI_ASR in your WSL home directory and download sample_short_en.wav.</p>
+        <p><a class="btn" href="assets/downloads/sample_short_en.wav" download data-i18n="lecture02.ho1.s1.download">Download sample_short_en.wav</a></p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">mkdir -p ~/02_AI_ASR
+cd ~/02_AI_ASR
+curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_short_en.wav
+ls -l</code></pre></div>
+        <p data-i18n="lecture02.ho1.s1.note">Use -O (uppercase) when the URL contains the file name. Use -o (lowercase) when you want to choose your own file name.</p>
+      </li>
+      <li>
+        <strong data-i18n="lecture02.ho1.s2.title">STEP 2: Run the Transcription API</strong>
+        <p data-i18n="lecture02.ho1.s2.desc">Send the audio file to the API with model=whisper-large-v3-turbo and language=en.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl --request POST \
+  --url https://api.ai.sakura.ad.jp/v1/audio/transcriptions \
+  --header 'Accept: application/json' \
+  --header "Authorization: Bearer ${AI_ENGINE_TOKEN}" \
+  --header 'Content-Type: multipart/form-data' \
+  --form 'file=@sample_short_en.wav' \
+  --form 'model=whisper-large-v3-turbo' \
+  --form 'language=en'</code></pre></div>
+        <p data-i18n="lecture02.ho1.s2.note">Always specify language=en for English. Without it, transcription quality may drop.</p>
+      </li>
+      <li>
+        <strong data-i18n="lecture02.ho1.s3.title">STEP 3: Check the short audio result</strong>
+        <p data-i18n="lecture02.ho1.s3.desc">The response is JSON with a text field. Compare the output with the original script below.</p>
+        <div class="callout">
+          <h4 data-i18n="lecture02.ho1.s3.script.title">Original text of sample_short_en.wav</h4>
+          <p><code>Japan holds nearly 7,000 islands (the biggest being Honshu), making Japan the 7th largest island in the world!</code></p>
+          <p data-i18n="lecture02.ho1.s3.script.check">Check whether numbers and proper nouns (7,000 / Honshu) are correct.</p>
+        </div>
+      </li>
+      <li>
+        <strong data-i18n="lecture02.ho1.s4.title">STEP 4: Transcribe the long sample audio</strong>
+        <p data-i18n="lecture02.ho1.s4.desc">Run the same API command on sample_long_en.wav and compare with the script.</p>
+        <p><a class="btn" href="assets/downloads/sample_long_en.wav" download data-i18n="lecture02.ho1.s4.download">Download sample_long_en.wav</a></p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_long_en.wav
+</code></pre></div>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl --request POST \
+  --url https://api.ai.sakura.ad.jp/v1/audio/transcriptions \
+  --header "Authorization: Bearer ${AI_ENGINE_TOKEN}" \
+  --header 'Content-Type: multipart/form-data' \
+  --form 'file=@sample_long_en.wav' \
+  --form 'model=whisper-large-v3-turbo' \
+  --form 'language=en'</code></pre></div>
+        <div class="callout">
+          <h4 data-i18n="lecture02.ho1.s4.script.title">Original text of sample_long_en.wav</h4>
+          <p><code>Safaris are perhaps the greatest tourism draw in Africa and the highlight for many visitors. The Kruger National Park (KNP) lies in the north-east of South Africa and runs along the border of Mozambique in the east, Zimbabwe in the north, and the southern border is the Crocodile River. The park covers 19,500 km&sup2; and is divided in 14 different ecozones, each supporting different wildlife. Examples of on-site activities include hunting, fishing, photography, bird watching, and visiting parks and studying information about the ecosystem. Some animals, such as elephants and giraffes, tend to approach closely to cars and standard equipment will allow good viewing.</code></p>
+          <p data-i18n="lecture02.ho1.s4.script.check">Look for missing words, misrecognitions, and whether misrecognitions increased compared with the short sample.</p>
+        </div>
+      </li>
+    </ol>
+
+    <h3 data-i18n="lecture02.ho1.errors.title">Common Errors and Solutions</h3>
+    <table class="info-table">
+      <thead>
+        <tr>
+          <th>Error</th>
+          <th data-i18n="lecture02.ho1.errors.cause">Cause</th>
+          <th data-i18n="lecture02.ho1.errors.fix">Solution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>No such file or directory</code></td>
+          <td data-i18n="lecture02.ho1.errors.e1.cause">File name or directory is wrong</td>
+          <td data-i18n="lecture02.ho1.errors.e1.fix">Check ls, confirm cd ~/02_AI_ASR, and check the name after @</td>
+        </tr>
+        <tr>
+          <td data-i18n="lecture02.ho1.errors.e2.title">File saved without extension</td>
+          <td data-i18n="lecture02.ho1.errors.e2.cause">curl -O saved a URL that has no extension</td>
+          <td data-i18n="lecture02.ho1.errors.e2.fix">Rename the file with curl -o your_name.wav</td>
+        </tr>
+        <tr>
+          <td><code>401 Unauthorized</code></td>
+          <td data-i18n="lecture02.ho1.errors.e3.cause">Token not passed correctly</td>
+          <td data-i18n="lecture02.ho1.errors.e3.fix">Check echo $AI_ENGINE_TOKEN and remove extra spaces</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <h4 data-i18n="lecture02.ho1.optional.title">Optional</h4>
+      <p data-i18n="lecture02.ho1.optional.desc">Download noisy or fast-speaking samples and compare how accuracy changes.</p>
+      <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_long_en_noisy.wav
+curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_long_en_fast.wav</code></pre></div>
+    </div>
+
+    <h3 data-i18n="lecture02.ho1.check.title">Progress Check</h3>
+    <ul>
+      <li data-i18n="lecture02.ho1.check.l1">Created the 02_AI_ASR folder</li>
+      <li data-i18n="lecture02.ho1.check.l2">Transcribed the short sample audio</li>
+      <li data-i18n="lecture02.ho1.check.l3">Transcribed the long sample audio</li>
+      <li data-i18n="lecture02.ho1.check.l4">Found differences between the two results</li>
+    </ul>
+  </div>
+</section>
+<section class="section" id="overview2">
+  <div class="container">
+    <h2 data-i18n="lecture02.ov2.title">Overview 2: Passing Audio to the API</h2>
+
+    <h3 data-i18n="lecture02.ov2.flow.title">How Audio Reaches the API</h3>
+    <p data-i18n="lecture02.ov2.flow.desc">The Transcription API cannot receive a URL; it receives the audio file itself. You must first download the audio from the cloud to your own computer, then upload it to the API.</p>
+    <ul>
+      <li data-i18n="lecture02.ov2.flow.l1">Download: bring audio from the cloud to your PC with curl -o</li>
+      <li data-i18n="lecture02.ov2.flow.l2">Upload: send the local file with --form file=@filename</li>
+    </ul>
+
+    <h3 data-i18n="lecture02.ov2.sync.title">Synchronous vs Asynchronous Processing</h3>
+    <p data-i18n="lecture02.ov2.sync.desc">When asking AI to process data, there are two ways to wait.</p>
+    <table class="info-table">
+      <thead>
+        <tr>
+          <th data-i18n="lecture02.ov2.sync.type">Type</th>
+          <th data-i18n="lecture02.ov2.sync.note">Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-i18n="lecture02.ov2.sync.sync">Synchronous</td>
+          <td data-i18n="lecture02.ov2.sync.sync_note">Send, wait until processing finishes, receive the result directly. Simple, but not suitable for very long processing.</td>
+        </tr>
+        <tr>
+          <td data-i18n="lecture02.ov2.sync.async">Asynchronous</td>
+          <td data-i18n="lecture02.ov2.sync.async_note">Send once, then come back later to fetch the result. Suitable for long or large-scale processing.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p data-i18n="lecture02.ov2.sync.summary">This class uses the synchronous Transcription API.</p>
+
+    <h3 data-i18n="lecture02.ov2.limit.title">API Limits</h3>
+    <p data-i18n="lecture02.ov2.limit.desc">Because the API is synchronous, there is a limit to how much audio you can send at once.</p>
+    <ul>
+      <li data-i18n="lecture02.ov2.limit.l1">Maximum per request: 30 minutes or 30 MB</li>
+      <li data-i18n="lecture02.ov2.limit.l2">Internally, Whisper splits audio into about 30-second segments for processing</li>
+      <li data-i18n="lecture02.ov2.limit.l3">Long meetings must be split before sending, or handled with a separate asynchronous system</li>
+    </ul>
+    <div class="warning-box">
+      <h4 data-i18n="lecture02.ov2.limit.warning.title">30 seconds is not the upload limit</h4>
+      <p data-i18n="lecture02.ov2.limit.warning.desc">30 seconds is Whisper's internal processing unit. The API upload limit is 30 minutes or 30 MB. Do not confuse the two.</p>
+    </div>
+  </div>
+</section>
+<section class="section section-alt" id="ho2">
+  <div class="container">
+    <h2 data-i18n="lecture02.ho2.title">Hands-On 2: Compare English and Thai Accuracy</h2>
+    <p data-i18n="lecture02.ho2.goal">Transcribe the same content in English and Thai, count errors against the script, and record the differences.</p>
+
+    <h3 data-i18n="lecture02.ho2.req.title">Required</h3>
+    <ul>
+      <li data-i18n="lecture02.ho2.req.l1">Transcribe the English sample audio</li>
+      <li data-i18n="lecture02.ho2.req.l2">Transcribe the Thai sample audio</li>
+      <li data-i18n="lecture02.ho2.req.l3">Count errors by comparing each result with the script</li>
+      <li data-i18n="lecture02.ho2.req.l4">Record the differences on the worksheet</li>
+    </ul>
+
+    <h3 data-i18n="lecture02.ho2.steps.title">Steps</h3>
+    <ol class="steps">
+      <li>
+        <strong data-i18n="lecture02.ho2.s1.title">STEP 1: Transcribe English audio</strong>
+        <p data-i18n="lecture02.ho2.s1.desc">Download sample_short_en.wav and run the API with language=en.</p>
+        <p><a class="btn" href="assets/downloads/sample_short_en.wav" download data-i18n="lecture02.ho2.s1.download">Download sample_short_en.wav</a></p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/02_AI_ASR
+curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_short_en.wav
+</code></pre></div>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl --request POST \
+  --url https://api.ai.sakura.ad.jp/v1/audio/transcriptions \
+  --header "Authorization: Bearer ${AI_ENGINE_TOKEN}" \
+  --header 'Content-Type: multipart/form-data' \
+  --form 'file=@sample_short_en.wav' \
+  --form 'model=whisper-large-v3-turbo' \
+  --form 'language=en'</code></pre></div>
+      </li>
+      <li>
+        <strong data-i18n="lecture02.ho2.s2.title">STEP 2: Transcribe Thai audio</strong>
+        <p data-i18n="lecture02.ho2.s2.desc">Download sample_short_th.wav and run the API with language=th.</p>
+        <p><a class="btn" href="assets/downloads/sample_short_th.wav" download data-i18n="lecture02.ho2.s2.download">Download sample_short_th.wav</a></p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_short_th.wav
+</code></pre></div>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl --request POST \
+  --url https://api.ai.sakura.ad.jp/v1/audio/transcriptions \
+  --header "Authorization: Bearer ${AI_ENGINE_TOKEN}" \
+  --header 'Content-Type: multipart/form-data' \
+  --form 'file=@sample_short_th.wav' \
+  --form 'model=whisper-large-v3-turbo' \
+  --form 'language=th'</code></pre></div>
+      </li>
+      <li>
+        <strong data-i18n="lecture02.ho2.s3.title">STEP 3: Count errors against the script</strong>
+        <p data-i18n="lecture02.ho2.s3.desc">Both audio files say the same thing, so compare each transcription with the original script and count mistakes.</p>
+        <div class="callout">
+          <h4 data-i18n="lecture02.ho2.s3.script.title">Original script (English)</h4>
+          <p><code>Japan holds nearly 7,000 islands (the biggest being Honshu), making Japan the 7th largest island in the world!</code></p>
+          <h4 data-i18n="lecture02.ho2.s3.script.thai">Original script (Thai)</h4>
+          <p><code>ญี่ปุ่นมีเกาะเกือบ 7,000 เกาะ (ฮอนชูคือเกาะที่ใหญ่ที่สุด) ส่งผลให้ญี่ปุ่นเป็นเกาะที่ใหญ่ที่สุดอันดับ 7 ของโลก!</code></p>
+          <p data-i18n="lecture02.ho2.s3.script.check">Pay special attention to numbers (7,000 / 7) and proper nouns (Honshu / ฮอนชู).</p>
+        </div>
+      </li>
+      <li>
+        <strong data-i18n="lecture02.ho2.s4.title">STEP 4: Record on the worksheet</strong>
+        <p data-i18n="lecture02.ho2.s4.desc">Copy the two transcription results and your error counts into the fields below.</p>
+        <div class="worksheet">
+          <label>
+            <span data-i18n="lecture02.ho2.ws.en">English transcription result</span>
+            <textarea data-worksheet="ho2-en" rows="3"></textarea>
+          </label>
+          <label>
+            <span data-i18n="lecture02.ho2.ws.th">Thai transcription result</span>
+            <textarea data-worksheet="ho2-th" rows="3"></textarea>
+          </label>
+          <label>
+            <span data-i18n="lecture02.ho2.ws.en_errors">English errors</span>
+            <textarea data-worksheet="ho2-en-errors" rows="2"></textarea>
+          </label>
+          <label>
+            <span data-i18n="lecture02.ho2.ws.th_errors">Thai errors</span>
+            <textarea data-worksheet="ho2-th-errors" rows="2"></textarea>
+          </label>
+          <label>
+            <span data-i18n="lecture02.ho2.ws.reflection">Which language was more accurate? Why?</span>
+            <textarea data-worksheet="ho2-reflection" rows="2"></textarea>
+          </label>
+        </div>
+      </li>
+    </ol>
+
+    <div class="callout">
+      <h4 data-i18n="lecture02.ho2.optional.title">Optional: Record your own voice</h4>
+      <p data-i18n="lecture02.ho2.optional.desc">Use the recording app on your smartphone to capture your own voice.</p>
+      <ol>
+        <li data-i18n="lecture02.ho2.optional.l1">Open the recording app page on your phone</li>
+        <li data-i18n="lecture02.ho2.optional.l2">Enter the Basic authentication ID and password (listed on this site)</li>
+        <li data-i18n="lecture02.ho2.optional.l3">Allow microphone access</li>
+        <li data-i18n="lecture02.ho2.optional.l4">Record 1-2 minutes, then upload</li>
+        <li data-i18n="lecture02.ho2.optional.l5">Copy the last 6 characters of the upload URL</li>
+      </ol>
+      <p data-i18n="lecture02.ho2.optional.download">Download the recording with curl:</p>
+      <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -o my_voice_en.mp3 https://ai-handson.f5.si/voice-uploader/s/xxxxxx
+ls -l</code></pre></div>
+      <p data-i18n="lecture02.ho2.optional.transcribe">Then transcribe it with the same API command, using file=@my_voice_en.mp3.</p>
+      <p data-i18n="lecture02.ho2.optional.people">Try recording with 2-3 people and notice that all speech is returned as one text with no speaker labels. You can also change conditions such as distance, location, or language mix.</p>
+    </div>
+
+    <h3 data-i18n="lecture02.ho2.check.title">Progress Check</h3>
+    <ul>
+      <li data-i18n="lecture02.ho2.check.l1">Transcribed the English sample audio</li>
+      <li data-i18n="lecture02.ho2.check.l2">Transcribed the Thai sample audio</li>
+      <li data-i18n="lecture02.ho2.check.l3">Counted errors against the script</li>
+      <li data-i18n="lecture02.ho2.check.l4">Filled in the worksheet</li>
+    </ul>
+  </div>
+</section>
+<section class="section" id="overview3">
+  <div class="container">
+    <h2 data-i18n="lecture02.ov3.title">Overview 3: Transcription Accuracy and Beyond</h2>
+
+    <h3 data-i18n="lecture02.ov3.imperfect.title">Transcription Is Not Perfect</h3>
+    <p data-i18n="lecture02.ov3.imperfect.desc">Even the best models make mistakes. The most important first step is to check the output.</p>
+    <ul>
+      <li data-i18n="lecture02.ov3.imperfect.l1"><strong>Proper nouns:</strong> person names, university names, product names may turn into similar-sounding words</li>
+      <li data-i18n="lecture02.ov3.imperfect.l2"><strong>Numbers and dates:</strong> 15 vs 50, Wednesday vs Thursday, etc.</li>
+      <li data-i18n="lecture02.ov3.imperfect.l3"><strong>Homophones:</strong> English two / to / too may be misjudged from context</li>
+      <li data-i18n="lecture02.ov3.imperfect.l4"><strong>Hesitations:</strong> "um" and "uh" are transcribed as-is</li>
+    </ul>
+    <p data-i18n="lecture02.ov3.imperfect.check">The most reliable check is to compare the transcript with the script sentence by sentence.</p>
+
+    <h3 data-i18n="lecture02.ov3.propagate.title">Errors Propagate to Summaries</h3>
+    <p data-i18n="lecture02.ov3.propagate.desc">If the transcription is wrong, the summary is built on that error. Because the summary looks natural, the mistake becomes hard to notice. Always check the transcript before summarizing.</p>
+
+    <h3 data-i18n="lecture02.ov3.speaker.title">No Speaker Information</h3>
+    <p data-i18n="lecture02.ov3.speaker.desc">Transcription produces a single block of text. It does not label who spoke each part.</p>
+    <ul>
+      <li data-i18n="lecture02.ov3.speaker.l1">Decisions and deadlines can still be extracted</li>
+      <li data-i18n="lecture02.ov3.speaker.l2">The person responsible cannot be reliably extracted without speaker labels</li>
+      <li data-i18n="lecture02.ov3.speaker.l3"><strong>Diarization</strong> is the technique that identifies speakers, but Whisper does not support it</li>
+    </ul>
+  </div>
+</section>
+<section class="section section-alt" id="ho3">
+  <div class="container">
+    <h2 data-i18n="lecture02.ho3.title">Hands-On 3: Check Transcription and Summarize</h2>
+    <p data-i18n="lecture02.ho3.goal">Compare the long English transcription with the script, correct errors, summarize with Python, and compare before and after correction.</p>
+
+    <h3 data-i18n="lecture02.ho3.req.title">Required</h3>
+    <ul>
+      <li data-i18n="lecture02.ho3.req.l1">Compare the English transcription results with the script sentence by sentence</li>
+      <li data-i18n="lecture02.ho3.req.l2">Correct errors by hand and save the text</li>
+      <li data-i18n="lecture02.ho3.req.l3">Summarize the corrected text using Python</li>
+      <li data-i18n="lecture02.ho3.req.l4">Compare summaries before and after correction</li>
+    </ul>
+
+    <h3 data-i18n="lecture02.ho3.steps.title">Steps</h3>
+    <ol class="steps">
+      <li>
+        <strong data-i18n="lecture02.ho3.s1.title">STEP 1: Compare the transcript with the script</strong>
+        <p data-i18n="lecture02.ho3.s1.desc">Copy the transcription result from WSL and compare it with the original script line by line. Check proper nouns first, then numbers and dates, and finally the meaning of each sentence.</p>
+      </li>
+      <li>
+        <strong data-i18n="lecture02.ho3.s2.title">STEP 2: Write misrecognitions on the worksheet</strong>
+        <p data-i18n="lecture02.ho3.s2.desc">Record any differences you find. You do not need to write everything; focus on clear mistakes.</p>
+        <div class="worksheet">
+          <label>
+            <span data-i18n="lecture02.ho3.ws.mis1">Misrecognition 1</span>
+            <textarea data-worksheet="ho3-mis1" rows="2"></textarea>
+          </label>
+          <label>
+            <span data-i18n="lecture02.ho3.ws.mis2">Misrecognition 2</span>
+            <textarea data-worksheet="ho3-mis2" rows="2"></textarea>
+          </label>
+          <label>
+            <span data-i18n="lecture02.ho3.ws.mis3">Misrecognition 3</span>
+            <textarea data-worksheet="ho3-mis3" rows="2"></textarea>
+          </label>
+        </div>
+      </li>
+      <li>
+        <strong data-i18n="lecture02.ho3.s3.title">STEP 3: Correct errors and save</strong>
+        <p data-i18n="lecture02.ho3.s3.desc">Create sample_long_en.txt with nano, paste the transcription, and correct each error.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/02_AI_ASR
+nano sample_long_en.txt
+# Right-click to paste, then fix errors
+# Save: Ctrl+O, then Enter  Exit: Ctrl+X
+cat sample_long_en.txt</code></pre></div>
+      </li>
+      <li>
+        <strong data-i18n="lecture02.ho3.s4.title">STEP 4: Summarize the corrected text</strong>
+        <p data-i18n="lecture02.ho3.s4.desc">Use Python and urllib.request to call chat/completions and summarize the file.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">python3 -c "
+import os, json, urllib.request
+token = os.environ.get('AI_ENGINE_TOKEN')
+text = open('sample_long_en.txt', encoding='utf-8').read()
+payload = {'model': 'gpt-oss-120b',
+           'messages': [{'role': 'user',
+                         'content': f'Summarize this in English:\n\n{text}'}]}
+req = urllib.request.Request(
+    'https://api.ai.sakura.ad.jp/v1/chat/completions',
+    data=json.dumps(payload).encode('utf-8'),
+    headers={'Authorization': f'Bearer {token}',
+             'Content-Type': 'application/json'})
+with urllib.request.urlopen(req) as res:
+    print(res.read().decode('utf-8'))
+"</code></pre></div>
+      </li>
+      <li>
+        <strong data-i18n="lecture02.ho3.s5.title">STEP 5: Compare before and after correction</strong>
+        <p data-i18n="lecture02.ho3.s5.desc">Run the same summarization on the uncorrected transcript and compare. You should see that proper nouns and dates become correct only after fixing the transcript.</p>
+      </li>
+    </ol>
+
+    <div class="callout">
+      <h4 data-i18n="lecture02.ho3.optional.title">Optional</h4>
+      <p data-i18n="lecture02.ho3.optional.minutes">Output as meeting minutes. Specify the format: Decisions / Action items / Due dates. Notice that without speaker information the "person responsible" field may be blank, unknown, or guessed.</p>
+      <p data-i18n="lecture02.ho3.optional.long">Handle audio over 30 minutes by splitting it into 29-second chunks. Set up a Python virtual environment, install requests and pydub, and use splitmp3.py. A combined splitmp3+summary.py script can produce transcript_full.txt and transcript_summary.md at once.</p>
+      <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/02_AI_ASR
+sudo apt update
+sudo apt install python3-venv ffmpeg
+python3 -m venv venv
+source venv/bin/activate
+pip install --upgrade pip
+pip install requests pydub
+python3 splitmp3.py --input sample_long_en.wav
+python3 splitmp3+summary.py --input sample_long_en.wav</code></pre></div>
+    </div>
+
+    <h3 data-i18n="lecture02.ho3.check.title">Progress Check</h3>
+    <ul>
+      <li data-i18n="lecture02.ho3.check.l1">Compared the transcript with the script</li>
+      <li data-i18n="lecture02.ho3.check.l2">Corrected errors and saved sample_long_en.txt</li>
+      <li data-i18n="lecture02.ho3.check.l3">Summarized the corrected text with Python</li>
+      <li data-i18n="lecture02.ho3.check.l4">Compared summaries before and after correction</li>
+    </ul>
+  </div>
+</section>
+<section class="section" id="summary">
+  <div class="container">
+    <h2 data-i18n="lecture02.summary.title">Summary / Practical Use / What Lies Ahead</h2>
+
+    <h3 data-i18n="lecture02.summary.checklist.title">Summary Checklist</h3>
+    <p data-i18n="lecture02.summary.checklist.desc">After this class you can do the following.</p>
+    <ul>
+      <li data-i18n="lecture02.summary.checklist.l1">Run the speech transcription API with curl</li>
+      <li data-i18n="lecture02.summary.checklist.l2">Explain the process and limits for passing audio to the API</li>
+      <li data-i18n="lecture02.summary.checklist.l3">Compare transcription accuracy with the script</li>
+      <li data-i18n="lecture02.summary.checklist.l4">Explain how transcription errors affect summarization</li>
+    </ul>
+
+    <h3 data-i18n="lecture02.summary.practical.title">Practical Use Cases</h3>
+    <ul>
+      <li data-i18n="lecture02.summary.practical.l1">Meeting minutes: record and share on the same day</li>
+      <li data-i18n="lecture02.summary.practical.l2">Call centers: convert call records to text for quality analysis</li>
+      <li data-i18n="lecture02.summary.practical.l3">Video subtitles: add captions to lectures and explanatory videos</li>
+    </ul>
+
+    <h3 data-i18n="lecture02.summary.future.title">What Lies Ahead</h3>
+    <ul>
+      <li data-i18n="lecture02.summary.future.l1">Register transcripts in RAG to search past audio</li>
+      <li data-i18n="lecture02.summary.future.l2">Combine with images using a multimodal model</li>
+    </ul>
+  </div>
+</section>
+<section class="section section-alt"><div class="container"><nav class="page-nav"><a href="index.html" class="btn btn-secondary" data-i18n="common.back_home">Back to Home</a> <a href="#" class="btn disabled" data-i18n="common.next">Next: Lecture 3</a></nav></div></section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p data-i18n="footer.copy">&copy; SAKURA internet Inc.</p>
+  </div>
+</footer>
+<script src="assets/js/i18n.js"></script>
+</body>
+</html>
