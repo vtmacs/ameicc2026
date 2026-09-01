@@ -10,9 +10,11 @@ https://vtmacs.github.io/ameicc2026/
 
 - `index.html` — Course overview and lecture list
 - `lecture01.html` — Hands-On 1: RAG with SAKURA AI Engine
+- `lecture02.html` — Hands-On 2: Speech Transcription
 - `assets/css/style.css` — Styles
 - `assets/js/i18n.js` — Language switcher (EN/JA, TH placeholder)
 - `assets/downloads/annual-report-2564.pdf` — RAG practice document
+- `assets/downloads/*.wav` — Audio samples for transcription hands-on
 
 ## Languages
 
