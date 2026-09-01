@@ -268,6 +268,10 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
       <li>
         <strong data-i18n="lecture01.ho2.s3.title">STEP 3: Ask a Question with curl</strong>
         <p data-i18n="lecture01.ho2.s3.desc">Copy and run the following command. Check where the endpoint, authentication, request, and response are written.</p>
+        <div class="edit-box">
+          <label data-i18n="lecture01.editable.user">User message:</label>
+          <input type="text" class="edit-input" data-target="ho2-step3-user" value="Hello!">
+        </div>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl --location https://api.ai.sakura.ad.jp/v1/chat/completions \
   --header &#x27;Accept: application/json&#x27; \
   --header &quot;Authorization: Bearer ${AI_ENGINE_TOKEN}&quot; \
@@ -275,7 +279,7 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
   --data &#x27;{
       &quot;model&quot;: &quot;gpt-oss-120b&quot;,
       &quot;messages&quot;: [
-        { &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Hello!&quot; }
+        { &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;<span class='editable-content' data-target='ho2-step3-user'>Hello!</span>&quot; }
       ],
       &quot;temperature&quot;: 0.7,
       &quot;max_tokens&quot;: 200,
@@ -285,6 +289,14 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
       <li>
         <strong data-i18n="lecture01.ho2.s4.title">STEP 4: Edit the Prompt and Run Again</strong>
         <p data-i18n="lecture01.ho2.s4.desc">Copy and run the following complete command with the edited prompt.</p>
+        <div class="edit-box">
+          <label data-i18n="lecture01.editable.system">System instruction:</label>
+          <input type="text" class="edit-input" data-target="ho2-step4-system" value="You are a helpful travel guide.">
+        </div>
+        <div class="edit-box">
+          <label data-i18n="lecture01.editable.user">User message:</label>
+          <input type="text" class="edit-input" data-target="ho2-step4-user" value="Recommend three famous tourist attractions in Thailand.">
+        </div>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl --location https://api.ai.sakura.ad.jp/v1/chat/completions \
   --header 'Accept: application/json' \
   --header "Authorization: Bearer ${AI_ENGINE_TOKEN}" \
@@ -292,8 +304,8 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
   --data '{
       "model": "gpt-oss-120b",
       "messages": [
-        { "role": "system", "content": "You are a helpful travel guide." },
-        { "role": "user",   "content": "Recommend three famous tourist attractions in Thailand." }
+        { "role": "system", "content": "<span class='editable-content' data-target='ho2-step4-system'>You are a helpful travel guide.</span>" },
+        { "role": "user",   "content": "<span class='editable-content' data-target='ho2-step4-user'>Recommend three famous tourist attractions in Thailand.</span>" }
       ],
       "max_tokens": 300
     }' </code></pre></div>
@@ -344,7 +356,7 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
   --header &quot;Authorization: Bearer ${AI_ENGINE_TOKEN}&quot; \
   --header &#x27;Content-Type: application/json&#x27; \
   --data &#x27;{ &quot;model&quot;: &quot;gpt-oss-120b&quot;,
-            &quot;messages&quot;: [{ &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Hello!&quot; }] }&#x27; \
+            &quot;messages&quot;: [{ &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;<span class='editable-content' data-target='ho2-step3-user'>Hello!</span>&quot; }] }&#x27; \
 | python3 -c &quot;import sys,json; print(json.load(sys.stdin)[&#x27;choices&#x27;][0][&#x27;message&#x27;][&#x27;content&#x27;])&quot; </code></pre></div>
 
     <div class="callout">
@@ -525,6 +537,10 @@ ls -l</code></pre></div>
   --header &quot;Authorization: Bearer ${AI_ENGINE_TOKEN}&quot; \
 | grep -oE &#x27;&quot;id&quot;:&quot;[^&quot;]*&quot;|&quot;status&quot;:&quot;[^&quot;]*&quot;|&quot;name&quot;:&quot;[^&quot;]*&quot;&#x27; </code></pre></div>
       <p data-i18n="lecture01.ho3.optional.query">3. Run a RAG query:</p>
+      <div class="edit-box">
+        <label data-i18n="lecture01.editable.query">RAG query:</label>
+        <input type="text" class="edit-input" data-target="ho3-rag-query" value="Explain KOSEN-KMITL and Monozukuri.">
+      </div>
       <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl --request POST \
   --url https://api.ai.sakura.ad.jp/v1/documents/chat/ \
   --header &#x27;Accept: application/json&#x27; \
@@ -533,7 +549,7 @@ ls -l</code></pre></div>
   --data &#x27;{
       &quot;model&quot;: &quot;multilingual-e5-large&quot;,
       &quot;chat_model&quot;: &quot;gpt-oss-120b&quot;,
-      &quot;query&quot;: &quot;Explain KOSEN-KMITL and Monozukuri.&quot;,
+      &quot;query&quot;: &quot;<span class='editable-content' data-target='ho3-rag-query'>Explain KOSEN-KMITL and Monozukuri.</span>&quot;,
       &quot;top_k&quot;: 3,
       &quot;threshold&quot;: 0.6,
       &quot;distance_type&quot;: &quot;cosine&quot;

@@ -109,6 +109,9 @@
     "lecture01.ho2.s3.desc": "以下のコマンドをコピーして実行します。エンドポイント・認証・リクエスト・レスポンスの4つがどこに書かれているか確認しましょう。",
     "lecture01.ho2.s4.title": "STEP 4：プロンプトを書き換えて再実行",
     "lecture01.ho2.s4.desc": "プロンプトを書き換えた完全なコマンドをコピーして実行します。",
+    "lecture01.editable.user": "ユーザーの質問：",
+    "lecture01.editable.system": "AIへの指示：",
+    "lecture01.editable.query": "RAG の質問：",
     "lecture01.ho2.params.title": "リクエストパラメータの意味",
     "lecture01.ho2.params.meaning": "意味",
     "lecture01.ho2.params.model": "使用する AI モデル名",
@@ -507,6 +510,20 @@
     if (select) {
       select.addEventListener('change', e => applyLang(e.target.value));
     }
+
+    // Editable content in code blocks
+    document.querySelectorAll('.edit-input').forEach(input => {
+      const target = input.dataset.target;
+      const escapeJson = str => str.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+      const update = () => {
+        const escaped = escapeJson(input.value);
+        document.querySelectorAll(`.editable-content[data-target="${target}"]`).forEach(span => {
+          span.textContent = escaped;
+        });
+      };
+      input.addEventListener('input', update);
+      update();
+    });
 
     // Copy buttons
     document.querySelectorAll('.copy-btn').forEach(btn => {

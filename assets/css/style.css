@@ -243,6 +243,36 @@ tr:nth-child(even) td { background: #fafbfc; }
 
 .copy-btn:hover { background: #3333d0; }
 
+/* Editable code content */
+.edit-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 8px 0;
+}
+
+.edit-box label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.edit-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.editable-content {
+  background: rgba(255, 85, 120, 0.12);
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
 /* Prompt box */
 .prompt-box {
   background: #fff7fa;
