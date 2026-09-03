@@ -493,7 +493,7 @@ ls -l</code></pre></div>
           </thead>
           <tbody>
             <tr><td><code>tags</code></td><td data-i18n="lecture01.ho3.s4.tags">Reference only documents with the selected tags</td></tr>
-            <tr><td><code>top_k</code></td><td data-i18n="lecture01.ho3.s4.topk">Number of top-ranked chunks to retrieve</td></tr>
+            <tr><td><code>top_k</code></td><td data-i18n="lecture01.ho3.s4.topk">Maximum number of documents to retrieve</td></tr>
             <tr><td><code>threshold</code></td><td data-i18n="lecture01.ho3.s4.threshold">Vector-distance threshold (0–2)</td></tr>
           </tbody>
         </table>
@@ -564,11 +564,31 @@ ls -l</code></pre></div>
           <tr><td><code>model</code></td><td data-i18n="lecture01.ho3.optional.model">Model used for vectorization and embedding</td></tr>
           <tr><td><code>chat_model</code></td><td data-i18n="lecture01.ho3.optional.chat_model">LLM used to generate the answer</td></tr>
           <tr><td><code>query</code></td><td data-i18n="lecture01.ho3.optional.query_text">Question in natural language</td></tr>
-          <tr><td><code>top_k</code></td><td data-i18n="lecture01.ho3.optional.topk">Number of top-ranked chunks to retrieve</td></tr>
-          <tr><td><code>threshold</code></td><td data-i18n="lecture01.ho3.optional.threshold">Vector-distance threshold (0–2)</td></tr>
+          <tr><td><code>top_k</code></td><td data-i18n="lecture01.ho3.optional.topk">Maximum number of documents to retrieve, ranked by similarity</td></tr>
+          <tr><td><code>threshold</code></td><td data-i18n="lecture01.ho3.optional.threshold">Vector-distance threshold. More distant content is excluded (0–2).</td></tr>
           <tr><td><code>distance_type</code></td><td data-i18n="lecture01.ho3.optional.distance">cosine or l2</td></tr>
         </tbody>
       </table>
+
+      <div class="callout">
+        <h4 data-i18n="lecture01.ho3.optional.settings.title">Optional: Change the Settings and Compare</h4>
+        <p data-i18n="lecture01.ho3.optional.settings.topk"><strong>top_k</strong></p>
+        <ul>
+          <li data-i18n="lecture01.ho3.optional.settings.topk_more">Increase it to retrieve more chunks</li>
+          <li data-i18n="lecture01.ho3.optional.settings.topk_less">Decrease it to use only the highest-ranked chunks</li>
+        </ul>
+        <p data-i18n="lecture01.ho3.optional.settings.threshold"><strong>threshold</strong></p>
+        <ul>
+          <li data-i18n="lecture01.ho3.optional.settings.threshold_more">Increase it to use only more closely related content</li>
+          <li data-i18n="lecture01.ho3.optional.settings.threshold_less">Decrease it to include less closely related content</li>
+        </ul>
+        <p data-i18n="lecture01.ho3.optional.settings.note"><strong>For this exercise, change threshold.</strong> The document is small, so changing top_k may not produce an obvious difference.</p>
+        <p data-i18n="lecture01.ho3.optional.settings.observe">What to observe:</p>
+        <ul>
+          <li data-i18n="lecture01.ho3.optional.settings.observe_q1">Does a lower threshold retrieve less relevant sections?</li>
+          <li data-i18n="lecture01.ho3.optional.settings.observe_q2">How do the answer and wording change?</li>
+        </ul>
+      </div>
     </div>
 
     <h3 data-i18n="lecture01.ho3.check.title">Review</h3>
