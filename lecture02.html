@@ -180,7 +180,7 @@ export AI_ENGINE_TOKEN="&lt;issued account token&gt;"</code></pre></div>
 cd ~/02_AI_ASR
 curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_short_en.wav
 ls -l</code></pre></div>
-        <p data-i18n="lecture02.ho1.s1.note">Use -O (uppercase) when the URL contains the file name. Use -o (lowercase) when you want to choose your own file name.</p>
+        <p data-i18n="lecture02.ho1.s1.note"><strong>-O (capital O):</strong> Use this when the URL already contains a file name with extension.<br>→ Saves the file using the name in the URL.<br><strong>-o (lowercase o):</strong> Use this when you want to choose the file name yourself.<br>→ Saves the file using the name you specify.<br>If the downloaded file does not have a proper file name or extension, download it again using -o.</p>
       </li>
       <li>
         <strong data-i18n="lecture02.ho1.s2.title">STEP 2: Run the Transcription API</strong>
@@ -197,7 +197,7 @@ ls -l</code></pre></div>
       </li>
       <li>
         <strong data-i18n="lecture02.ho1.s3.title">STEP 3: Check the short audio result</strong>
-        <p data-i18n="lecture02.ho1.s3.desc">The response is JSON with a text field. Compare the output with the original script below.</p>
+        <p data-i18n="lecture02.ho1.s3.desc"><strong>Success.</strong> Unlike the Chat Completions API used in Hands-On 1, the transcription result is returned directly in the &quot;text&quot; field. Compare the output with the original script below.</p>
         <div class="callout">
           <h4 data-i18n="lecture02.ho1.s3.script.title">Original text of sample_short_en.wav</h4>
           <p><code>Japan holds nearly 7,000 islands (the biggest being Honshu), making Japan the 7th largest island in the world!</code></p>
@@ -206,7 +206,7 @@ ls -l</code></pre></div>
       </li>
       <li>
         <strong data-i18n="lecture02.ho1.s4.title">STEP 4: Transcribe the long sample audio</strong>
-        <p data-i18n="lecture02.ho1.s4.desc">Run the same API command on sample_long_en.wav and compare with the script.</p>
+        <p data-i18n="lecture02.ho1.s4.desc">Using the same command, run a sample audio of about one minute and compare it with the script.</p>
         <p><a class="btn" href="assets/downloads/sample_long_en.wav" download data-i18n="lecture02.ho1.s4.download">Download sample_long_en.wav</a></p>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_long_en.wav
 </code></pre></div>
@@ -305,9 +305,9 @@ curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_long_en_fast
     <h3 data-i18n="lecture02.ov2.limit.title">API Limits</h3>
     <p data-i18n="lecture02.ov2.limit.desc">Because the API is synchronous, there is a limit to how much audio you can send at once.</p>
     <ul>
-      <li data-i18n="lecture02.ov2.limit.l1">Maximum per request: 30 minutes or 30 MB</li>
-      <li data-i18n="lecture02.ov2.limit.l2">Internally, Whisper splits audio into about 30-second segments for processing</li>
-      <li data-i18n="lecture02.ov2.limit.l3">Long meetings must be split before sending, or handled with a separate asynchronous system</li>
+      <li data-i18n="lecture02.ov2.limit.l1">Maximum size per request: up to 30 minutes of audio, up to 30 MB</li>
+      <li data-i18n="lecture02.ov2.limit.l2">A two-hour meeting cannot be sent in a single request.</li>
+      <li data-i18n="lecture02.ov2.limit.l3">Handling longer audio: split the audio and send multiple requests, or use a separate asynchronous workflow.</li>
     </ul>
     <div class="warning-box">
       <h4 data-i18n="lecture02.ov2.limit.warning.title">30 seconds is not the upload limit</h4>

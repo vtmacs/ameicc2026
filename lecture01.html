@@ -105,7 +105,7 @@
     <ul>
 <li data-i18n="lecture01.ov1.sae.l1">Multiple foundation models to choose from</li>
 <li data-i18n="lecture01.ov1.sae.l2">Document management and RAG</li>
-<li data-i18n="lecture01.ov1.sae.l3">Audio transcription, TTS, and image input</li>
+<li data-i18n="lecture01.ov1.sae.l3">Audio transcription, TTS (Text-to-Speech), and image input</li>
 </ul>
 
     <h3 data-i18n="lecture01.ov1.model.title">Understanding the Concept of a Model</h3>
@@ -178,7 +178,7 @@
         <strong data-i18n="lecture01.ho1.s4.title">STEP 4: Enter and Submit a Prompt</strong>
         <p data-i18n="lecture01.ho1.s4.desc">Enter a question in the prompt field and click Submit or press Enter. Start with the following question.</p>
         <div class="prompt-box">
-          <p><code>Recommend three famous tourist attractions in Thailand.</code></p>
+          <p><code>Please recommend three famous tourist attractions in Thailand.</code></p>
         </div>
       </li>
     </ol>
@@ -255,11 +255,11 @@
     <ol class="steps">
       <li>
         <strong data-i18n="lecture01.ho2.s1.title">STEP 1: Issue an Account Token</strong>
-        <p data-i18n="lecture01.ho2.s1.desc">Select Account Tokens from the left menu, click Create Account Token, enter a name, and copy and save the displayed token. The token is shown only once.</p>
+        <p data-i18n="lecture01.ho2.s1.desc">Select Account Tokens from the left menu and click Create Account Token. Enter a name, then copy and securely save the displayed token. The token is shown only once.</p>
       </li>
       <li>
         <strong data-i18n="lecture01.ho2.s2.title">STEP 2: Store the Token in an Environment Variable</strong>
-        <p data-i18n="lecture01.ho2.s2.desc">Open the WSL (Ubuntu) terminal and run the command below. This saves you from pasting the token every time.</p>
+        <p data-i18n="lecture01.ho2.s2.desc">Open the WSL (Ubuntu) terminal. On Windows, open PowerShell and run `wsl`, then run the command below. This saves you from pasting the token every time.</p>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">export AI_ENGINE_TOKEN=&quot;&lt;issued account token&gt;&quot;
 echo $AI_ENGINE_TOKEN</code></pre></div>
         <p data-i18n="lecture01.ho2.s2.note">This setting remains active until you close the terminal. Run export again after reopening it.</p>
@@ -294,7 +294,7 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
         </div>
         <div class="edit-box">
           <label data-i18n="lecture01.editable.user">User message:</label>
-          <input type="text" class="edit-input" data-target="ho2-step4-user" value="Recommend three famous tourist attractions in Thailand.">
+          <input type="text" class="edit-input" data-target="ho2-step4-user" value="Please recommend three famous tourist attractions in Thailand.">
         </div>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl --location https://api.ai.sakura.ad.jp/v1/chat/completions \
   --header 'Accept: application/json' \
@@ -304,7 +304,7 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
       "model": "gpt-oss-120b",
       "messages": [
         { "role": "system", "content": "<span class='editable-content' data-target='ho2-step4-system'>You are a helpful travel guide.</span>" },
-        { "role": "user",   "content": "<span class='editable-content' data-target='ho2-step4-user'>Recommend three famous tourist attractions in Thailand.</span>" }
+        { "role": "user",   "content": "<span class='editable-content' data-target='ho2-step4-user'>Please recommend three famous tourist attractions in Thailand.</span>" }
       ],
       "max_tokens": 300
     }' </code></pre></div>
@@ -422,10 +422,10 @@ print(res.json()[&quot;choices&quot;][0][&quot;message&quot;][&quot;content&quot
     <h2 data-i18n="lecture01.ov3.title">Overview 3: How RAG Works</h2>
 
     <h3 data-i18n="lecture01.ov3.rag.title">What Is RAG?</h3>
-    <p data-i18n="lecture01.ov3.rag.desc">RAG (Retrieval-Augmented Generation) searches registered documents before answering, then generates an answer grounded in those documents.</p>
+    <p data-i18n="lecture01.ov3.rag.desc">RAG adds one key step: searching registered documents before generating a response.</p>
     <ul>
 <li data-i18n="lecture01.ov3.rag.l1">Answer based on registered documents</li>
-<li data-i18n="lecture01.ov3.rag.l2">Answer information a general AI does not know</li>
+<li data-i18n="lecture01.ov3.rag.l2">Answer questions using information a general AI does not have</li>
 <li data-i18n="lecture01.ov3.rag.l3">Show which documents were referenced</li>
 <li data-i18n="lecture01.ov3.rag.l4">Cannot use unregistered information as evidence</li>
 </ul>
@@ -493,7 +493,7 @@ ls -l</code></pre></div>
           </thead>
           <tbody>
             <tr><td><code>tags</code></td><td data-i18n="lecture01.ho3.s4.tags">Reference only documents with the selected tags</td></tr>
-            <tr><td><code>top_k</code></td><td data-i18n="lecture01.ho3.s4.topk">Maximum number of documents to retrieve</td></tr>
+            <tr><td><code>top_k</code></td><td data-i18n="lecture01.ho3.s4.topk">Maximum number of top-ranked chunks to retrieve</td></tr>
             <tr><td><code>threshold</code></td><td data-i18n="lecture01.ho3.s4.threshold">Vector-distance threshold (0–2)</td></tr>
           </tbody>
         </table>
@@ -564,7 +564,7 @@ ls -l</code></pre></div>
           <tr><td><code>model</code></td><td data-i18n="lecture01.ho3.optional.model">Model used for vectorization and embedding</td></tr>
           <tr><td><code>chat_model</code></td><td data-i18n="lecture01.ho3.optional.chat_model">LLM used to generate the answer</td></tr>
           <tr><td><code>query</code></td><td data-i18n="lecture01.ho3.optional.query_text">Question in natural language</td></tr>
-          <tr><td><code>top_k</code></td><td data-i18n="lecture01.ho3.optional.topk">Maximum number of documents to retrieve, ranked by similarity</td></tr>
+          <tr><td><code>top_k</code></td><td data-i18n="lecture01.ho3.optional.topk">Maximum number of top-ranked chunks to retrieve</td></tr>
           <tr><td><code>threshold</code></td><td data-i18n="lecture01.ho3.optional.threshold">Vector-distance threshold. More distant content is excluded (0–2).</td></tr>
           <tr><td><code>distance_type</code></td><td data-i18n="lecture01.ho3.optional.distance">cosine or l2</td></tr>
         </tbody>
