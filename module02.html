@@ -260,6 +260,8 @@ ls -l</code></pre></div>
 curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_long_en_fast.wav</code></pre></div>
     </div>
 
+    <p class="note" data-i18n="lecture02.ho1.credit">Sample audio source: <a href="https://huggingface.co/datasets/google/fleurs" target="_blank" rel="noopener">Google FLEURS Dataset</a> (CC BY 4.0), downloaded from https://huggingface.co/datasets/google/fleurs.</p>
+
     <h3 data-i18n="lecture02.ho1.check.title">Progress Check</h3>
     <ul>
       <li data-i18n="lecture02.ho1.check.l1">Created the 02_AI_ASR folder</li>
@@ -350,13 +352,17 @@ curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_long_en_fast
       </li>
       <li>
         <strong data-i18n="lecture02.ho2.s3.title">STEP 3: Count the transcription errors</strong>
-        <p data-i18n="lecture02.ho2.s3.desc">Both audio files say the same thing, so compare each transcription with the original script and count the transcription errors.</p>
+        <p data-i18n="lecture02.ho2.s3.desc">The English and Thai recordings contain the same content. Use the following text as the reference.</p>
         <div class="callout">
           <h4 data-i18n="lecture02.ho2.s3.script.title">Original script (English)</h4>
           <p><code>Japan holds nearly 7,000 islands (the biggest being Honshu), making Japan the 7th largest island in the world!</code></p>
           <h4 data-i18n="lecture02.ho2.s3.script.thai">Original script (Thai)</h4>
           <p><code>ญี่ปุ่นมีเกาะเกือบ 7,000 เกาะ (ฮอนชูคือเกาะที่ใหญ่ที่สุด) ส่งผลให้ญี่ปุ่นเป็นเกาะที่ใหญ่ที่สุดอันดับ 7 ของโลก!</code></p>
-          <p data-i18n="lecture02.ho2.s3.script.check">Pay special attention to numbers (7,000 / 7) and proper nouns (Honshu / ฮอนชู).</p>
+          <h4 data-i18n="lecture02.ho2.s3.verification.title">Verification Points</h4>
+          <ul>
+            <li data-i18n="lecture02.ho2.s3.verification.l1">Numbers (7,000, 7)</li>
+            <li data-i18n="lecture02.ho2.s3.verification.l2">Proper Nouns (Honshu / ฮอนชู)</li>
+          </ul>
         </div>
       </li>
       <li>
@@ -390,7 +396,7 @@ curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_long_en_fast
     <div class="callout">
       <h4 data-i18n="lecture02.ho2.optional.title">Optional: Record your own voice</h4>
       <p data-i18n="lecture02.ho2.optional.desc">Use the recording app on your smartphone to capture your own voice.</p>
-      <p data-i18n="lecture02.ho2.optional.url">Recording app URL: <code>https://ai-handson.f5.si/voice-uploader</code></p>
+      <p data-i18n="lecture02.ho2.optional.url">Recording app URL: <a href="https://ai-handson.f5.si/voice-uploader/" target="_blank" rel="noopener">https://ai-handson.f5.si/voice-uploader/</a></p>
       <p data-i18n="lecture02.ho2.optional.auth">Basic authentication ID: <code>ai-engine</code> / Password: <code>handson-sakura</code></p>
       <ol>
         <li data-i18n="lecture02.ho2.optional.l1">Open the recording app page on your phone</li>
@@ -415,6 +421,20 @@ ls -l</code></pre></div>
     </ul>
   </div>
 </section>
+<section class="section" id="language-accuracy">
+  <div class="container">
+    <h2 data-i18n="lecture02.lang.title">Why does accuracy vary depending on the language?</h2>
+    <p data-i18n="lecture02.lang.desc">In general, the ease of recognition varies by language. The main reasons are as follows:</p>
+    <ul>
+      <li data-i18n="lecture02.lang.l1"><strong>Volume of training data:</strong> English has overwhelmingly large amounts of data; more training data tends to improve accuracy.</li>
+      <li data-i18n="lecture02.lang.l2"><strong>Word Boundaries:</strong> Thai does not insert spaces between words, making it harder to determine boundaries.</li>
+      <li data-i18n="lecture02.lang.l3"><strong>Proper Nouns and Place Names:</strong> Local names are especially easy to mishear because they rarely appear in the training data.</li>
+      <li data-i18n="lecture02.lang.l4"><strong>Sound characteristics:</strong> Differences in tone and vowels make similar sounds difficult to distinguish.</li>
+    </ul>
+    <h3 data-i18n="lecture02.lang.practical.title">What matters in practice</h3>
+    <p data-i18n="lecture02.lang.practical.desc">When people talk about "high AI accuracy," they often refer to the language the model excels at. Be sure to check the accuracy using the language you actually plan to use.</p>
+  </div>
+</section>
 <section class="section" id="overview3">
   <div class="container">
     <h2 data-i18n="lecture02.ov3.title">Overview 3: Transcription Accuracy and Beyond</h2>
@@ -433,12 +453,14 @@ ls -l</code></pre></div>
     <p data-i18n="lecture02.ov3.propagate.desc">If the transcription is wrong, the summary is built on that error. Because the summary looks natural, the mistake becomes hard to notice. Always check the transcript before summarizing.</p>
 
     <h3 data-i18n="lecture02.ov3.speaker.title">What Happens When Speaker Information Is Missing?</h3>
-    <p data-i18n="lecture02.ov3.speaker.desc">Transcription produces a single block of text. It does not label who spoke each part.</p>
+    <p data-i18n="lecture02.ov3.speaker.desc">Transcription produces a single block of text. It does not label who spoke each part, so the following happens when creating meeting minutes.</p>
     <ul>
-      <li data-i18n="lecture02.ov3.speaker.l1">Decisions and deadlines can still be extracted</li>
-      <li data-i18n="lecture02.ov3.speaker.l2">The person responsible cannot be reliably extracted without speaker labels</li>
-      <li data-i18n="lecture02.ov3.speaker.l3"><strong>Diarization</strong> is the technique that identifies speakers, but Whisper does not support it</li>
+      <li data-i18n="lecture02.ov3.speaker.l1"><strong>Decisions</strong> — Easily identified</li>
+      <li data-i18n="lecture02.ov3.speaker.l2"><strong>Deadlines</strong> — Easily identified</li>
+      <li data-i18n="lecture02.ov3.speaker.l3"><strong>Action Item Owners</strong> — Often missed</li>
     </ul>
+    <p data-i18n="lecture02.ov3.speaker.why">Why can't the owner be taken? The transcription results are a single piece of text with speakers mixed in.</p>
+    <p data-i18n="lecture02.ov3.speaker.try">See for yourself in the Optional step: if you ask for a "person responsible" from text without speaker information, the model may leave it blank, return "Unknown", or guess.</p>
   </div>
 </section>
 <section class="section section-alt" id="ho3">
@@ -516,6 +538,7 @@ with urllib.request.urlopen(req) as res:
       <h4 data-i18n="lecture02.ho3.optional.title">Optional</h4>
       <p data-i18n="lecture02.ho3.optional.minutes">Output as meeting minutes. Specify the format: Decisions / Action items / Due dates. Notice that without speaker information the "person responsible" field may be blank, unknown, or guessed.</p>
       <p data-i18n="lecture02.ho3.optional.long">Handle audio over 30 minutes by splitting it into 29-second chunks. Set up a Python virtual environment, install requests and pydub, and use splitmp3.py. A combined splitmp3+summary.py script can produce transcript_full.txt and transcript_summary.md at once.</p>
+      <p class="note" data-i18n="lecture02.ho3.optional.env_note">Note: Some of these commands may already be set up in your environment. Use this as a reference, and run only the steps that are not yet done.</p>
       <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/02_AI_ASR
 sudo apt update
 sudo apt install python3-venv ffmpeg
