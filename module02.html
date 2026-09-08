@@ -318,11 +318,11 @@ curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_long_en_fast
 <section class="section section-alt" id="ho2">
   <div class="container">
     <h2 data-i18n="lecture02.ho2.title">Hands-On 2: Compare English and Thai Accuracy</h2>
-    <p data-i18n="lecture02.ho2.goal">Transcribe the same content in English and Thai, count errors against the script, and record the differences.</p>
+    <p data-i18n="lecture02.ho2.goal">Compare the English transcription from Hands-On 1 with the Thai transcription, count errors against the script, and record the differences.</p>
 
     <h3 data-i18n="lecture02.ho2.req.title">Required</h3>
     <ul>
-      <li data-i18n="lecture02.ho2.req.l1">Transcribe the English sample audio</li>
+      <li data-i18n="lecture02.ho2.req.l1">Use the English transcription result from Hands-On 1</li>
       <li data-i18n="lecture02.ho2.req.l2">Transcribe the Thai sample audio</li>
       <li data-i18n="lecture02.ho2.req.l3">Count the transcription errors by comparing each result with the script</li>
       <li data-i18n="lecture02.ho2.req.l4">Record the differences on the worksheet</li>
@@ -331,19 +331,8 @@ curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_long_en_fast
     <h3 data-i18n="lecture02.ho2.steps.title">Steps</h3>
     <ol class="steps">
       <li>
-        <strong data-i18n="lecture02.ho2.s1.title">STEP 1: Transcribe English audio</strong>
-        <p data-i18n="lecture02.ho2.s1.desc">Download sample_short_en.wav and run the API with language=en.</p>
-        <p><a class="btn" href="assets/downloads/sample_short_en.wav" download data-i18n="lecture02.ho2.s1.download">Download sample_short_en.wav</a></p>
-        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/02_AI_ASR
-curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_short_en.wav
-</code></pre></div>
-        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl --request POST \
-  --url https://api.ai.sakura.ad.jp/v1/audio/transcriptions \
-  --header "Authorization: Bearer ${AI_ENGINE_TOKEN}" \
-  --header 'Content-Type: multipart/form-data' \
-  --form 'file=@sample_short_en.wav' \
-  --form 'model=whisper-large-v3-turbo' \
-  --form 'language=en'</code></pre></div>
+        <strong data-i18n="lecture02.ho2.s1.title">STEP 1: Use the English transcription from Hands-On 1 STEP 3</strong>
+        <p data-i18n="lecture02.ho2.s1.desc">You already transcribed the English sample audio in Hands-On 1 STEP 3. Use that result for the comparison.</p>
       </li>
       <li>
         <strong data-i18n="lecture02.ho2.s2.title">STEP 2: Transcribe Thai audio</strong>
@@ -401,15 +390,17 @@ curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_short_en.wav
     <div class="callout">
       <h4 data-i18n="lecture02.ho2.optional.title">Optional: Record your own voice</h4>
       <p data-i18n="lecture02.ho2.optional.desc">Use the recording app on your smartphone to capture your own voice.</p>
+      <p data-i18n="lecture02.ho2.optional.url">Recording app URL: <code>https://ai-handson.f5.si/voice-uploader</code></p>
+      <p data-i18n="lecture02.ho2.optional.auth">Basic authentication ID: <code>ai-engine</code> / Password: <code>handson-sakura</code></p>
       <ol>
         <li data-i18n="lecture02.ho2.optional.l1">Open the recording app page on your phone</li>
-        <li data-i18n="lecture02.ho2.optional.l2">Enter the Basic authentication ID and password (listed on this site)</li>
+        <li data-i18n="lecture02.ho2.optional.l2">Enter the Basic authentication ID <code>ai-engine</code> and password <code>handson-sakura</code></li>
         <li data-i18n="lecture02.ho2.optional.l3">Allow microphone access</li>
         <li data-i18n="lecture02.ho2.optional.l4">Record 1-2 minutes, then upload</li>
         <li data-i18n="lecture02.ho2.optional.l5">Copy the last 6 characters of the upload URL</li>
       </ol>
       <p data-i18n="lecture02.ho2.optional.download">Download the recording with curl:</p>
-      <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -o my_voice_en.mp3 https://ai-handson.f5.si/voice-uploader/s/xxxxxx
+      <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -u ai-engine:handson-sakura -o my_voice_en.mp3 https://ai-handson.f5.si/voice-uploader/s/xxxxxx
 ls -l</code></pre></div>
       <p data-i18n="lecture02.ho2.optional.transcribe">Then transcribe it with the same API command, using file=@my_voice_en.mp3.</p>
       <p data-i18n="lecture02.ho2.optional.people">Try recording with 2-3 people and notice that all speech is returned as one text with no speaker labels. You can also change conditions such as distance, location, or language mix.</p>
@@ -417,7 +408,7 @@ ls -l</code></pre></div>
 
     <h3 data-i18n="lecture02.ho2.check.title">Progress Check</h3>
     <ul>
-      <li data-i18n="lecture02.ho2.check.l1">Transcribed the English sample audio</li>
+      <li data-i18n="lecture02.ho2.check.l1">Used the English transcription result from Hands-On 1</li>
       <li data-i18n="lecture02.ho2.check.l2">Transcribed the Thai sample audio</li>
       <li data-i18n="lecture02.ho2.check.l3">Counted errors against the script</li>
       <li data-i18n="lecture02.ho2.check.l4">Filled in the worksheet</li>
