@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n-title="lecture03.pageTitle">SAKURA AI Engine Module 3</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="site-title" href="index.html" data-i18n="site.title">SAKURA AI Engine Practical Exercise Support Site</a>
+    <nav class="main-nav">
+      <a href="index.html" class=" " data-i18n="nav.home">Home</a>
+      <a href="module01.html" class=" " data-i18n="nav.lecture1">Module 1</a>
+      <a href="module02.html" class=" " data-i18n="nav.lecture2">Module 2</a>
+      <a href="module03.html" class="active " data-i18n="nav.lecture3">Module 3</a>
+      <a href="#" class=" disabled" data-i18n="nav.lecture4">Module 4</a>
+    </nav>
+    <select id="lang-switcher" aria-label="Language">
+      <option value="en">English</option>
+      <option value="ja">日本語</option>
+    </select>
+  </div>
+</header>
+<main>
+<section class="hero">
+  <div class="container">
+    <p class="label" data-i18n="lecture03.hero.label">Intermediate Course Module 3</p>
+    <h1 data-i18n="lecture03.hero.title">SAKURA AI Engine Module 3</h1>
+    <p class="lead" data-i18n="lecture03.hero.lead">Multimodal AI</p>
+    <p data-i18n="lecture03.hero.desc">In 90 minutes you will learn the fundamentals of multimodal AI and gain hands-on experience with AI-powered image recognition via API.</p>
+    <span class="badge" data-i18n="lecture03.hero.duration">90 minutes</span>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2 data-i18n="lecture03.how.title">How This Class Works</h2>
+    <p data-i18n="lecture03.how.desc">Keep the slides open to see the current task. Use this site for detailed steps, copy-and-paste commands, extra challenges, and downloads.</p>
+    <ul>
+      <li data-i18n="lecture03.how.l1">Slides: explanations and the current task</li>
+      <li data-i18n="lecture03.how.l2">Website: detailed steps, commands, and extra challenges</li>
+      <li data-i18n="lecture03.how.l3">WSL (Ubuntu): run the API commands</li>
+      <li data-i18n="lecture03.how.l4">If You Get Stuck, search Troubleshooting or ask the instructor or a TA</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="schedule">
+  <div class="container">
+    <h2 data-i18n="lecture03.schedule.title">Schedule (90 Minutes)</h2>
+    <table class="info-table">
+      <thead>
+        <tr>
+          <th data-i18n="lecture03.schedule.time">Time</th>
+          <th data-i18n="lecture03.schedule.content">Content</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>0 - 10</td><td data-i18n="lecture03.schedule.r1">Overview 1: What Is Multimodal AI?</td></tr>
+        <tr><td>10 - 25</td><td data-i18n="lecture03.schedule.r2">Hands-On 1: Multimodal Model Operation Verification</td></tr>
+        <tr><td>25 - 45</td><td data-i18n="lecture03.schedule.r3">Hands-On 2: Image Recognition with URL and Base64</td></tr>
+        <tr><td>45 - 60</td><td data-i18n="lecture03.schedule.r4">Hands-On 3: Base64 Image Processing Using JSON Files</td></tr>
+        <tr><td>60 - 75</td><td data-i18n="lecture03.schedule.r5">Hands-On 4: Development and Practical Considerations</td></tr>
+        <tr><td>75 - 90</td><td data-i18n="lecture03.schedule.r6">Q&amp;A and Summary</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section section-alt" id="overview1">
+  <div class="container">
+    <h2 data-i18n="lecture03.ov1.title">Overview 1: What Is Multimodal AI?</h2>
+
+    <h3 data-i18n="lecture03.ov1.modality.title">Modality and Multimodal</h3>
+    <p data-i18n="lecture03.ov1.modality.desc">A modality is a type of data, such as text, images, audio, video, or sensor data. Multimodal AI is an AI technology that can process and integrate multiple types of data simultaneously.</p>
+
+    <h3 data-i18n="lecture03.ov1.diff.title">Differences Between Single-Modal and Multimodal AI</h3>
+    <p data-i18n="lecture03.ov1.diff.desc">Single-modal AI handles only one type of data at a time, such as text only or images only. Multimodal AI combines multiple types of data to achieve deeper understanding and reasoning.</p>
+
+    <h3 data-i18n="lecture03.ov1.examples.title">Examples of Multimodal AI Applications</h3>
+    <ul>
+      <li data-i18n="lecture03.ov1.examples.l1"><strong>Images and text:</strong> summarizing and explaining figures and tables, visual Q&amp;A</li>
+      <li data-i18n="lecture03.ov1.examples.l2"><strong>Audio and text:</strong> natural voice interaction, context-aware explanations</li>
+      <li data-i18n="lecture03.ov1.examples.l3"><strong>Sensor information and text:</strong> situation analysis from camera or sensor data, robot control</li>
+      <li data-i18n="lecture03.ov1.examples.l4"><strong>Decision support:</strong> integrated analysis across multiple information sources for healthcare, manufacturing, and security</li>
+    </ul>
+
+    <h3 data-i18n="lecture03.ov1.vlm.title">How AI "Understands" Images</h3>
+    <p data-i18n="lecture03.ov1.vlm.desc">A Visual Language Model (VLM) combines a vision encoder that reads image features with a Large Language Model (LLM) that understands text. Image features are converted into a form the LLM can process, and the model generates a text response based on both inputs.</p>
+
+    <h3 data-i18n="lecture03.ov1.ocr.title">Differences from "OCR + LLM"</h3>
+    <ul>
+      <li data-i18n="lecture03.ov1.ocr.l1"><strong>OCR:</strong> finds text in images and converts it to text</li>
+      <li data-i18n="lecture03.ov1.ocr.l2"><strong>VLM:</strong> looks at images and text together to understand meaning and structure</li>
+    </ul>
+
+    <h3 data-i18n="lecture03.ov1.model.title">SAKURA AI Engine and Public Preview Models</h3>
+    <p data-i18n="lecture03.ov1.model.desc">SAKURA AI Engine provides multimodal models as public preview models aimed at collecting user feedback. The model used in this module is <code>preview/Qwen3-VL-30B-A3B-Instruct</code>, a Vision-Language model in the Qwen series.</p>
+    <ul>
+      <li data-i18n="lecture03.ov1.model.l1"><strong>VL (Vision-Language):</strong> processes images and text together</li>
+      <li data-i18n="lecture03.ov1.model.l2"><strong>Instruct:</strong> follows instructions in the prompt</li>
+      <li data-i18n="lecture03.ov1.model.l3"><strong>30B-A3B:</strong> about 30B total parameters, about 3B active parameters during inference (MoE)</li>
+      <li data-i18n="lecture03.ov1.model.l4"><strong>Note:</strong> specifications may change or service may be discontinued without prior notice</li>
+    </ul>
+    <p><a class="btn" href="https://secure.sakura.ad.jp/ai/models/text" target="_blank" rel="noopener" data-i18n="lecture03.ov1.model.link">Check available models in the control panel</a></p>
+  </div>
+</section>
+
+<section class="section" id="ho1">
+  <div class="container">
+    <h2 data-i18n="lecture03.ho1.title">Hands-On 1: Multimodal Model Operation Verification</h2>
+    <p data-i18n="lecture03.ho1.goal">Verify that the multimodal model responds to a text-only request before adding images.</p>
+
+    <h3 data-i18n="lecture03.ho1.req.title">Required</h3>
+    <ul>
+      <li data-i18n="lecture03.ho1.req.l1">Set the account token as an environment variable</li>
+      <li data-i18n="lecture03.ho1.req.l2">Install jq (or use json_pp if sudo is unavailable)</li>
+      <li data-i18n="lecture03.ho1.req.l3">Send a text-only chat request to the model</li>
+      <li data-i18n="lecture03.ho1.req.l4">Check the response content and usage</li>
+    </ul>
+
+    <h3 data-i18n="lecture03.ho1.steps.title">Steps</h3>
+    <ol class="steps">
+      <li>
+        <strong data-i18n="lecture03.ho1.s1.title">STEP 1: Set the environment variable and install jq</strong>
+        <p data-i18n="lecture03.ho1.s1.desc">Set the account token issued in a previous module as an environment variable. Install jq to format the JSON response, or use json_pp if you cannot install jq.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">export AI_ENGINE_TOKEN="<issued account token>"
+sudo apt install jq</code></pre></div>
+        <p data-i18n="lecture03.ho1.s1.alt">If sudo is unavailable, pipe the curl output to <code>json_pp</code> instead of <code>jq</code>.</p>
+      </li>
+      <li>
+        <strong data-i18n="lecture03.ho1.s2.title">STEP 2: Send a text-only chat request</strong>
+        <p data-i18n="lecture03.ho1.s2.desc">Send a simple text message to preview/Qwen3-VL-30B-A3B-Instruct. The content array is used even for text-only input.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -X POST "https://api.ai.sakura.ad.jp/v1/chat/completions" \
+  -H "Authorization: Bearer ${AI_ENGINE_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "preview/Qwen3-VL-30B-A3B-Instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "text",
+            "text": "Hello"
+          }
+        ]
+      }
+    ],
+    "temperature": 0.7,
+    "max_tokens": 1000,
+    "stream": false
+  }' | jq</code></pre></div>
+      </li>
+      <li>
+        <strong data-i18n="lecture03.ho1.s3.title">STEP 3: Review the response</strong>
+        <p data-i18n="lecture03.ho1.s3.desc">The response contains the answer text, finish_reason, and usage. Check that the model responded normally.</p>
+        <ul>
+          <li data-i18n="lecture03.ho1.s3.item1"><code>content</code>: the generated answer</li>
+          <li data-i18n="lecture03.ho1.s3.item2"><code>finish_reason</code>: <code>stop</code> means the response completed normally</li>
+          <li data-i18n="lecture03.ho1.s3.item3"><code>usage</code>: number of tokens consumed</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h3 data-i18n="lecture03.ho1.errors.title">Common Errors and Solutions</h3>
+    <table class="info-table">
+      <thead>
+        <tr>
+          <th data-i18n="lecture03.ho1.errors.error">Error</th>
+          <th data-i18n="lecture03.ho1.errors.cause">Cause</th>
+          <th data-i18n="lecture03.ho1.errors.fix">Solution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>400 Bad Request</code></td>
+          <td data-i18n="lecture03.ho1.errors.e1.cause">Invalid request parameter</td>
+          <td data-i18n="lecture03.ho1.errors.e1.fix">Check the JSON structure and the model name prefix</td>
+        </tr>
+        <tr>
+          <td><code>401 Unauthorized</code></td>
+          <td data-i18n="lecture03.ho1.errors.e2.cause">Token not specified</td>
+          <td data-i18n="lecture03.ho1.errors.e2.fix">Run <code>echo $AI_ENGINE_TOKEN</code> and confirm the token is set</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 data-i18n="lecture03.ho1.params.title">Request Parameters</h3>
+    <table class="info-table">
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th data-i18n="lecture03.ho1.params.meaning">Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>model</code></td><td data-i18n="lecture03.ho1.params.model">Name of the AI model to use</td></tr>
+        <tr><td><code>messages</code></td><td data-i18n="lecture03.ho1.params.messages">Conversation content (role and content)</td></tr>
+        <tr><td><code>role</code></td><td data-i18n="lecture03.ho1.params.role">Speaker role: user = user, system = instruction to AI</td></tr>
+        <tr><td><code>content</code></td><td data-i18n="lecture03.ho1.params.content">Message body; this is where you add text and images</td></tr>
+        <tr><td><code>temperature</code></td><td data-i18n="lecture03.ho1.params.temperature">Randomness of the response</td></tr>
+        <tr><td><code>max_tokens</code></td><td data-i18n="lecture03.ho1.params.max_tokens">Maximum number of tokens generated</td></tr>
+        <tr><td><code>stream</code></td><td data-i18n="lecture03.ho1.params.stream">Response delivery method</td></tr>
+      </tbody>
+    </table>
+
+    <h3 data-i18n="lecture03.ho1.check.title">Progress Check</h3>
+    <ul>
+      <li data-i18n="lecture03.ho1.check.l1">Set the account token environment variable</li>
+      <li data-i18n="lecture03.ho1.check.l2">Sent a text-only request and received a response</li>
+      <li data-i18n="lecture03.ho1.check.l3">Confirmed content, finish_reason, and usage</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section-alt" id="ho2">
+  <div class="container">
+    <h2 data-i18n="lecture03.ho2.title">Hands-On 2: Image Recognition with URL and Base64</h2>
+    <p data-i18n="lecture03.ho2.goal">Send images to the API using a public URL and a local Base64-encoded file.</p>
+
+    <h3 data-i18n="lecture03.ho2.methods.title">Two Methods of Image Transmission</h3>
+    <table class="info-table">
+      <thead>
+        <tr>
+          <th data-i18n="lecture03.ho2.methods.method">Method</th>
+          <th data-i18n="lecture03.ho2.methods.advantage">Advantage</th>
+          <th data-i18n="lecture03.ho2.methods.limitation">Limitation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-i18n="lecture03.ho2.methods.url">Image URL</td>
+          <td data-i18n="lecture03.ho2.methods.url_adv">Request body stays small (a few KB)</td>
+          <td data-i18n="lecture03.ho2.methods.url_lim">Cannot access private or local images</td>
+        </tr>
+        <tr>
+          <td data-i18n="lecture03.ho2.methods.b64">Base64 encoding</td>
+          <td data-i18n="lecture03.ho2.methods.b64_adv">Local or private images can be embedded directly</td>
+          <td data-i18n="lecture03.ho2.methods.b64_lim">Increases data size and may exceed command-line limits</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 data-i18n="lecture03.ho2.steps.title">Steps</h3>
+    <ol class="steps">
+      <li>
+        <strong data-i18n="lecture03.ho2.s1.title">STEP 1: Send an image using a public URL</strong>
+        <p data-i18n="lecture03.ho2.s1.desc">Include a publicly accessible image URL in the request. Multiple content items (text and image) can be placed in the same message.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -X POST "https://api.ai.sakura.ad.jp/v1/chat/completions" \
+  -H "Authorization: Bearer ${AI_ENGINE_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "preview/Qwen3-VL-30B-A3B-Instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "text",
+            "text": "Please describe this image briefly."
+          },
+          {
+            "type": "image_url",
+            "image_url": {
+              "url": "https://s3.tky01.sakurastorage.jp/ai-kentei/sakura-office.jpg"
+            }
+          }
+        ]
+      }
+    ],
+    "temperature": 0.7,
+    "max_tokens": 2000,
+    "stream": false
+  }' | jq</code></pre></div>
+      </li>
+      <li>
+        <strong data-i18n="lecture03.ho2.s2.title">STEP 2: Review the response</strong>
+        <p data-i18n="lecture03.ho2.s2.desc">The response describes the image in natural language. Check the content field.</p>
+      </li>
+      <li>
+        <strong data-i18n="lecture03.ho2.s3.title">STEP 3: Download the image to your local PC</strong>
+        <p data-i18n="lecture03.ho2.s3.desc">Create the work folder and download the sample image.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">mkdir -p ~/03_Multimodal
+cd ~/03_Multimodal
+wget "https://s3.tky01.sakurastorage.jp/ai-kentei/flower.jpg" -O flower.jpg
+ls -lh flower.jpg</code></pre></div>
+      </li>
+      <li>
+        <strong data-i18n="lecture03.ho2.s4.title">STEP 4: Verify the saved image</strong>
+        <p data-i18n="lecture03.ho2.s4.desc">On Windows, you can open the folder from File Explorer at <code>\\wsl.localhost\Ubuntu\home\&lt;username&gt;\03_Multimodal</code>.</p>
+      </li>
+      <li>
+        <strong data-i18n="lecture03.ho2.s5.title">STEP 5: Send a local image as Base64</strong>
+        <p data-i18n="lecture03.ho2.s5.desc">Embed the local image directly in the request using a data URI. The <code>-w 0</code> option prevents line breaks in the Base64 output.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -X POST "https://api.ai.sakura.ad.jp/v1/chat/completions" \
+  -H "Authorization: Bearer ${AI_ENGINE_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "preview/Qwen3-VL-30B-A3B-Instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "text",
+            "text": "Please describe this image briefly."
+          },
+          {
+            "type": "image_url",
+            "image_url": {
+              "url": "data:image/jpeg;base64,'$(base64 -w 0 flower.jpg)'"
+            }
+          }
+        ]
+      }
+    ],
+    "temperature": 0.7,
+    "max_tokens": 2000,
+    "stream": false
+  }' | jq</code></pre></div>
+      </li>
+      <li>
+        <strong data-i18n="lecture03.ho2.s6.title">STEP 6: Review the response</strong>
+        <p data-i18n="lecture03.ho2.s6.desc">Confirm that the local image is described in the content field.</p>
+      </li>
+    </ol>
+
+    <h3 data-i18n="lecture03.ho2.check.title">Progress Check</h3>
+    <ul>
+      <li data-i18n="lecture03.ho2.check.l1">Sent an image by URL and received a description</li>
+      <li data-i18n="lecture03.ho2.check.l2">Downloaded the image to the local PC</li>
+      <li data-i18n="lecture03.ho2.check.l3">Sent the local image as Base64 and received a description</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="ho3">
+  <div class="container">
+    <h2 data-i18n="lecture03.ho3.title">Hands-On 3: Base64 Image Processing Using JSON Files</h2>
+    <p data-i18n="lecture03.ho3.goal">Send a Base64-encoded image via a JSON file to avoid command-line length limits.</p>
+
+    <h3 data-i18n="lecture03.ho3.argmax.title">Command-Line Length Limits</h3>
+    <p data-i18n="lecture03.ho3.argmax.desc">High-resolution images can produce Base64 strings of millions of characters. Sending them directly in a curl command may exceed the OS command-line limit and cause <code>Argument list too long</code>. The solution is to save the request body to a JSON file and send it with <code>curl -d @file</code> or <code>--data-binary @file</code>.</p>
+
+    <h3 data-i18n="lecture03.ho3.steps.title">Steps</h3>
+    <ol class="steps">
+      <li>
+        <strong data-i18n="lecture03.ho3.s1.title">STEP 1: Convert the image to Base64</strong>
+        <p data-i18n="lecture03.ho3.s1.desc">Convert the local image to a Base64 string and save it to a file.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/03_Multimodal
+base64 -w 0 flower.jpg > flower.b64</code></pre></div>
+      </li>
+      <li>
+        <strong data-i18n="lecture03.ho3.s2.title">STEP 2: Write the request to a JSON file</strong>
+        <p data-i18n="lecture03.ho3.s2.desc">Create request.json with the Base64 string embedded via command substitution.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cat > request.json <<JSONEOF
+{
+  "model": "preview/Qwen3-VL-30B-A3B-Instruct",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        { "type": "text", "text": "Please describe this image briefly." },
+        {
+          "type": "image_url",
+          "image_url": {
+            "url": "data:image/jpeg;base64,$(cat flower.b64)"
+          }
+        }
+      ]
+    }
+  ],
+  "temperature": 0.7,
+  "max_tokens": 2000,
+  "stream": false
+}
+JSONEOF</code></pre></div>
+      </li>
+      <li>
+        <strong data-i18n="lecture03.ho3.s3.title">STEP 3: Send the request with the JSON file</strong>
+        <p data-i18n="lecture03.ho3.s3.desc">Use <code>--data-binary @request.json</code> to send the file contents as the request body.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -X POST "https://api.ai.sakura.ad.jp/v1/chat/completions" \
+  -H "Authorization: Bearer ${AI_ENGINE_TOKEN}" \
+  -H "Content-Type: application/json" \
+  --data-binary @request.json | jq</code></pre></div>
+      </li>
+      <li>
+        <strong data-i18n="lecture03.ho3.s4.title">STEP 4: Review the response</strong>
+        <p data-i18n="lecture03.ho3.s4.desc">Confirm that the content field contains a description of the image.</p>
+      </li>
+    </ol>
+
+    <h3 data-i18n="lecture03.ho3.check.title">Progress Check</h3>
+    <ul>
+      <li data-i18n="lecture03.ho3.check.l1">Converted the image to Base64</li>
+      <li data-i18n="lecture03.ho3.check.l2">Created request.json with the Base64 image</li>
+      <li data-i18n="lecture03.ho3.check.l3">Sent the request using the JSON file and received a response</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section-alt" id="ho4">
+  <div class="container">
+    <h2 data-i18n="lecture03.ho4.title">Hands-On 4: Development and Practical Considerations</h2>
+
+    <h3 data-i18n="lecture03.ho4.own.title">Try Image Analysis with Your Own Images</h3>
+    <p data-i18n="lecture03.ho4.own.desc">Upload handwritten notes, complex diagrams, or photos and evaluate whether the model recognizes and explains them as expected.</p>
+    <ul>
+      <li data-i18n="lecture03.ho4.own.l1">Store image files in <code>~/03_Multimodal</code></li>
+      <li data-i18n="lecture03.ho4.own.l2">Update the file name in the code to match your image</li>
+      <li data-i18n="lecture03.ho4.own.l3">Use the JSON file approach from Hands-On 3 for large images</li>
+      <li data-i18n="lecture03.ho4.own.l4">Do not use images containing personal or confidential information</li>
+    </ul>
+
+    <h3 data-i18n="lecture03.ho4.challenges.title">Example Image Analysis Challenges</h3>
+    <ul>
+      <li data-i18n="lecture03.ho4.challenges.l1"><strong>Text extraction:</strong> read text from signs or receipts and structure the result as JSON</li>
+      <li data-i18n="lecture03.ho4.challenges.l2"><strong>Object counting:</strong> test how accurately the model counts multiple objects in a photo</li>
+      <li data-i18n="lecture03.ho4.challenges.l3"><strong>Handwritten notes / whiteboards:</strong> summarize content and extract action items</li>
+    </ul>
+
+    <h3 data-i18n="lecture03.ho4.practical.title">Practical Points</h3>
+    <ul>
+      <li data-i18n="lecture03.ho4.practical.l1"><strong>Resolution and cost:</strong> higher resolution images consume more vision tokens, increasing latency and cost</li>
+      <li data-i18n="lecture03.ho4.practical.l2"><strong>Vision prompting:</strong> explicitly tell the model where to focus, e.g. "Describe the table in the upper-right corner"</li>
+    </ul>
+
+    <div class="callout">
+      <h4 data-i18n="lecture03.ho4.optional.title">Optional: Try Other Models and Combine APIs</h4>
+      <p data-i18n="lecture03.ho4.optional.desc">Try a coding-focused model such as Qwen3.6-35B-A3B or gemma-4-31B-it to generate HTML/CSS from screenshots. You can also combine the multimodal API with Whisper or RAG to build a practical AI application.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="summary">
+  <div class="container">
+    <h2 data-i18n="lecture03.summary.title">Summary</h2>
+    <p data-i18n="lecture03.summary.desc">In this module, you learned how to handle inputs that include images as well as text via the API.</p>
+    <ul>
+      <li data-i18n="lecture03.summary.l1">Understood the concept and basic mechanism of multimodal AI</li>
+      <li data-i18n="lecture03.summary.l2">Sent images in URL format and performed image recognition</li>
+      <li data-i18n="lecture03.summary.l3">Sent images in Base64 format, including via a JSON file</li>
+      <li data-i18n="lecture03.summary.l4">Considered how to apply multimodal AI in practice</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section-alt"><div class="container"><nav class="page-nav"><a href="index.html" class="btn btn-secondary" data-i18n="common.back_home">Back to Home</a> <a href="#" class="btn disabled" data-i18n="lecture03.next">Next: Module 4</a></nav></div></section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p data-i18n="footer.copy">&copy; SAKURA internet Inc.</p>
+  </div>
+</footer>
+<script src="assets/js/i18n.js"></script>
+</body>
+</html>
