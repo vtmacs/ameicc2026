@@ -234,8 +234,8 @@
     "nav.lecture2": "モジュール 2",
     "nav.lecture3": "モジュール 3",
     "nav.lecture4": "モジュール 4",
-    "site.title": "SAKURA AI Engine Hands-On Support Site",
-    "index.title": "SAKURA AI Engine Hands-On Support Site",
+    "site.title": "SAKURA AI Engine Practical Exercise Support Site",
+    "index.title": "SAKURA AI Engine Practical Exercise Support Site",
     "index.lead": "さくらのAI Engine 操作実践 中級モジュール（1〜4）の補助 Web サイトです。",
     "index.lectures.title": "モジュール一覧",
     "index.lecture1.status": "利用可能",
@@ -472,7 +472,7 @@
     "common.back_home": "ホームに戻る",
     "common.next": "次：モジュール 3",
     "lecture01.pageTitle": "さくらのAI Engine モジュール 1",
-    "index.pageTitle": "SAKURA AI Engine Hands-On Support Site"
+    "index.pageTitle": "SAKURA AI Engine Practical Exercise Support Site"
   }
 };
 

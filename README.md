@@ -1,4 +1,4 @@
-# SAKURA AI Engine Hands-On Support Site
+# SAKURA AI Engine Practical Exercise Support Site
 
 Supplementary website for the SAKURA AI Engine intermediate hands-on course (AMEICC 2026).
 
