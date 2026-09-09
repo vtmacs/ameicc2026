@@ -8,13 +8,17 @@ https://vtmacs.github.io/ameicc2026/
 
 ## Contents
 
-- `index.html` — Course overview and module list
-- `module01.html` — Hands-On 1: RAG with SAKURA AI Engine
-- `module02.html` — Hands-On 2: Speech Transcription
+- `index.html` — Course overview, module list, teaching materials, and references
+- `module01.html` — Module 1: RAG with SAKURA AI Engine
+- `module02.html` — Module 2: Speech Transcription
+- `module03.html` — Module 3: Multimodal API
+- `module04.html` — Module 4: Building a Web App with AI Engine
 - `assets/css/style.css` — Styles
 - `assets/js/i18n.js` — Language switcher (EN/JA)
-- `assets/downloads/annual-report-2564.pdf` — RAG practice document
-- `assets/downloads/*.wav` — Audio samples for transcription hands-on
+- `assets/downloads/` — RAG practice document and audio samples
+- `assets/materials/` — Slide PDFs for each module
+- `assets/manuals/` — SAKURA AI Engine manual PDFs
+- `assets/references/` — Additional reference PDFs
 
 ## Languages
 
