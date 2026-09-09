@@ -116,19 +116,18 @@
     <h3 data-i18n="lecture03.ho1.req.title">Required</h3>
     <ul>
       <li data-i18n="lecture03.ho1.req.l1">Set the account token as an environment variable</li>
-      <li data-i18n="lecture03.ho1.req.l2">Install jq (or use json_pp if sudo is unavailable)</li>
-      <li data-i18n="lecture03.ho1.req.l3">Send a text-only chat request to the model</li>
-      <li data-i18n="lecture03.ho1.req.l4">Check the response content and usage</li>
+      <li data-i18n="lecture03.ho1.req.l2">Send a text-only chat request to the model</li>
+      <li data-i18n="lecture03.ho1.req.l3">Check the response content and usage</li>
     </ul>
 
     <h3 data-i18n="lecture03.ho1.steps.title">Steps</h3>
     <ol class="steps">
       <li>
-        <strong data-i18n="lecture03.ho1.s1.title">STEP 1: Set the environment variable and install jq</strong>
-        <p data-i18n="lecture03.ho1.s1.desc">Set the account token issued in a previous module as an environment variable. Install jq to format the JSON response, or use json_pp if you cannot install jq.</p>
-        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">export AI_ENGINE_TOKEN="<issued account token>"
-sudo apt install jq</code></pre></div>
-        <p data-i18n="lecture03.ho1.s1.alt">If sudo is unavailable, pipe the curl output to <code>json_pp</code> instead of <code>jq</code>.</p>
+        <strong data-i18n="lecture03.ho1.s1.title">STEP 1: Set the environment variable</strong>
+        <p data-i18n="lecture03.ho1.s1.desc">Make sure your Account Token environment variable is set.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">echo $AI_ENGINE_TOKEN
+# If nothing appears, set it again
+export AI_ENGINE_TOKEN="&lt;issued account token&gt;"</code></pre></div>
       </li>
       <li>
         <strong data-i18n="lecture03.ho1.s2.title">STEP 2: Send a text-only chat request</strong>
@@ -152,16 +151,15 @@ sudo apt install jq</code></pre></div>
     "temperature": 0.7,
     "max_tokens": 1000,
     "stream": false
-  }' | jq</code></pre></div>
+  }' | json_pp</code></pre></div>
+        <p data-i18n="lecture03.ho1.s2.note">Note: jq is a popular JSON formatter. Since software installation is not permitted in this environment, we use the built-in json_pp command instead.</p>
       </li>
       <li>
         <strong data-i18n="lecture03.ho1.s3.title">STEP 3: Review the response</strong>
         <p data-i18n="lecture03.ho1.s3.desc">The response contains the answer text, finish_reason, and usage. Check that the model responded normally.</p>
-        <ul>
-          <li data-i18n="lecture03.ho1.s3.item1"><code>content</code>: the generated answer</li>
-          <li data-i18n="lecture03.ho1.s3.item2"><code>finish_reason</code>: <code>stop</code> means the response completed normally</li>
-          <li data-i18n="lecture03.ho1.s3.item3"><code>usage</code>: number of tokens consumed</li>
-        </ul>
+        <p data-i18n="lecture03.ho1.s3.item1"><code>content</code>: the generated answer</p>
+        <p data-i18n="lecture03.ho1.s3.item2"><code>finish_reason</code>: <code>stop</code> means the response completed normally</p>
+        <p data-i18n="lecture03.ho1.s3.item3"><code>usage</code>: number of tokens consumed</p>
       </li>
     </ol>
 
@@ -274,7 +272,7 @@ sudo apt install jq</code></pre></div>
     "temperature": 0.7,
     "max_tokens": 2000,
     "stream": false
-  }' | jq</code></pre></div>
+  }' | json_pp</code></pre></div>
       </li>
       <li>
         <strong data-i18n="lecture03.ho2.s2.title">STEP 2: Review the response</strong>
@@ -290,7 +288,11 @@ ls -lh flower.jpg</code></pre></div>
       </li>
       <li>
         <strong data-i18n="lecture03.ho2.s4.title">STEP 4: Verify the saved image</strong>
-        <p data-i18n="lecture03.ho2.s4.desc">On Windows, you can open the folder from File Explorer at <code>\\wsl.localhost\Ubuntu\home\&lt;username&gt;\03_Multimodal</code>.</p>
+        <p data-i18n="lecture03.ho2.s4.desc1">Open File Explorer and navigate to the following folder:</p>
+        <p data-i18n="lecture03.ho2.s4.path1"><code>Linux &gt; Ubuntu &gt; home &gt; {username} &gt; 03_Multimodal</code></p>
+        <p data-i18n="lecture03.ho2.s4.desc2">Alternatively, enter the following path directly in the File Explorer address bar:</p>
+        <p data-i18n="lecture03.ho2.s4.path2"><code>\\wsl.localhost\Ubuntu\home\{username}\03_Multimodal</code></p>
+        <p data-i18n="lecture03.ho2.s4.note">Note: Replace {username} with your WSL username.</p>
       </li>
       <li>
         <strong data-i18n="lecture03.ho2.s5.title">STEP 5: Send a local image as Base64</strong>
@@ -320,7 +322,7 @@ ls -lh flower.jpg</code></pre></div>
     "temperature": 0.7,
     "max_tokens": 2000,
     "stream": false
-  }' | jq</code></pre></div>
+  }' | json_pp</code></pre></div>
       </li>
       <li>
         <strong data-i18n="lecture03.ho2.s6.title">STEP 6: Review the response</strong>
@@ -350,13 +352,13 @@ ls -lh flower.jpg</code></pre></div>
       <li>
         <strong data-i18n="lecture03.ho3.s1.title">STEP 1: Convert the image to Base64</strong>
         <p data-i18n="lecture03.ho3.s1.desc">Convert the local image to a Base64 string and save it to a file.</p>
-        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/03_Multimodal
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/03_Multimodal/
 base64 -w 0 flower.jpg > flower.b64</code></pre></div>
       </li>
       <li>
         <strong data-i18n="lecture03.ho3.s2.title">STEP 2: Write the request to a JSON file</strong>
         <p data-i18n="lecture03.ho3.s2.desc">Create request.json with the Base64 string embedded via command substitution.</p>
-        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cat > request.json <<JSONEOF
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cat > request.json &lt;&lt;EOF
 {
   "model": "preview/Qwen3-VL-30B-A3B-Instruct",
   "messages": [
@@ -377,7 +379,7 @@ base64 -w 0 flower.jpg > flower.b64</code></pre></div>
   "max_tokens": 2000,
   "stream": false
 }
-JSONEOF</code></pre></div>
+EOF</code></pre></div>
       </li>
       <li>
         <strong data-i18n="lecture03.ho3.s3.title">STEP 3: Send the request with the JSON file</strong>
@@ -385,7 +387,7 @@ JSONEOF</code></pre></div>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -X POST "https://api.ai.sakura.ad.jp/v1/chat/completions" \
   -H "Authorization: Bearer ${AI_ENGINE_TOKEN}" \
   -H "Content-Type: application/json" \
-  --data-binary @request.json | jq</code></pre></div>
+  --data-binary @request.json | json_pp</code></pre></div>
       </li>
       <li>
         <strong data-i18n="lecture03.ho3.s4.title">STEP 4: Review the response</strong>
@@ -431,6 +433,7 @@ JSONEOF</code></pre></div>
     <div class="callout">
       <h4 data-i18n="lecture03.ho4.optional.title">Optional: Try Other Models and Combine APIs</h4>
       <p data-i18n="lecture03.ho4.optional.desc">Try a coding-focused model such as Qwen3.6-35B-A3B or gemma-4-31B-it to generate HTML/CSS from screenshots. You can also combine the multimodal API with Whisper or RAG to build a practical AI application.</p>
+      <p data-i18n="lecture03.ho4.optional.kimi">Please keep usage of Kimi model to a minimum to avoid excessive load.</p>
     </div>
   </div>
 </section>
