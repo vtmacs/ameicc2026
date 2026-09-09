@@ -415,7 +415,7 @@ curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_long_en_fast
       </div>
 
       <p data-i18n="lecture02.ho2.optional.download">Download the recording with curl:</p>
-      <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -u ai-engine:handson-sakura-ai-2026! -o my_voice_en.mp3 https://ai-handson.f5.si/s/<span class="editable-content" data-target="voice-code">xxxxxx</span>
+      <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -L -o my_voice_en.mp3 https://ai-handson.f5.si/s/<span class="editable-content" data-target="voice-code">xxxxxx</span>
 ls -l</code></pre></div>
       <p data-i18n="lecture02.ho2.optional.transcribe">Then transcribe it with the same API command, using file=@my_voice_en.mp3.</p>
       <p data-i18n="lecture02.ho2.optional.people">Try recording with 2-3 people and notice that all speech is returned as one text with no speaker labels. You can also change conditions such as distance, location, or language mix.</p>
