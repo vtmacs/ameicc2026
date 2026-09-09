@@ -769,6 +769,7 @@
     "lecture04.ho2.blanks.l1": "<strong>送る中身を組み立てる：</strong>app.py build_payload（__(1)__ __(2)__ __(3)__）",
     "lecture04.ho2.blanks.l2": "<strong>組み立てたものを送る：</strong>app.py requests.post（__(4)__ __(5)__）",
     "lecture04.ho2.blanks.l3": "<strong>返ってきた結果を取り出す：</strong>app.js（data.__(1)__ data.__(2)__）",
+    "lecture04.ho2.show_answer": "答えを表示",
     "lecture04.ho2.s1.title": "① 送る中身を組み立てる",
     "lecture04.ho2.s1.desc": "curl の --data で渡していた値を payload に入れます。変数 query / top_k / threshold には画面入力値が入っています。",
     "lecture04.ho2.s2.title": "② 組み立てたものを送る",

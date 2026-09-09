@@ -245,7 +245,9 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
 
     <h3 data-i18n="lecture04.ho2.s1.title">Build What to Send</h3>
     <p data-i18n="lecture04.ho2.s1.desc">Put the values you passed via <code>--data</code> into the payload. The variables <code>query</code>, <code>top_k</code>, and <code>threshold</code> already hold the screen input.</p>
-    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">def build_payload(query, top_k, threshold):
+    <details class="answer-details">
+      <summary data-i18n="lecture04.ho2.show_answer">Show answer</summary>
+      <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">def build_payload(query, top_k, threshold):
     payload = {
         "model": EMBEDDING_MODEL,
         "chat_model": CHAT_MODEL,
@@ -254,21 +256,28 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
         "threshold": threshold,
         "distance_type": DISTANCE_TYPE,
     }</code></pre></div>
+    </details>
 
     <h3 data-i18n="lecture04.ho2.s2.title">Send What You Built</h3>
     <p data-i18n="lecture04.ho2.s2.desc">Map curl’s destination URL to the first argument of <code>requests.post</code>, and curl’s <code>--data</code> to the <code>json=</code> keyword.</p>
-    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">response = requests.post(
+    <details class="answer-details">
+      <summary data-i18n="lecture04.ho2.show_answer">Show answer</summary>
+      <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">response = requests.post(
     AI_ENGINE_URL,
     headers=headers,
     json=payload,
     timeout=REQUEST_TIMEOUT,
 )</code></pre></div>
+    </details>
 
     <h3 data-i18n="lecture04.ho2.s3.title">Retrieve the Result That Comes Back</h3>
     <p data-i18n="lecture04.ho2.s3.desc">Pull the answer and its sources out of the JSON returned from Flask. Use the JSON key names directly.</p>
-    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-javascript">// Display the answer and its sources
+    <details class="answer-details">
+      <summary data-i18n="lecture04.ho2.show_answer">Show answer</summary>
+      <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-javascript">// Display the answer and its sources
 showAnswer(data.answer);
 showSources(data.sources);</code></pre></div>
+    </details>
 
     <h3 data-i18n="lecture04.ho2.wrap.title">Wrapping Up the Blanks</h3>
     <ul>
