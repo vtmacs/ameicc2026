@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n-title="lecture04.pageTitle">SAKURA AI Engine Module 4</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="site-title" href="index.html" data-i18n="site.title">SAKURA AI Engine Practical Exercise Support Site</a>
+    <nav class="main-nav">
+      <a href="index.html" class=" " data-i18n="nav.home">Home</a>
+      <a href="module01.html" class=" " data-i18n="nav.lecture1">Module 1</a>
+      <a href="module02.html" class=" " data-i18n="nav.lecture2">Module 2</a>
+      <a href="module03.html" class=" " data-i18n="nav.lecture3">Module 3</a>
+      <a href="module04.html" class="active " data-i18n="nav.lecture4">Module 4</a>
+    </nav>
+    <select id="lang-switcher" aria-label="Language">
+      <option value="en">English</option>
+      <option value="ja">日本語</option>
+    </select>
+  </div>
+</header>
+<main>
+<section class="hero">
+  <div class="container">
+    <p class="label" data-i18n="lecture04.hero.label">Intermediate Course Module 4</p>
+    <h1 data-i18n="lecture04.hero.title">SAKURA AI Engine Module 4</h1>
+    <p class="lead" data-i18n="lecture04.hero.lead">Embedding AI into a Web App</p>
+    <p data-i18n="lecture04.hero.desc">Use the distributed code to understand how a Web app built with AI Engine works. Turn the RAG you ran with curl into something you can use from a browser.</p>
+    <span class="badge" data-i18n="lecture04.hero.duration">90 minutes</span>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2 data-i18n="lecture04.how.title">How This Class Works</h2>
+    <p data-i18n="lecture04.how.desc">Keep the slides open to see the current task. Use this site for detailed steps, copy-and-paste commands, extra challenges, and downloads.</p>
+    <ul>
+      <li data-i18n="lecture04.how.l1">Slides: explanations and the current task</li>
+      <li data-i18n="lecture04.how.l2">Website: detailed steps, commands, and extra challenges</li>
+      <li data-i18n="lecture04.how.l3">WSL (Ubuntu): run the Web app server</li>
+      <li data-i18n="lecture04.how.l4">Browser: operate the finished Web app</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="schedule">
+  <div class="container">
+    <h2 data-i18n="lecture04.schedule.title">Schedule (90 Minutes)</h2>
+    <table class="info-table">
+      <thead>
+        <tr>
+          <th data-i18n="lecture04.schedule.time">Time</th>
+          <th data-i18n="lecture04.schedule.content">Content</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>0 - 10</td><td data-i18n="lecture04.schedule.r1">Overview 1: The Environment We’ll Build</td></tr>
+        <tr><td>10 - 25</td><td data-i18n="lecture04.schedule.r2">Overview 2: curl vs. Web App</td></tr>
+        <tr><td>25 - 45</td><td data-i18n="lecture04.schedule.r3">Hands-On 1: Environment Setup</td></tr>
+        <tr><td>45 - 60</td><td data-i18n="lecture04.schedule.r4">Hands-On 2: Filling In the Code</td></tr>
+        <tr><td>60 - 75</td><td data-i18n="lecture04.schedule.r5">Hands-On 3: Run the Web App</td></tr>
+        <tr><td>75 - 90</td><td data-i18n="lecture04.schedule.r6">Optional Challenges and Summary</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section section-alt" id="overview1">
+  <div class="container">
+    <h2 data-i18n="lecture04.ov1.title">Overview 1: The Environment We’ll Build</h2>
+
+    <h3 data-i18n="lecture04.ov1.stack.title">The Environment We’ll Build</h3>
+    <p data-i18n="lecture04.ov1.stack.desc">Set up a Windows + Linux environment, and inside that a Python virtual environment, on your PC. The stack is WSL + Python virtual env (venv) + Flask.</p>
+
+    <h3 data-i18n="lecture04.ov1.system.title">The System We’ll Build</h3>
+    <p data-i18n="lecture04.ov1.system.desc">The user is on the left, AI Engine on the right. The question goes out, and the answer comes back. The account token is held only by Flask; it stays hidden from the browser and JavaScript.</p>
+
+    <h3 data-i18n="lecture04.ov1.flow.title">Overall Structure (Data Flow)</h3>
+    <p data-i18n="lecture04.ov1.flow.desc">Until now you called AI Engine directly with curl; now you call it through the browser and Flask. The browser sends the question to Flask, Flask calls AI Engine with requests, and the response is returned to the browser.</p>
+
+    <h3 data-i18n="lecture04.ov1.whyflask.title">Why Flask Is Needed</h3>
+    <ul>
+      <li data-i18n="lecture04.ov1.whyflask.l1"><strong>Entry point:</strong> receives requests from the browser (routing).</li>
+      <li data-i18n="lecture04.ov1.whyflask.l2"><strong>Mediator:</strong> calls AI Engine with requests and formats the result before returning it.</li>
+      <li data-i18n="lecture04.ov1.whyflask.l3"><strong>Token secrecy:</strong> holds the account token on the backend, never exposing it to the browser.</li>
+    </ul>
+
+    <h3 data-i18n="lecture04.ov1.venv.title">What Is venv?</h3>
+    <p data-i18n="lecture04.ov1.venv.desc">A separate, independent Python environment (virtual environment). Using venv avoids dependency conflicts, protects other projects, installs only what you need, and makes the environment easy to reproduce. This time we’ll create a dedicated box with only Flask and requests installed.</p>
+
+    <h3 data-i18n="lecture04.ov1.files.title">Inside the Distributed Files</h3>
+    <table class="info-table">
+      <thead>
+        <tr>
+          <th data-i18n="lecture04.ov1.files.file">File</th>
+          <th data-i18n="lecture04.ov1.files.role">Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>app.py</code></td><td data-i18n="lecture04.ov1.files.apppy">The Flask server itself. Receives requests, validates, calls requests, formats results.</td></tr>
+        <tr><td><code>templates/index.html</code></td><td data-i18n="lecture04.ov1.files.html">The screen’s skeleton (HTML).</td></tr>
+        <tr><td><code>static/app.js</code></td><td data-i18n="lecture04.ov1.files.js">Gets input, sends fetch requests, shows results (frontend logic).</td></tr>
+        <tr><td><code>static/style.css</code></td><td data-i18n="lecture04.ov1.files.css">The screen’s look (styling).</td></tr>
+        <tr><td><code>requirements.txt</code></td><td data-i18n="lecture04.ov1.files.req">List of required packages (Flask, requests).</td></tr>
+        <tr><td><code>README.md</code></td><td data-i18n="lecture04.ov1.files.readme">Usage instructions.</td></tr>
+      </tbody>
+    </table>
+
+    <h3 data-i18n="lecture04.ov1.dir.title">Directory Structure</h3>
+    <p data-i18n="lecture04.ov1.dir.desc">Extract the distributed zip and lay it out like this. Flask auto-loads templates and static from fixed locations, so it must be laid out this way.</p>
+    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">04_rag-web-app/
+├── app.py
+├── requirements.txt
+├── README.md
+├── templates/
+│   └── index.html
+└── static/
+    ├── app.js
+    └── style.css</code></pre></div>
+
+    <p><a class="btn" href="https://github.com/onigiribouya/sakura-ai-engine-module4-download-zip/raw/refs/heads/main/module4-src.zip" target="_blank" rel="noopener" data-i18n="lecture04.ov1.download">Download module4-src.zip</a></p>
+  </div>
+</section>
+
+<section class="section" id="overview2">
+  <div class="container">
+    <h2 data-i18n="lecture04.ov2.title">Overview 2: curl vs. Web App</h2>
+
+    <h3 data-i18n="lecture04.ov2.before.title">How We’ve Done It So Far</h3>
+    <p data-i18n="lecture04.ov2.before.desc">In sessions 1–3, you used curl from the terminal to call AI Engine directly. It works, but it’s all self-contained inside your own terminal.</p>
+
+    <h3 data-i18n="lecture04.ov2.challenge.title">Web App: The Challenge</h3>
+    <ul>
+      <li data-i18n="lecture04.ov2.challenge.l1"><strong>A command every time:</strong> users must remember the terminal and the command.</li>
+      <li data-i18n="lecture04.ov2.challenge.l2"><strong>The token is exposed:</strong> the token rides along in the command. Share it, and it leaks.</li>
+      <li data-i18n="lecture04.ov2.challenge.l3"><strong>No screen:</strong> no input field, no result display — you can’t hand it to someone.</li>
+    </ul>
+
+    <h3 data-i18n="lecture04.ov2.meaning.title">What It Means to Turn This Into a Web App</h3>
+    <p data-i18n="lecture04.ov2.meaning.desc">A screen instead of a command; backend processing instead of manual steps. By operating the browser, the user can trigger a call to AI Engine.</p>
+
+    <h3 data-i18n="lecture04.ov2.server.title">Why a Server Needs to Sit in Between</h3>
+    <p data-i18n="lecture04.ov2.server.desc">Anyone can view the browser’s code, so secrets belong on the server side. Flask holds the token and never exposes it to the browser. Processing that holds a secret, plus input validation and result formatting, all happens on the server.</p>
+
+    <h3 data-i18n="lecture04.ov2.beforeafter.title">Before / After</h3>
+    <table class="info-table">
+      <thead>
+        <tr>
+          <th data-i18n="lecture04.ov2.beforeafter.item">Item</th>
+          <th data-i18n="lecture04.ov2.beforeafter.curl">With curl</th>
+          <th data-i18n="lecture04.ov2.beforeafter.web">With Web App</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td data-i18n="lecture04.ov2.beforeafter.action">Action</td><td data-i18n="lecture04.ov2.beforeafter.action_curl">Type a command</td><td data-i18n="lecture04.ov2.beforeafter.action_web">Click a button</td></tr>
+        <tr><td data-i18n="lecture04.ov2.beforeafter.display">Display</td><td data-i18n="lecture04.ov2.beforeafter.display_curl">Shows in the terminal</td><td data-i18n="lecture04.ov2.beforeafter.display_web">Formatted on screen</td></tr>
+        <tr><td data-i18n="lecture04.ov2.beforeafter.token">Token</td><td data-i18n="lecture04.ov2.beforeafter.token_curl">On hand</td><td data-i18n="lecture04.ov2.beforeafter.token_web">Hidden inside the server</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section section-alt" id="ho1">
+  <div class="container">
+    <h2 data-i18n="lecture04.ho1.title">Hands-On 1: Environment Setup</h2>
+    <p data-i18n="lecture04.ho1.goal">Set up the runtime environment so the Web app can run.</p>
+
+    <h3 data-i18n="lecture04.ho1.req.title">Required</h3>
+    <ul>
+      <li data-i18n="lecture04.ho1.req.l1">Download and extract the distributed files into WSL</li>
+      <li data-i18n="lecture04.ho1.req.l2">Create the correct folder structure (templates/ and static/)</li>
+      <li data-i18n="lecture04.ho1.req.l3">Create and enter a Python virtual environment</li>
+      <li data-i18n="lecture04.ho1.req.l4">Install Flask and requests</li>
+      <li data-i18n="lecture04.ho1.req.l5">Set the AI_ENGINE_TOKEN environment variable</li>
+    </ul>
+
+    <h3 data-i18n="lecture04.ho1.steps.title">Steps</h3>
+    <ol class="steps">
+      <li>
+        <strong data-i18n="lecture04.ho1.s1.title">STEP 1: Download and extract the files</strong>
+        <p data-i18n="lecture04.ho1.s1.desc">Download the ZIP and extract it directly into your WSL home directory. Rename the extracted folder from module4-src to 04_rag-web-app.</p>
+        <p><a class="btn" href="https://github.com/onigiribouya/sakura-ai-engine-module4-download-zip/raw/refs/heads/main/module4-src.zip" download data-i18n="lecture04.ho1.s1.download">Download module4-src.zip</a></p>
+        <p data-i18n="lecture04.ho1.s1.note">You can also use Windows Explorer: open <code>\\wsl.localhost\Ubuntu\home\{username}</code>, extract the ZIP there, and rename the folder.</p>
+      </li>
+      <li>
+        <strong data-i18n="lecture04.ho1.s2.title">STEP 2: Create the correct folder structure</strong>
+        <p data-i18n="lecture04.ho1.s2.desc">Move index.html into templates/, and move app.js and style.css into static/. app.py, requirements.txt, and README.md stay at the top level.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/04_rag-web-app
+mkdir templates static
+mv index.html templates/
+mv app.js style.css static/
+ls
+ls templates static</code></pre></div>
+      </li>
+      <li>
+        <strong data-i18n="lecture04.ho1.s3.title">STEP 3: Create a virtual environment</strong>
+        <p data-i18n="lecture04.ho1.s3.desc">Create a dedicated Python environment inside 04_rag-web-app. You only need to do this once.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">python3 -m venv venv</code></pre></div>
+      </li>
+      <li>
+        <strong data-i18n="lecture04.ho1.s4.title">STEP 4: Enter the virtual environment</strong>
+        <p data-i18n="lecture04.ho1.s4.desc">Activate the environment. The prompt will show (venv) at the front. Do all remaining work with (venv) showing.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">source venv/bin/activate</code></pre></div>
+      </li>
+      <li>
+        <strong data-i18n="lecture04.ho1.s5.title">STEP 5: Install the packages</strong>
+        <p data-i18n="lecture04.ho1.s5.desc">Install Flask and requests from requirements.txt. Check with pip list.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">pip install -r requirements.txt
+pip list | grep -E "Flask|requests"</code></pre></div>
+      </li>
+      <li>
+        <strong data-i18n="lecture04.ho1.s6.title">STEP 6: Set the token</strong>
+        <p data-i18n="lecture04.ho1.s6.desc">Set the account token as an environment variable. Flask reads it from here; the browser and JS never see it.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">export AI_ENGINE_TOKEN="&lt;your token&gt;"
+echo $AI_ENGINE_TOKEN</code></pre></div>
+      </li>
+    </ol>
+
+    <h3 data-i18n="lecture04.ho1.check.title">Setup Complete Checklist</h3>
+    <ul>
+      <li data-i18n="lecture04.ho1.check.l1">04_rag-web-app has templates/ and static/ laid out correctly</li>
+      <li data-i18n="lecture04.ho1.check.l2">(venv) shows at the start of the prompt</li>
+      <li data-i18n="lecture04.ho1.check.l3">pip list has Flask and requests</li>
+      <li data-i18n="lecture04.ho1.check.l4">echo $AI_ENGINE_TOKEN shows the token</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="ho2">
+  <div class="container">
+    <h2 data-i18n="lecture04.ho2.title">Hands-On 2: Filling In the Code</h2>
+    <p data-i18n="lecture04.ho2.goal">Think about where in the code the values you typed with curl should go, then fill in the blanks.</p>
+
+    <h3 data-i18n="lecture04.ho2.blanks.title">The Big Picture of the Blanks</h3>
+    <p data-i18n="lecture04.ho2.blanks.desc">There are 3 groups, 7 blanks in total. Build → Send → Receive — that’s the order we’ll follow.</p>
+    <ul>
+      <li data-i18n="lecture04.ho2.blanks.l1"><strong>Build what to send:</strong> app.py <code>build_payload</code> (__(1)__ __(2)__ __(3)__)</li>
+      <li data-i18n="lecture04.ho2.blanks.l2"><strong>Send what you built:</strong> app.py <code>requests.post</code> (__(4)__ __(5)__)</li>
+      <li data-i18n="lecture04.ho2.blanks.l3"><strong>Retrieve the result:</strong> app.js (data.__(1)__ data.__(2)__)</li>
+    </ul>
+
+    <h3 data-i18n="lecture04.ho2.s1.title">Build What to Send</h3>
+    <p data-i18n="lecture04.ho2.s1.desc">Put the values you passed via <code>--data</code> into the payload. The variables <code>query</code>, <code>top_k</code>, and <code>threshold</code> already hold the screen input.</p>
+    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">def build_payload(query, top_k, threshold):
+    payload = {
+        "model": EMBEDDING_MODEL,
+        "chat_model": CHAT_MODEL,
+        "query": query,
+        "top_k": top_k,
+        "threshold": threshold,
+        "distance_type": DISTANCE_TYPE,
+    }</code></pre></div>
+
+    <h3 data-i18n="lecture04.ho2.s2.title">Send What You Built</h3>
+    <p data-i18n="lecture04.ho2.s2.desc">Map curl’s destination URL to the first argument of <code>requests.post</code>, and curl’s <code>--data</code> to the <code>json=</code> keyword.</p>
+    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">response = requests.post(
+    AI_ENGINE_URL,
+    headers=headers,
+    json=payload,
+    timeout=REQUEST_TIMEOUT,
+)</code></pre></div>
+
+    <h3 data-i18n="lecture04.ho2.s3.title">Retrieve the Result That Comes Back</h3>
+    <p data-i18n="lecture04.ho2.s3.desc">Pull the answer and its sources out of the JSON returned from Flask. Use the JSON key names directly.</p>
+    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-javascript">// Display the answer and its sources
+showAnswer(data.answer);
+showSources(data.sources);</code></pre></div>
+
+    <h3 data-i18n="lecture04.ho2.wrap.title">Wrapping Up the Blanks</h3>
+    <ul>
+      <li data-i18n="lecture04.ho2.wrap.l1">app.py <code>build_payload</code>: query / top_k / threshold</li>
+      <li data-i18n="lecture04.ho2.wrap.l2">app.py <code>requests.post</code>: AI_ENGINE_URL / payload</li>
+      <li data-i18n="lecture04.ho2.wrap.l3">app.js response: data.answer / data.sources</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section-alt" id="ho3">
+  <div class="container">
+    <h2 data-i18n="lecture04.ho3.title">Hands-On 3: Run the Web App</h2>
+    <p data-i18n="lecture04.ho3.goal">Start the server, ask a question from the browser, and finally shut the server down.</p>
+
+    <h3 data-i18n="lecture04.ho3.flow.title">Running Flow</h3>
+    <ol>
+      <li data-i18n="lecture04.ho3.flow.l1">Enter (venv) if it’s not showing</li>
+      <li data-i18n="lecture04.ho3.flow.l2">Start the server with <code>python app.py</code></li>
+      <li data-i18n="lecture04.ho3.flow.l3">Open the displayed URL in your browser</li>
+      <li data-i18n="lecture04.ho3.flow.l4">Shut it down with Ctrl + C</li>
+    </ol>
+
+    <h3 data-i18n="lecture04.ho3.s1.title">Start the Server</h3>
+    <p data-i18n="lecture04.ho3.s1.desc">Make sure (venv) is active and the token is set, then start the Flask development server.</p>
+    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">echo $AI_ENGINE_TOKEN
+python app.py</code></pre></div>
+
+    <h3 data-i18n="lecture04.ho3.s2.title">What You’ll See on Startup</h3>
+    <p data-i18n="lecture04.ho3.s2.desc">Once it starts, the terminal shows the app URL. Debug mode is on, so saving your code reloads it automatically.</p>
+    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-text"> * Serving Flask app 'app'
+ * Debug mode: on
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit</code></pre></div>
+
+    <h3 data-i18n="lecture04.ho3.s3.title">Why 127.0.0.1:5000?</h3>
+    <p data-i18n="lecture04.ho3.s3.desc"><code>127.0.0.1</code> means the server stays inside your own PC and is never exposed externally. <code>5000</code> is Flask’s default development port. It is specified in <code>app.run(host="127.0.0.1", port=5000)</code>.</p>
+
+    <h3 data-i18n="lecture04.ho3.s4.title">Open It in Your Browser</h3>
+    <p data-i18n="lecture04.ho3.s4.desc">Open <code>http://127.0.0.1:5000</code>, type your question, set top_k / threshold, and press Ask. The answer and its sources (name, chunk number, distance, content) will appear.</p>
+
+    <h3 data-i18n="lecture04.ho3.try.title">Try It Out</h3>
+    <ul>
+      <li data-i18n="lecture04.ho3.try.l1">Ask about something not in your registered documents and see how the app responds.</li>
+      <li data-i18n="lecture04.ho3.try.l2">Register a new document in the control panel, then ask about it.</li>
+      <li data-i18n="lecture04.ho3.try.l3">Ask in a different language than your registered documents and observe search quality.</li>
+    </ul>
+
+    <h3 data-i18n="lecture04.ho3.s5.title">Shut Down the Server</h3>
+    <p data-i18n="lecture04.ho3.s5.desc">When you’re done, press Ctrl + C in the terminal to stop the server. To run it again, use <code>python app.py</code>. To leave the virtual environment, use <code>deactivate</code>.</p>
+  </div>
+</section>
+
+<section class="section" id="optional">
+  <div class="container">
+    <h2 data-i18n="lecture04.optional.title">Optional: Extra Challenges</h2>
+
+    <h3 data-i18n="lecture04.optional.model.title">Swap the Answer-Generation Model</h3>
+    <p data-i18n="lecture04.optional.model.desc">Switch CHAT_MODEL to a different model and compare answers. Only change CHAT_MODEL — never change EMBEDDING_MODEL, because registered documents are already embedded with it.</p>
+    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">CHAT_MODEL = "gpt-oss-120b"
+# Try:
+# CHAT_MODEL = "preview/gemma-4-31B-it"</code></pre></div>
+
+    <h3 data-i18n="lecture04.optional.defaults.title">Change the Defaults and Logging</h3>
+    <p data-i18n="lecture04.optional.defaults.desc">Change default top_k / threshold values in index.html, and update app.py’s TOP_K_MAX if you widen the slider range. Add print statements in app.py to see what’s happening on the server side.</p>
+    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">result = format_result(response_data)
+print(f"sources={len(result['sources'])} items")
+print(f"answer={result['answer'][:40]}")
+return jsonify(result), 200</code></pre></div>
+
+    <h3 data-i18n="lecture04.optional.tts.title">Add a Read-Aloud Feature</h3>
+    <p data-i18n="lecture04.optional.tts.desc">Add a button that sends the displayed answer text to a new Flask route <code>/api/speak</code>, calls AI Engine’s text-to-speech API, and plays the returned WAV audio in the browser.</p>
+    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">SPEECH_URL = "https://api.ai.sakura.ad.jp/v1/audio/speech"
+
+@app.route("/api/speak", methods=["POST"])
+def speak():
+    text = request.get_json().get("text", "")
+    payload = {
+        "model": "&lt;speech model ID&gt;",
+        "voice": "&lt;voice ID&gt;",
+        "input": text
+    }
+    headers = {"Authorization": f"Bearer {os.getenv(TOKEN_ENV_NAME)}"}
+    r = requests.post(SPEECH_URL, headers=headers, json=payload, timeout=60)
+    return Response(r.content, mimetype="audio/wav")</code></pre></div>
+  </div>
+</section>
+
+<section class="section section-alt" id="summary">
+  <div class="container">
+    <h2 data-i18n="lecture04.summary.title">Summary</h2>
+    <p data-i18n="lecture04.summary.desc">In this module, you turned the RAG calls you used to make with curl into a browser-based Web app.</p>
+    <ul>
+      <li data-i18n="lecture04.summary.l1">Called AI Engine from a Web app instead of curl</li>
+      <li data-i18n="lecture04.summary.l2">Experienced the Browser → JavaScript → Flask → AI Engine flow</li>
+      <li data-i18n="lecture04.summary.l3">Learned the mapping between curl and requests</li>
+      <li data-i18n="lecture04.summary.l4">Filled in the code, ran it, and confirmed top_k / threshold and the sources</li>
+      <li data-i18n="lecture04.summary.l5">Understood why the token stays hidden on the Flask side, and how it’s implemented</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section"><div class="container"><nav class="page-nav"><a href="module03.html" class="btn btn-secondary" data-i18n="lecture04.prev">Previous: Module 3</a> <a href="index.html" class="btn btn-secondary" data-i18n="common.back_home">Back to Home</a></nav></div></section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p data-i18n="footer.copy">&copy; SAKURA internet Inc.</p>
+  </div>
+</footer>
+<script src="assets/js/i18n.js"></script>
+</body>
+</html>
