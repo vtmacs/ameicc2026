@@ -396,17 +396,25 @@ curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_long_en_fast
     <div class="callout">
       <h4 data-i18n="lecture02.ho2.optional.title">Optional: Record your own voice</h4>
       <p data-i18n="lecture02.ho2.optional.desc">Use the recording app on your smartphone to capture your own voice.</p>
-      <p data-i18n="lecture02.ho2.optional.url">Recording app URL: <a href="https://ai-handson.f5.si/voice-uploader/" target="_blank" rel="noopener">https://ai-handson.f5.si/voice-uploader/</a></p>
-      <p data-i18n="lecture02.ho2.optional.auth">Basic authentication ID: <code>ai-engine</code> / Password: <code>handson-sakura</code></p>
+      <p data-i18n="lecture02.ho2.optional.url">Recording app URL: <a href="https://ai-handson.f5.si/" target="_blank" rel="noopener">https://ai-handson.f5.si/</a></p>
+      <p data-i18n="lecture02.ho2.optional.auth">Basic authentication ID: <code>ai-engine</code> / Password: <code>handson-sakura-ai-2026!</code></p>
       <ol>
         <li data-i18n="lecture02.ho2.optional.l1">Open the recording app page on your phone</li>
-        <li data-i18n="lecture02.ho2.optional.l2">Enter the Basic authentication ID <code>ai-engine</code> and password <code>handson-sakura</code></li>
+        <li data-i18n="lecture02.ho2.optional.l2">Enter the Basic authentication ID <code>ai-engine</code> and password <code>handson-sakura-ai-2026!</code></li>
         <li data-i18n="lecture02.ho2.optional.l3">Allow microphone access</li>
         <li data-i18n="lecture02.ho2.optional.l4">Record 1-2 minutes, then upload</li>
         <li data-i18n="lecture02.ho2.optional.l5">Copy the last 6 characters of the upload URL</li>
       </ol>
+
+      <div class="prompt-box">
+        <div class="edit-box">
+          <label for="voice-code" data-i18n="lecture02.ho2.optional.code_label">Upload URL ending (6 characters):</label>
+          <input type="text" id="voice-code" class="edit-input" data-target="voice-code" value="xxxxxx" maxlength="6">
+        </div>
+      </div>
+
       <p data-i18n="lecture02.ho2.optional.download">Download the recording with curl:</p>
-      <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -u ai-engine:handson-sakura -o my_voice_en.mp3 https://ai-handson.f5.si/voice-uploader/s/xxxxxx
+      <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -u ai-engine:handson-sakura-ai-2026! -o my_voice_en.mp3 https://ai-handson.f5.si/s/<span class="editable-content" data-target="voice-code">xxxxxx</span>
 ls -l</code></pre></div>
       <p data-i18n="lecture02.ho2.optional.transcribe">Then transcribe it with the same API command, using file=@my_voice_en.mp3.</p>
       <p data-i18n="lecture02.ho2.optional.people">Try recording with 2-3 people and notice that all speech is returned as one text with no speaker labels. You can also change conditions such as distance, location, or language mix.</p>
