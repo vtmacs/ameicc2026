@@ -279,8 +279,12 @@ tr:nth-child(even) td { background: #fafbfc; }
   background: #fff7fa;
   border: 1px solid var(--pink-2);
   border-radius: 6px;
-  padding: 44px 16px 12px;
+  padding: 12px 16px;
   margin: 12px 0 20px;
+}
+
+.prompt-box:has(.copy-btn) {
+  padding-top: 44px;
 }
 
 .prompt-box p { margin: 0; }
