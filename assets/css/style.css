@@ -395,6 +395,13 @@ tr:nth-child(even) td { background: #fafbfc; }
   border-radius: 6px;
   font-size: 0.95rem;
 }
+.pdf-sublist .pdf-sublist {
+  margin-top: 8px;
+}
+.pdf-sublist .pdf-sublist li {
+  background: var(--bg);
+  border-left: 3px solid var(--sky);
+}
 
 /* Answer reveal */
 .answer-details {
