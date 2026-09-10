@@ -263,8 +263,9 @@
         <p data-i18n="lecture01.ho2.s2.desc">Open the WSL (Ubuntu) terminal. On Windows, open PowerShell and run `wsl`, then run the command below. This saves you from pasting the token every time.</p>
         <div class="edit-box token-box">
           <label for="account-token" data-i18n="lecture01.token.label">Account Token:</label>
-          <input type="text" id="account-token" class="edit-input" placeholder=" issued account token">
+          <input type="password" id="account-token" class="edit-input" placeholder=" issued account token">
         </div>
+        <p class="token-note" data-i18n="lecture01.token.note">The token you enter is saved in your browser and automatically applied when copying commands.</p>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">export AI_ENGINE_TOKEN="${AI_ENGINE_TOKEN}"
 echo $AI_ENGINE_TOKEN</code></pre></div>
         <p data-i18n="lecture01.ho2.s2.note">This setting remains active until you close the terminal. Run export again after reopening it.</p>

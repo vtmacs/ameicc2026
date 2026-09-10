@@ -113,6 +113,7 @@
     "lecture01.editable.system": "AIへの指示：",
     "lecture01.editable.query": "RAG の質問：",
     "lecture01.token.label": "アカウントトークン：",
+    "lecture01.token.note": "入力したトークンはブラウザに保存され、コピー時にコマンドに自動で反映されます。",
     "lecture01.ho2.params.title": "リクエストパラメータの意味",
     "lecture01.ho2.params.meaning": "意味",
     "lecture01.ho2.params.model": "使用する AI モデル名",
