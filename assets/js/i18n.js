@@ -882,7 +882,7 @@
         let text = code.textContent;
         const token = localStorage.getItem('ai-engine-token');
         if (token) {
-          text = text.replace(/\$\{AI_ENGINE_TOKEN\}/g, token).replace(/\$AI_ENGINE_TOKEN\b/g, token);
+          text = text.replace(/\$\{AI_ENGINE_TOKEN\}/g, token);
         }
         navigator.clipboard.writeText(text).then(() => {
           const original = btn.textContent;
