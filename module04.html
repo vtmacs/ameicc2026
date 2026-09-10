@@ -215,7 +215,7 @@ pip list | grep -E "Flask|requests"</code></pre></div>
       <li>
         <strong data-i18n="lecture04.ho1.s6.title">STEP 6: Set the token</strong>
         <p data-i18n="lecture04.ho1.s6.desc">Set the account token as an environment variable. Flask reads it from here; the browser and JS never see it.</p>
-        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">export AI_ENGINE_TOKEN="&lt;your token&gt;"
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">export AI_ENGINE_TOKEN="${AI_ENGINE_TOKEN}"
 echo $AI_ENGINE_TOKEN</code></pre></div>
       </li>
     </ol>

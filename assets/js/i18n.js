@@ -112,6 +112,7 @@
     "lecture01.editable.user": "ユーザーの質問：",
     "lecture01.editable.system": "AIへの指示：",
     "lecture01.editable.query": "RAG の質問：",
+    "lecture01.token.label": "アカウントトークン：",
     "lecture01.ho2.params.title": "リクエストパラメータの意味",
     "lecture01.ho2.params.meaning": "意味",
     "lecture01.ho2.params.model": "使用する AI モデル名",
@@ -877,7 +878,12 @@
       btn.addEventListener('click', () => {
         const code = btn.parentElement.querySelector('code');
         if (!code) return;
-        navigator.clipboard.writeText(code.textContent).then(() => {
+        let text = code.textContent;
+        const token = localStorage.getItem('ai-engine-token');
+        if (token) {
+          text = text.replace(/\$\{AI_ENGINE_TOKEN\}/g, token).replace(/\$AI_ENGINE_TOKEN\b/g, token);
+        }
+        navigator.clipboard.writeText(text).then(() => {
           const original = btn.textContent;
           const ok = btn.getAttribute('data-i18n') === 'common.copy' ? 'Copied!' : 'Copied!';
           btn.textContent = ok;
@@ -885,6 +891,16 @@
         });
       });
     });
+
+    // Account token input (saved in browser for reuse across modules)
+    const tokenInput = document.getElementById('account-token');
+    if (tokenInput) {
+      const savedToken = localStorage.getItem('ai-engine-token');
+      if (savedToken) tokenInput.value = savedToken;
+      tokenInput.addEventListener('input', () => {
+        localStorage.setItem('ai-engine-token', tokenInput.value);
+      });
+    }
 
     // Worksheet autosave
     document.querySelectorAll('[data-worksheet]').forEach(field => {

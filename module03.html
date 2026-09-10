@@ -127,7 +127,7 @@
         <p data-i18n="lecture03.ho1.s1.desc">Make sure your Account Token environment variable is set.</p>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">echo $AI_ENGINE_TOKEN
 # If nothing appears, set it again
-export AI_ENGINE_TOKEN="&lt;issued account token&gt;"</code></pre></div>
+export AI_ENGINE_TOKEN="${AI_ENGINE_TOKEN}"</code></pre></div>
       </li>
       <li>
         <strong data-i18n="lecture03.ho1.s2.title">STEP 2: Send a text-only chat request</strong>

@@ -275,6 +275,7 @@ tr:nth-child(even) td { background: #fafbfc; }
 
 /* Prompt box */
 .prompt-box {
+  position: relative;
   background: #fff7fa;
   border: 1px solid var(--pink-2);
   border-radius: 6px;
@@ -283,6 +284,26 @@ tr:nth-child(even) td { background: #fafbfc; }
 }
 
 .prompt-box p { margin: 0; }
+
+.prompt-box pre {
+  margin: 0;
+  padding: 28px 0 0 0;
+  overflow-x: auto;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.prompt-box code {
+  font-family: inherit;
+  color: var(--text);
+}
+
+.prompt-box .copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
 
 /* Steps */
 .steps { counter-reset: step; list-style: none; padding-left: 0; }

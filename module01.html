@@ -178,7 +178,8 @@
         <strong data-i18n="lecture01.ho1.s4.title">STEP 4: Enter and Submit a Prompt</strong>
         <p data-i18n="lecture01.ho1.s4.desc">Enter a question in the prompt field and click Submit or press Enter. Start with the following question.</p>
         <div class="prompt-box">
-          <p><code>Please recommend three famous tourist attractions in Thailand.</code></p>
+          <button class="copy-btn" data-i18n="common.copy">Copy</button>
+          <pre><code>Please recommend three famous tourist attractions in Thailand.</code></pre>
         </div>
       </li>
     </ol>
@@ -260,7 +261,11 @@
       <li>
         <strong data-i18n="lecture01.ho2.s2.title">STEP 2: Store the Token in an Environment Variable</strong>
         <p data-i18n="lecture01.ho2.s2.desc">Open the WSL (Ubuntu) terminal. On Windows, open PowerShell and run `wsl`, then run the command below. This saves you from pasting the token every time.</p>
-        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">export AI_ENGINE_TOKEN=&quot;&lt;issued account token&gt;&quot;
+        <div class="edit-box token-box">
+          <label for="account-token" data-i18n="lecture01.token.label">Account Token:</label>
+          <input type="text" id="account-token" class="edit-input" placeholder=" issued account token">
+        </div>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">export AI_ENGINE_TOKEN="${AI_ENGINE_TOKEN}"
 echo $AI_ENGINE_TOKEN</code></pre></div>
         <p data-i18n="lecture01.ho2.s2.note">This setting remains active until you close the terminal. Run export again after reopening it.</p>
       </li>
@@ -478,7 +483,8 @@ ls -l</code></pre></div>
         <strong data-i18n="lecture01.ho3.s3.title">STEP 3: Run a RAG Query</strong>
         <p data-i18n="lecture01.ho3.s3.desc">Open Documents (RAG), click Operation, select Query Search, enter the question below, and run.</p>
         <div class="prompt-box">
-          <p><code>Explain KOSEN-KMITL and Monozukuri.</code></p>
+          <button class="copy-btn" data-i18n="common.copy">Copy</button>
+          <pre><code>Explain KOSEN-KMITL and Monozukuri.</code></pre>
         </div>
       </li>
       <li>
