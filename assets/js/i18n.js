@@ -880,7 +880,7 @@
         const code = btn.parentElement.querySelector('code');
         if (!code) return;
         let text = code.textContent;
-        const token = localStorage.getItem('ai-engine-token');
+        const token = sessionStorage.getItem('ai-engine-token');
         if (token) {
           text = text.replace(/export AI_ENGINE_TOKEN="\$\{AI_ENGINE_TOKEN\}"/g, `export AI_ENGINE_TOKEN="${token}"`);
         }
@@ -893,13 +893,13 @@
       });
     });
 
-    // Account token input (saved in browser for reuse across modules)
+    // Account token input (saved per session for reuse across modules)
     const tokenInput = document.getElementById('account-token');
     if (tokenInput) {
-      const savedToken = localStorage.getItem('ai-engine-token');
+      const savedToken = sessionStorage.getItem('ai-engine-token');
       if (savedToken) tokenInput.value = savedToken;
       tokenInput.addEventListener('input', () => {
-        localStorage.setItem('ai-engine-token', tokenInput.value);
+        sessionStorage.setItem('ai-engine-token', tokenInput.value);
       });
     }
 
