@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
+<!-- saved from url=(0049)https://vtmacs.github.io/ameicc2026/module04.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n-title="lecture04.pageTitle">SAKURA AI Engine Module 4</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <title data-i18n-title="lecture04.pageTitle" data-default-title="" title="">SAKURA AI Engine Module 4</title>
+  <link rel="stylesheet" href="./SAKURA AI Engine Module 4_files/style.css">
 </head>
 <body>
 <header class="site-header">
   <div class="container header-inner">
-    <a class="site-title" href="index.html" data-i18n="site.title">SAKURA AI Engine Practical Exercise Support Site</a>
+    <a class="site-title" href="https://vtmacs.github.io/ameicc2026/index.html" data-i18n="site.title">SAKURA AI Engine Practical Exercise Support Site</a>
     <nav class="main-nav">
-      <a href="index.html" class=" " data-i18n="nav.home">Home</a>
-      <a href="module01.html" class=" " data-i18n="nav.lecture1">Module 1</a>
-      <a href="module02.html" class=" " data-i18n="nav.lecture2">Module 2</a>
-      <a href="module03.html" class=" " data-i18n="nav.lecture3">Module 3</a>
-      <a href="module04.html" class="active " data-i18n="nav.lecture4">Module 4</a>
+      <a href="https://vtmacs.github.io/ameicc2026/index.html" class=" " data-i18n="nav.home">Home</a>
+      <a href="https://vtmacs.github.io/ameicc2026/module01.html" class=" " data-i18n="nav.lecture1">Module 1</a>
+      <a href="https://vtmacs.github.io/ameicc2026/module02.html" class=" " data-i18n="nav.lecture2">Module 2</a>
+      <a href="https://vtmacs.github.io/ameicc2026/module03.html" class=" " data-i18n="nav.lecture3">Module 3</a>
+      <a href="https://vtmacs.github.io/ameicc2026/module04.html" class="active " data-i18n="nav.lecture4">Module 4</a>
     </nav>
     <select id="lang-switcher" aria-label="Language">
       <option value="en">English</option>
@@ -171,8 +171,8 @@
 
     <h3 data-i18n="lecture04.ho1.req.title">Required</h3>
     <ul>
-      <li data-i18n="lecture04.ho1.req.l1">Download and extract the distributed files into WSL</li>
-      <li data-i18n="lecture04.ho1.req.l2">Create the correct folder structure (templates/ and static/)</li>
+      <li data-i18n="lecture04.ho1.req.l1">Download and unzip the distributed files directly in WSL</li>
+      <li data-i18n="lecture04.ho1.req.l2">Check that the folder structure (templates/ and static/) is correct</li>
       <li data-i18n="lecture04.ho1.req.l3">Create and enter a Python virtual environment</li>
       <li data-i18n="lecture04.ho1.req.l4">Install Flask and requests</li>
       <li data-i18n="lecture04.ho1.req.l5">Set the AI_ENGINE_TOKEN environment variable</li>
@@ -182,19 +182,25 @@
     <ol class="steps">
       <li>
         <strong data-i18n="lecture04.ho1.s1.title">STEP 1: Download and extract the files</strong>
-        <p data-i18n="lecture04.ho1.s1.desc">Download the ZIP and extract it directly into your WSL home directory. Rename the extracted folder from module4-src to 04_rag-web-app.</p>
-        <p><a class="btn" href="https://github.com/onigiribouya/sakura-ai-engine-module4-download-zip/raw/refs/heads/main/module4-src.zip" download data-i18n="lecture04.ho1.s1.download">Download module4-src.zip</a></p>
-        <p data-i18n="lecture04.ho1.s1.note">You can also use Windows Explorer: open <code>\\wsl.localhost\Ubuntu\home\{username}</code>, extract the ZIP there, and rename the folder.</p>
+        <p data-i18n="lecture04.ho1.s1.desc">Do everything from your WSL terminal: no browser or Explorer needed. Download the ZIP with wget and extract it straight into 04_rag-web-app.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~
+wget https://github.com/onigiribouya/sakura-ai-engine-module4-download-zip/raw/refs/heads/main/module4-src.zip
+python3 -m zipfile -e module4-src.zip 04_rag-web-app</code></pre></div>
+        <p data-i18n="lecture04.ho1.s1.note">No output after these commands is normal — it means they worked. If you run wget more than once, it may save as module4-src.zip.1 or .2 instead of overwriting; if extraction looks wrong, run <code>rm -f module4-src.zip*</code> and try again. This already lays the files out correctly for Flask, with no extra folder work needed.</p>
+        <p data-i18n="lecture04.ho1.s1.fallback_title"><strong>If the ZIP download doesn’t work:</strong></p>
+        <ol>
+          <li data-i18n="lecture04.ho1.s1.fallback_l1">Go to this page: <a href="https://github.com/onigiribouya/sakura-ai-engine-rag-web-app-exercise" target="_blank" rel="noopener">https://github.com/onigiribouya/sakura-ai-engine-rag-web-app-exercise</a></li>
+          <li data-i18n="lecture04.ho1.s1.fallback_l2">Click the green <strong>Code</strong> button, then click <strong>Download ZIP</strong>.</li>
+          <li data-i18n="lecture04.ho1.s1.fallback_l3">If that still doesn’t work, download each file one by one.</li>
+        </ol>
       </li>
       <li>
-        <strong data-i18n="lecture04.ho1.s2.title">STEP 2: Create the correct folder structure</strong>
-        <p data-i18n="lecture04.ho1.s2.desc">Move index.html into templates/, and move app.js and style.css into static/. app.py, requirements.txt, and README.md stay at the top level.</p>
+        <strong data-i18n="lecture04.ho1.s2.title">STEP 2: Check the folder structure</strong>
+        <p data-i18n="lecture04.ho1.s2.desc">Confirm the extracted files match the target layout.</p>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/04_rag-web-app
-mkdir templates static
-mv index.html templates/
-mv app.js style.css static/
-ls
+ls -l
 ls templates static</code></pre></div>
+        <p data-i18n="lecture04.ho1.s2.note">You should see app.py, requirements.txt, README.md, templates/, and static/ at the top level; templates/ has index.html, and static/ has app.js and style.css.</p>
       </li>
       <li>
         <strong data-i18n="lecture04.ho1.s3.title">STEP 3: Create a virtual environment</strong>
@@ -236,11 +242,10 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
     <p data-i18n="lecture04.ho2.goal">Think about where in the code the values you typed with curl should go, then fill in the blanks.</p>
 
     <h3 data-i18n="lecture04.ho2.blanks.title">The Big Picture of the Blanks</h3>
-    <p data-i18n="lecture04.ho2.blanks.desc">There are 3 groups, 7 blanks in total. Build → Send → Receive — that’s the order we’ll follow.</p>
+    <p data-i18n="lecture04.ho2.blanks.desc">There are 2 groups, 5 blanks in total, both in app.py. Build → Send — that’s the order we’ll follow. app.js is already complete; we’ll just read through how it uses the response.</p>
     <ul>
       <li data-i18n="lecture04.ho2.blanks.l1"><strong>Build what to send:</strong> app.py <code>build_payload</code> (__(1)__ __(2)__ __(3)__)</li>
       <li data-i18n="lecture04.ho2.blanks.l2"><strong>Send what you built:</strong> app.py <code>requests.post</code> (__(4)__ __(5)__)</li>
-      <li data-i18n="lecture04.ho2.blanks.l3"><strong>Retrieve the result:</strong> app.js (data.__(1)__ data.__(2)__)</li>
     </ul>
 
     <h3 data-i18n="lecture04.ho2.s1.title">Build What to Send</h3>
@@ -271,20 +276,17 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
     </details>
 
     <h3 data-i18n="lecture04.ho2.s3.title">Retrieve the Result That Comes Back</h3>
-    <p data-i18n="lecture04.ho2.s3.desc">Pull the answer and its sources out of the JSON returned from Flask. Use the JSON key names directly.</p>
-    <details class="answer-details">
-      <summary data-i18n="lecture04.ho2.show_answer">Show answer</summary>
-      <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-javascript">// Display the answer and its sources
+    <p data-i18n="lecture04.ho2.s3.desc">app.js is already complete — no need to fill anything in. It reads the answer and its sources straight out of the JSON returned from Flask, using the JSON key names directly.</p>
+    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-javascript">// Display the answer and its sources
 showAnswer(data.answer);
 showSources(data.sources);</code></pre></div>
-    </details>
 
     <h3 data-i18n="lecture04.ho2.wrap.title">Wrapping Up the Blanks</h3>
     <ul>
       <li data-i18n="lecture04.ho2.wrap.l1">app.py <code>build_payload</code>: query / top_k / threshold</li>
       <li data-i18n="lecture04.ho2.wrap.l2">app.py <code>requests.post</code>: AI_ENGINE_URL / payload</li>
-      <li data-i18n="lecture04.ho2.wrap.l3">app.js response: data.answer / data.sources</li>
     </ul>
+    <p data-i18n="lecture04.ho2.wrap.note">Don’t forget to save. A missed blank causes an error on the next run.</p>
   </div>
 </section>
 
@@ -380,14 +382,15 @@ def speak():
   </div>
 </section>
 
-<section class="section"><div class="container"><nav class="page-nav"><a href="module03.html" class="btn btn-secondary" data-i18n="lecture04.prev">Previous: Module 3</a> <a href="index.html" class="btn btn-secondary" data-i18n="common.back_home">Back to Home</a></nav></div></section>
+<section class="section"><div class="container"><nav class="page-nav"><a href="https://vtmacs.github.io/ameicc2026/module03.html" class="btn btn-secondary" data-i18n="lecture04.prev">Previous: Module 3</a> <a href="https://vtmacs.github.io/ameicc2026/index.html" class="btn btn-secondary" data-i18n="common.back_home">Back to Home</a></nav></div></section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
-    <p data-i18n="footer.copy">&copy; SAKURA internet Inc.</p>
+    <p data-i18n="footer.copy">© SAKURA internet Inc.</p>
   </div>
 </footer>
-<script src="assets/js/i18n.js"></script>
-</body>
-</html>
+<script src="./SAKURA AI Engine Module 4_files/i18n.js.ダウンロード"></script>
+
+
+</body></html>
