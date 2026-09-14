@@ -266,36 +266,36 @@ pip list | grep -E "Flask|requests"</code></pre></div>
     <h3 data-i18n="lecture04.ho2.blanks.title">Filling In app.py</h3>
     <p data-i18n="lecture04.ho2.blanks.desc">There are 2 groups, 5 blanks in total, both in app.py. Build → Send — that’s the order we’ll follow. app.js is already complete; we’ll just read through how it uses the response.</p>
     <ul>
-      <li data-i18n="lecture04.ho2.blanks.l1"><strong>Build what to send:</strong> app.py <code>build_payload</code> (__(1)__ __(2)__ __(3)__)</li>
-      <li data-i18n="lecture04.ho2.blanks.l2"><strong>Send what you built:</strong> app.py <code>requests.post</code> (__(4)__ __(5)__)</li>
+      <li data-i18n="lecture04.ho2.blanks.l1"><strong>Build what to send:</strong> app.py <code>build_payload</code> (lines 213–215: blanks __(1)__ __(2)__ __(3)__)</li>
+      <li data-i18n="lecture04.ho2.blanks.l2"><strong>Send what you built:</strong> app.py <code>requests.post</code> (lines 134 and 136: blanks __(4)__ __(5)__)</li>
     </ul>
 
     <h3 data-i18n="lecture04.ho2.s1.title">Build What to Send</h3>
-    <p data-i18n="lecture04.ho2.s1.desc">Put the values you passed via <code>--data</code> into the payload. The variables <code>query</code>, <code>top_k</code>, and <code>threshold</code> already hold the screen input.</p>
-    <details class="answer-details">
-      <summary data-i18n="lecture04.ho2.show_answer">Show answer</summary>
-      <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">def build_payload(query, top_k, threshold):
-    payload = {
-        "model": EMBEDDING_MODEL,
-        "chat_model": CHAT_MODEL,
-        "query": query,
+    <p data-i18n="lecture04.ho2.s1.desc">Find <code>build_payload</code> in app.py (around line 208). The payload dictionary already has <code>model</code>, <code>chat_model</code>, and <code>distance_type</code>. Copy the snippet below and paste it into the blanks on lines 213–215.</p>
+    <div class="code-block"><pre><code class="language-python">208: def build_payload(query, top_k, threshold):
+209:     """Build the JSON payload to send to AI Engine."""
+210:     payload = {
+211:         "model": EMBEDDING_MODEL,
+212:         "chat_model": CHAT_MODEL,
+213:         "query": __(1)__,
+214:         "top_k": __(2)__,
+215:         "threshold": __(3)__,
+216:         "distance_type": DISTANCE_TYPE,
+217:     }</code></pre></div>
+    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">        "query": query,
         "top_k": top_k,
-        "threshold": threshold,
-        "distance_type": DISTANCE_TYPE,
-    }</code></pre></div>
-    </details>
+        "threshold": threshold,</code></pre></div>
 
     <h3 data-i18n="lecture04.ho2.s2.title">Send What You Built</h3>
-    <p data-i18n="lecture04.ho2.s2.desc">Map curl’s destination URL to the first argument of <code>requests.post</code>, and curl’s <code>--data</code> to the <code>json=</code> keyword.</p>
-    <details class="answer-details">
-      <summary data-i18n="lecture04.ho2.show_answer">Show answer</summary>
-      <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">response = requests.post(
-    AI_ENGINE_URL,
-    headers=headers,
-    json=payload,
-    timeout=REQUEST_TIMEOUT,
-)</code></pre></div>
-    </details>
+    <p data-i18n="lecture04.ho2.s2.desc">Find the <code>requests.post</code> call inside <code>rag_chat()</code> in app.py (around line 133). Copy the snippet below and paste it into the blanks on lines 134 and 136.</p>
+    <div class="code-block"><pre><code class="language-python">133:         response = requests.post(
+134:             __(4)__,
+135:             headers=headers,
+136:             __(5)__,
+137:             timeout=REQUEST_TIMEOUT,
+138:         )</code></pre></div>
+    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">            AI_ENGINE_URL,
+            json=payload,</code></pre></div>
 
     <h3 data-i18n="lecture04.ho2.s3.title">Retrieve the Result That Comes Back</h3>
     <p data-i18n="lecture04.ho2.s3.desc">app.js is already complete — no need to fill anything in. It reads the answer and its sources straight out of the JSON returned from Flask, using the JSON key names directly.</p>
@@ -364,33 +364,21 @@ Press CTRL+C to quit</code></pre></div>
     <h2 data-i18n="lecture04.optional.title">Optional: Extra Challenges</h2>
 
     <h3 data-i18n="lecture04.optional.model.title">Swap the Answer-Generation Model</h3>
-    <p data-i18n="lecture04.optional.model.desc">Switch CHAT_MODEL to a different model and compare answers. Only change CHAT_MODEL — never change EMBEDDING_MODEL, because registered documents are already embedded with it.</p>
-    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">CHAT_MODEL = "gpt-oss-120b"
-# Try:
-# CHAT_MODEL = "preview/gemma-4-31B-it"</code></pre></div>
+    <p data-i18n="lecture04.optional.model.desc">Switch CHAT_MODEL to a different model (app.py line 37) and compare answers. Only change CHAT_MODEL — never change EMBEDDING_MODEL, because registered documents are already embedded with it.</p>
+    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">CHAT_MODEL = "gpt-oss-120b"</code></pre></div>
 
     <h3 data-i18n="lecture04.optional.defaults.title">Change the Defaults and Logging</h3>
-    <p data-i18n="lecture04.optional.defaults.desc">Change default top_k / threshold values in index.html, and update app.py’s TOP_K_MAX if you widen the slider range. Add print statements in app.py to see what’s happening on the server side.</p>
-    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">result = format_result(response_data)
-print(f"sources={len(result['sources'])} items")
-print(f"answer={result['answer'][:40]}")
-return jsonify(result), 200</code></pre></div>
+    <p data-i18n="lecture04.optional.defaults.desc">Change default top_k / threshold values in index.html, and update app.py’s TOP_K_MAX (line 59) if you widen the slider range. Add the following print statements in app.py after line 166 to see what’s happening on the server side.</p>
+    <div class="code-block"><pre><code class="language-python">166:     result = format_result(response_data)
+167:     # Add these two lines below
+168:     print(f"sources={len(result['sources'])} items")
+169:     print(f"answer={result['answer'][:40]}")
+170:     return jsonify(result), 200</code></pre></div>
+    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">    print(f"sources={len(result['sources'])} items")
+    print(f"answer={result['answer'][:40]}")</code></pre></div>
 
     <h3 data-i18n="lecture04.optional.tts.title">Add a Read-Aloud Feature</h3>
-    <p data-i18n="lecture04.optional.tts.desc">Add a button that sends the displayed answer text to a new Flask route <code>/api/speak</code>, calls AI Engine’s text-to-speech API, and plays the returned WAV audio in the browser.</p>
-    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">SPEECH_URL = "https://api.ai.sakura.ad.jp/v1/audio/speech"
-
-@app.route("/api/speak", methods=["POST"])
-def speak():
-    text = request.get_json().get("text", "")
-    payload = {
-        "model": "&lt;speech model ID&gt;",
-        "voice": "&lt;voice ID&gt;",
-        "input": text
-    }
-    headers = {"Authorization": f"Bearer {os.getenv(TOKEN_ENV_NAME)}"}
-    r = requests.post(SPEECH_URL, headers=headers, json=payload, timeout=60)
-    return Response(r.content, mimetype="audio/wav")</code></pre></div>
+    <p data-i18n="lecture04.optional.tts.desc">This challenge uses AI Engine’s text-to-speech API. Before using it, you must agree to the relevant terms of service. Check the slide for the exact terms and procedure. If anything is unclear, ask the instructor.</p>
   </div>
 </section>
 
