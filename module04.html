@@ -271,20 +271,10 @@ pip list | grep -E "Flask|requests"</code></pre></div>
     </ul>
 
     <h3 data-i18n="lecture04.ho2.s1.title">Build What to Send</h3>
-    <p data-i18n="lecture04.ho2.s1.desc">Find <code>build_payload</code> in app.py (around line 208). The payload dictionary already has <code>model</code>, <code>chat_model</code>, and <code>distance_type</code>. Copy the snippet below and paste it into the blanks on lines 213–215.</p>
-    <div class="code-block"><pre><code class="language-python">208: def build_payload(query, top_k, threshold):
-209:     """Build the JSON payload to send to AI Engine."""
-210:     payload = {
-211:         "model": EMBEDDING_MODEL,
-212:         "chat_model": CHAT_MODEL,
-213:         "query": __(1)__,
-214:         "top_k": __(2)__,
-215:         "threshold": __(3)__,
-216:         "distance_type": DISTANCE_TYPE,
-217:     }</code></pre></div>
-    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">        "query": query,
-        "top_k": top_k,
-        "threshold": threshold,</code></pre></div>
+    <p data-i18n="lecture04.ho2.s1.desc">In app.py <code>build_payload</code> (around line 208), fill in the three blanks for <code>query</code>, <code>top_k</code>, and <code>threshold</code> on lines 213–215. Copy the highlighted snippet below and paste it into the blanks.</p>
+    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">        "query": <span class="editable-content" data-target="m4-build-query">query</span>,
+        "top_k": <span class="editable-content" data-target="m4-build-topk">top_k</span>,
+        "threshold": <span class="editable-content" data-target="m4-build-threshold">threshold</span>,</code></pre></div>
 
     <h3 data-i18n="lecture04.ho2.s2.title">Send What You Built</h3>
     <p data-i18n="lecture04.ho2.s2.desc">Find the <code>requests.post</code> call inside <code>rag_chat()</code> in app.py (around line 133). Copy the snippet below and paste it into the blanks on lines 134 and 136.</p>
@@ -364,8 +354,8 @@ Press CTRL+C to quit</code></pre></div>
     <h2 data-i18n="lecture04.optional.title">Optional: Extra Challenges</h2>
 
     <h3 data-i18n="lecture04.optional.model.title">Swap the Answer-Generation Model</h3>
-    <p data-i18n="lecture04.optional.model.desc">Switch CHAT_MODEL to a different model (app.py line 37) and compare answers. Only change CHAT_MODEL — never change EMBEDDING_MODEL, because registered documents are already embedded with it.</p>
-    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">CHAT_MODEL = "gpt-oss-120b"</code></pre></div>
+    <p data-i18n="lecture04.optional.model.desc">Switch CHAT_MODEL to a different model (app.py line 37) and compare answers. For example, change to <code>preview/gemma-4-31B-it</code> or <code>preview/Qwen3.6-35B-A3B</code>. Only change CHAT_MODEL — never change EMBEDDING_MODEL, because registered documents are already embedded with it.</p>
+    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">CHAT_MODEL = "preview/gemma-4-31B-it"</code></pre></div>
 
     <h3 data-i18n="lecture04.optional.defaults.title">Change the Defaults and Logging</h3>
     <p data-i18n="lecture04.optional.defaults.desc">Change default top_k / threshold values in index.html, and update app.py’s TOP_K_MAX (line 59) if you widen the slider range. Add the following print statements in app.py after line 166 to see what’s happening on the server side.</p>
