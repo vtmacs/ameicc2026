@@ -77,7 +77,7 @@
     <p data-i18n="lecture04.ov1.stack.desc">Set up a Windows + Linux environment, and inside that a Python virtual environment, on your PC. The stack is WSL + Python virtual env (venv) + Flask.</p>
 
     <h3 data-i18n="lecture04.ov1.system.title">The System We’ll Build</h3>
-    <p data-i18n="lecture04.ov1.system.desc">The user is on the left, AI Engine on the right. The question goes out, and the answer comes back. The account token is held only by Flask; it stays hidden from the browser and JavaScript.</p>
+    <p data-i18n="lecture04.ov1.system.desc">The question goes out, and the answer comes back. The account token is held only by Flask; it stays hidden from the browser and JavaScript.</p>
 
     <h3 data-i18n="lecture04.ov1.flow.title">Overall Structure (Data Flow)</h3>
     <p data-i18n="lecture04.ov1.flow.desc">Until now you called AI Engine directly with curl; now you call it through the browser and Flask. The browser sends the question to Flask, Flask calls AI Engine with requests, and the response is returned to the browser.</p>
@@ -188,11 +188,11 @@ wget https://github.com/onigiribouya/sakura-ai-engine-module4-download-zip/raw/r
 python3 -m zipfile -e module4-src.zip 04_rag-web-app</code></pre></div>
         <p data-i18n="lecture04.ho1.s1.note">No output after these commands is normal — it means they worked. If you run wget more than once, it may save as module4-src.zip.1 or .2 instead of overwriting; if extraction looks wrong, run <code>rm -f module4-src.zip*</code> and try again. This already lays the files out correctly for Flask, with no extra folder work needed.</p>
         <p data-i18n="lecture04.ho1.s1.fallback_title"><strong>If the ZIP download doesn’t work:</strong></p>
-        <ol>
+        <ul class="fallback-list">
           <li data-i18n="lecture04.ho1.s1.fallback_l1">Go to this page: <a href="https://github.com/onigiribouya/sakura-ai-engine-rag-web-app-exercise" target="_blank" rel="noopener">https://github.com/onigiribouya/sakura-ai-engine-rag-web-app-exercise</a></li>
           <li data-i18n="lecture04.ho1.s1.fallback_l2">Click the green <strong>Code</strong> button, then click <strong>Download ZIP</strong>.</li>
           <li data-i18n="lecture04.ho1.s1.fallback_l3">If that still doesn’t work, download each file one by one.</li>
-        </ol>
+        </ul>
       </li>
       <li>
         <strong data-i18n="lecture04.ho1.s2.title">STEP 2: Check the folder structure</strong>
@@ -211,6 +211,7 @@ ls templates static</code></pre></div>
         <strong data-i18n="lecture04.ho1.s4.title">STEP 4: Enter the virtual environment</strong>
         <p data-i18n="lecture04.ho1.s4.desc">Activate the environment. The prompt will show (venv) at the front. Do all remaining work with (venv) showing.</p>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">source venv/bin/activate</code></pre></div>
+        <p data-i18n="lecture04.ho1.s4.deactivate">To leave the virtual environment later, use <code>deactivate</code>.</p>
       </li>
       <li>
         <strong data-i18n="lecture04.ho1.s5.title">STEP 5: Install the packages</strong>

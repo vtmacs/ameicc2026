@@ -326,7 +326,7 @@ tr:nth-child(even) td { background: #fafbfc; }
   border-radius: 8px;
 }
 
-.steps li::before {
+.steps > li::before {
   counter-increment: step;
   content: counter(step);
   position: absolute;
@@ -344,6 +344,17 @@ tr:nth-child(even) td { background: #fafbfc; }
 }
 
 .steps strong { display: block; margin-bottom: 6px; color: var(--text); }
+
+.fallback-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 8px 0 0;
+}
+
+.fallback-list li {
+  margin-bottom: 6px;
+  padding-left: 0;
+}
 
 /* Callouts */
 .callout {
