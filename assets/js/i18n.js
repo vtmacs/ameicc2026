@@ -746,7 +746,7 @@
     "lecture04.ho1.s1.note": "展開コマンドからの出力がないのは正常です。wget を複数回実行すると、上書きされずに module4-src.zip.1 などの名前で保存されることがあります。展開結果がおかしい場合は <code>rm -f module4-src.zip*</code> してから再度試してください。",
     "lecture04.ho1.s1.fallback_title": "<strong>ZIP のダウンロードがうまくいかない場合：</strong>",
     "lecture04.ho1.s1.fallback_l1": "このページを開く：<a href=\"https://github.com/onigiribouya/sakura-ai-engine-rag-web-app-exercise\" target=\"_blank\" rel=\"noopener\">https://github.com/onigiribouya/sakura-ai-engine-rag-web-app-exercise</a>",
-    "lecture04.ho1.s1.fallback_l2": "緑の <strong>Code</strong> ボタンをクリックし、<strong>Download ZIP</strong> をクリックする。",
+    "lecture04.ho1.s1.fallback_l2": "緑の <strong>Code</strong> ボタンをクリックし、<strong>Download ZIP</strong> をクリックする",
     "lecture04.ho1.s1.fallback_l3": "それでもダメな場合は、ファイルを1つずつダウンロードする。",
     "lecture04.ho1.s2.title": "STEP 2：フォルダ構成を確認する",
     "lecture04.ho1.s2.desc": "展開されたファイルが目標の構成と一致しているか確認します。",
