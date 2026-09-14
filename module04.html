@@ -271,21 +271,48 @@ pip list | grep -E "Flask|requests"</code></pre></div>
     </ul>
 
     <h3 data-i18n="lecture04.ho2.s1.title">Build What to Send</h3>
-    <p data-i18n="lecture04.ho2.s1.desc">In app.py <code>build_payload</code> (around line 208), fill in the three blanks for <code>query</code>, <code>top_k</code>, and <code>threshold</code> on lines 213–215. Copy the highlighted snippet below and paste it into the blanks.</p>
-    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">        "query": <span class="editable-content" data-target="m4-build-query">query</span>,
-        "top_k": <span class="editable-content" data-target="m4-build-topk">top_k</span>,
-        "threshold": <span class="editable-content" data-target="m4-build-threshold">threshold</span>,</code></pre></div>
+    <p data-i18n="lecture04.ho2.s1.desc">Find <code>build_payload</code> in app.py (around line 208) and fill in the three blanks on lines 213–215.</p>
+    <div class="code-block"><pre><code class="language-python">208: def build_payload(query, top_k, threshold):
+209:     """Build the JSON payload to send to AI Engine."""
+210:     payload = {
+211:         "model": EMBEDDING_MODEL,
+212:         "chat_model": CHAT_MODEL,
+213:         "query": __(1)__,
+214:         "top_k": __(2)__,
+215:         "threshold": __(3)__,
+216:         "distance_type": DISTANCE_TYPE,
+217:     }</code></pre></div>
+    <details class="answer-details">
+      <summary data-i18n="lecture04.ho2.show_answer">View the answer</summary>
+      <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">208: def build_payload(query, top_k, threshold):
+209:     """Build the JSON payload to send to AI Engine."""
+210:     payload = {
+211:         "model": EMBEDDING_MODEL,
+212:         "chat_model": CHAT_MODEL,
+213:         "query": <span class="editable-content" data-target="m4-build-query">query</span>,
+214:         "top_k": <span class="editable-content" data-target="m4-build-topk">top_k</span>,
+215:         "threshold": <span class="editable-content" data-target="m4-build-threshold">threshold</span>,
+216:         "distance_type": DISTANCE_TYPE,
+217:     }</code></pre></div>
+    </details>
 
     <h3 data-i18n="lecture04.ho2.s2.title">Send What You Built</h3>
-    <p data-i18n="lecture04.ho2.s2.desc">Find the <code>requests.post</code> call inside <code>rag_chat()</code> in app.py (around line 133). Copy the snippet below and paste it into the blanks on lines 134 and 136.</p>
+    <p data-i18n="lecture04.ho2.s2.desc">Find the <code>requests.post</code> call inside <code>rag_chat()</code> in app.py (around line 133) and fill in the two blanks on lines 134 and 136.</p>
     <div class="code-block"><pre><code class="language-python">133:         response = requests.post(
 134:             __(4)__,
 135:             headers=headers,
 136:             __(5)__,
 137:             timeout=REQUEST_TIMEOUT,
 138:         )</code></pre></div>
-    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">            AI_ENGINE_URL,
-            json=payload,</code></pre></div>
+    <details class="answer-details">
+      <summary data-i18n="lecture04.ho2.show_answer">View the answer</summary>
+      <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">133:         response = requests.post(
+134:             <span class="editable-content" data-target="m4-send-url">AI_ENGINE_URL</span>,
+135:             headers=headers,
+136:             <span class="editable-content" data-target="m4-send-json">json=payload</span>,
+137:             timeout=REQUEST_TIMEOUT,
+138:         )</code></pre></div>
+    </details>
 
     <h3 data-i18n="lecture04.ho2.s3.title">Retrieve the Result That Comes Back</h3>
     <p data-i18n="lecture04.ho2.s3.desc">app.js is already complete — no need to fill anything in. It reads the answer and its sources straight out of the JSON returned from Flask, using the JSON key names directly.</p>
