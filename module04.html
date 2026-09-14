@@ -300,7 +300,7 @@ pip list | grep -E "Flask|requests"</code></pre></div>
 
     <h3 data-i18n="lecture04.ho2.s3.title">Retrieve the Result That Comes Back</h3>
     <p data-i18n="lecture04.ho2.s3.desc">app.js is already complete — no need to fill anything in. It reads the answer and its sources straight out of the JSON returned from Flask, using the JSON key names directly.</p>
-    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-javascript">// Display the answer and its sources
+    <div class="code-block"><pre><code class="language-javascript">// Display the answer and its sources
 showAnswer(data.answer);
 showSources(data.sources);</code></pre></div>
 
@@ -333,7 +333,7 @@ python app.py</code></pre></div>
 
     <h3 data-i18n="lecture04.ho3.s2.title">What You’ll See on Startup</h3>
     <p data-i18n="lecture04.ho3.s2.desc">Once it starts, the terminal shows the app URL. Debug mode is on, so saving your code reloads it automatically.</p>
-    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-text"> * Serving Flask app 'app'
+    <div class="code-block"><pre><code class="language-text"> * Serving Flask app 'app'
  * Debug mode: on
  * Running on http://127.0.0.1:5000
 Press CTRL+C to quit</code></pre></div>
@@ -342,7 +342,11 @@ Press CTRL+C to quit</code></pre></div>
     <p data-i18n="lecture04.ho3.s3.desc"><code>127.0.0.1</code> means the server stays inside your own PC and is never exposed externally. <code>5000</code> is Flask’s default development port. It is specified in <code>app.run(host="127.0.0.1", port=5000)</code>.</p>
 
     <h3 data-i18n="lecture04.ho3.s4.title">Open It in Your Browser</h3>
-    <p data-i18n="lecture04.ho3.s4.desc">Open <code>http://127.0.0.1:5000</code>, type your question, set top_k / threshold, and press Ask. The answer and its sources (name, chunk number, distance, content) will appear.</p>
+    <p data-i18n="lecture04.ho3.s4.desc">Open the URL below, type your question, set top_k / threshold, and press Ask. The answer and its sources (name, chunk number, distance, content) will appear.</p>
+    <div class="prompt-box">
+      <button class="copy-btn" data-i18n="common.copy">Copy</button>
+      <pre><code>http://127.0.0.1:5000</code></pre>
+    </div>
 
     <h3 data-i18n="lecture04.ho3.try.title">Try It Out</h3>
     <ul>

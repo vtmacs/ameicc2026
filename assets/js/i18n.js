@@ -808,7 +808,7 @@
     "lecture04.ho3.s3.title": "STEP 3：なぜ 127.0.0.1:5000 なのか",
     "lecture04.ho3.s3.desc": "127.0.0.1 は自分の PC の中だけで、外部やインターネットには公開されません。5000 は Flask 開発サーバの既定ポートで、app.run(host=\"127.0.0.1\", port=5000) で指定されています。",
     "lecture04.ho3.s4.title": "STEP 4：ブラウザで開く",
-    "lecture04.ho3.s4.desc": "http://127.0.0.1:5000 を開き、質問を入力して top_k / threshold を設定し、「質問する」を押すと、回答と参照元（名前・チャンク番号・distance・本文）が表示されます。",
+    "lecture04.ho3.s4.desc": "下の URL を開き、質問を入力して top_k / threshold を設定し、「質問する」を押すと、回答と参照元（名前・チャンク番号・distance・本文）が表示されます。",
     "lecture04.ho3.try.title": "動作確認してみよう",
     "lecture04.ho3.try.l1": "登録資料にないことを聞いて、どう答えるか確認する。",
     "lecture04.ho3.try.l2": "コントロールパネルで新しい資料を登録して、それについて質問する。",
