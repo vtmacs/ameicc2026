@@ -185,9 +185,7 @@
         <p data-i18n="lecture04.ho1.s1.desc">Do everything from your WSL terminal: no browser or Explorer needed. Download the ZIP with wget and extract it straight into 04_rag-web-app.</p>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~
 wget https://github.com/onigiribouya/sakura-ai-engine-module4-download-zip/raw/refs/heads/main/module4-src.zip
-python3 -m zipfile -e module4-src.zip 04_rag-web-app
-cd 04_rag-web-app
-ls</code></pre></div>
+python3 -m zipfile -e module4-src.zip 04_rag-web-app</code></pre></div>
         <p data-i18n="lecture04.ho1.s1.note">No output after these commands is normal — it means they worked. If you run wget more than once, it may save as module4-src.zip.1 or .2 instead of overwriting; if extraction looks wrong, run <code>rm -f module4-src.zip*</code> and try again. This already lays the files out correctly for Flask, with no extra folder work needed.</p>
         <p data-i18n="lecture04.ho1.s1.fallback_title"><strong>If the ZIP download doesn’t work:</strong></p>
         <ol>
