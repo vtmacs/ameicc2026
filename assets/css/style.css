@@ -245,8 +245,8 @@ tr:nth-child(even) td { background: #fafbfc; }
 
 /* Non-copyable code blocks (context/reference only) */
 .code-block:not(:has(.copy-btn)) {
-  border-left-color: #adb5bd;
-  background: #f8f9fa;
+  border-left-color: #4caf50;
+  background: #e8f5e9;
 }
 
 /* Editable code content */
