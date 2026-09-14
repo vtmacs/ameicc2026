@@ -387,10 +387,9 @@ Press CTRL+C to quit</code></pre></div>
     <h3 data-i18n="lecture04.optional.defaults.title">Change the Defaults and Logging</h3>
     <p data-i18n="lecture04.optional.defaults.desc">Change default top_k / threshold values in index.html, and update app.py’s TOP_K_MAX (line 59) if you widen the slider range. Add the following print statements in app.py after line 166 to see what’s happening on the server side.</p>
     <div class="code-block"><pre><code class="language-python">166:     result = format_result(response_data)
-167:     # Add these two lines below
-168:     print(f"sources={len(result['sources'])} items")
-169:     print(f"answer={result['answer'][:40]}")
-170:     return jsonify(result), 200</code></pre></div>
+167:     print(f"sources={len(result['sources'])} items")
+168:     print(f"answer={result['answer'][:40]}")
+169:     return jsonify(result), 200</code></pre></div>
     <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">    print(f"sources={len(result['sources'])} items")
     print(f"answer={result['answer'][:40]}")</code></pre></div>
 
