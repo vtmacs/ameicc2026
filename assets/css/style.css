@@ -243,6 +243,12 @@ tr:nth-child(even) td { background: #fafbfc; }
 
 .copy-btn:hover { background: #3333d0; }
 
+/* Non-copyable code blocks (context/reference only) */
+.code-block:not(:has(.copy-btn)) {
+  border-left-color: #adb5bd;
+  background: #f8f9fa;
+}
+
 /* Editable code content */
 .edit-box {
   display: flex;
