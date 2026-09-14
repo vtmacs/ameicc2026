@@ -182,15 +182,13 @@
     <ol class="steps">
       <li>
         <strong data-i18n="lecture04.ho1.s1.title">STEP 1: Download and extract the files</strong>
-        <p data-i18n="lecture04.ho1.s1.desc">Do everything from your WSL terminal: no browser or Explorer needed. Download the ZIP with wget, extract it with Python, and rename the top folder to 04_rag-web-app.</p>
+        <p data-i18n="lecture04.ho1.s1.desc">Do everything from your WSL terminal: no browser or Explorer needed. Download the ZIP with wget and extract it straight into 04_rag-web-app.</p>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~
-rm -f module4-src.zip
 wget https://github.com/onigiribouya/sakura-ai-engine-module4-download-zip/raw/refs/heads/main/module4-src.zip
-python3 -m zipfile -e module4-src.zip .
-mv module4-src 04_rag-web-app
+python3 -m zipfile -e module4-src.zip 04_rag-web-app
 cd 04_rag-web-app
 ls</code></pre></div>
-        <p data-i18n="lecture04.ho1.s1.note">No output from the extraction command is normal — it means it worked. If you run wget more than once, it may save as module4-src.zip.1 or .2 instead of overwriting; if extraction looks wrong, run <code>rm -f module4-src.zip*</code> and try again.</p>
+        <p data-i18n="lecture04.ho1.s1.note">No output after these commands is normal — it means they worked. If you run wget more than once, it may save as module4-src.zip.1 or .2 instead of overwriting; if extraction looks wrong, run <code>rm -f module4-src.zip*</code> and try again. This already lays the files out correctly for Flask, with no extra folder work needed.</p>
         <p data-i18n="lecture04.ho1.s1.fallback_title"><strong>If the ZIP download doesn’t work:</strong></p>
         <ol>
           <li data-i18n="lecture04.ho1.s1.fallback_l1">Go to this page: <a href="https://github.com/onigiribouya/sakura-ai-engine-rag-web-app-exercise" target="_blank" rel="noopener">https://github.com/onigiribouya/sakura-ai-engine-rag-web-app-exercise</a></li>
@@ -414,7 +412,7 @@ def speak():
     <p data-i18n="footer.copy">© SAKURA internet Inc.</p>
   </div>
 </footer>
-<script src="./SAKURA AI Engine Module 4_files/i18n.js.ダウンロード"></script>
+<script src="assets/js/i18n.js"></script>
 
 
 </body></html>

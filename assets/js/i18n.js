@@ -737,7 +737,7 @@
     "lecture04.ho1.req.l5": "AI_ENGINE_TOKEN 環境変数を設定する",
     "lecture04.ho1.steps.title": "手順",
     "lecture04.ho1.s1.title": "STEP 1：配付ファイルをダウンロード・展開する",
-    "lecture04.ho1.s1.desc": "WSL のターミナルだけで完結します。wget で ZIP をダウンロードし、Python の zipfile モジュールで展開してから、トップフォルダを 04_rag-web-app にリネームします。",
+    "lecture04.ho1.s1.desc": "WSL のターミナルだけで完結します。wget で ZIP をダウンロードし、Python の zipfile モジュールで 04_rag-web-app に直接展開します。",
     "lecture04.ho1.s1.download": "module4-src.zip をダウンロード",
     "lecture04.ho1.s1.note": "展開コマンドからの出力がないのは正常です。wget を複数回実行すると、上書きされずに module4-src.zip.1 などの名前で保存されることがあります。展開結果がおかしい場合は <code>rm -f module4-src.zip*</code> してから再度試してください。",
     "lecture04.ho1.s1.fallback_title": "<strong>ZIP のダウンロードがうまくいかない場合：</strong>",
