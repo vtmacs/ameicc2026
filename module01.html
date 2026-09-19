@@ -291,30 +291,6 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
       &quot;stream&quot;: false
     }&#x27; </code></pre></div>
       </li>
-      <li>
-        <strong data-i18n="lecture01.ho2.s4.title">STEP 4: Edit the Prompt and Run Again</strong>
-        <p data-i18n="lecture01.ho2.s4.desc">Copy and run the following complete command with the edited prompt.</p>
-        <div class="edit-box">
-          <label data-i18n="lecture01.editable.system">System instruction:</label>
-          <input type="text" class="edit-input" data-target="ho2-step4-system" value="You are a helpful travel guide.">
-        </div>
-        <div class="edit-box">
-          <label data-i18n="lecture01.editable.user">User message:</label>
-          <input type="text" class="edit-input" data-target="ho2-step4-user" value="Please recommend three famous tourist attractions in Thailand.">
-        </div>
-        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl --location https://api.ai.sakura.ad.jp/v1/chat/completions \
-  --header 'Accept: application/json' \
-  --header "Authorization: Bearer ${AI_ENGINE_TOKEN}" \
-  --header 'Content-Type: application/json' \
-  --data '{
-      "model": "gpt-oss-120b",
-      "messages": [
-        { "role": "system", "content": "<span class='editable-content' data-target='ho2-step4-system'>You are a helpful travel guide.</span>" },
-        { "role": "user",   "content": "<span class='editable-content' data-target='ho2-step4-user'>Please recommend three famous tourist attractions in Thailand.</span>" }
-      ],
-      "max_tokens": 300
-    }' </code></pre></div>
-      </li>
     </ol>
 
     <h3 data-i18n="lecture01.ho2.params.title">Request Parameters</h3>
@@ -363,6 +339,33 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
   --data &#x27;{ &quot;model&quot;: &quot;gpt-oss-120b&quot;,
             &quot;messages&quot;: [{ &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;<span class='editable-content' data-target='ho2-step3-user'>Hello!</span>&quot; }] }&#x27; \
 | python3 -c &quot;import sys,json; print(json.load(sys.stdin)[&#x27;choices&#x27;][0][&#x27;message&#x27;][&#x27;content&#x27;])&quot; </code></pre></div>
+
+    <ol class="steps" start="4">
+      <li>
+        <strong data-i18n="lecture01.ho2.s4.title">STEP 4: Edit the Prompt and Run Again</strong>
+        <p data-i18n="lecture01.ho2.s4.desc">Copy and run the following complete command with the edited prompt.</p>
+        <div class="edit-box">
+          <label data-i18n="lecture01.editable.system">System instruction:</label>
+          <input type="text" class="edit-input" data-target="ho2-step4-system" value="You are a helpful travel guide.">
+        </div>
+        <div class="edit-box">
+          <label data-i18n="lecture01.editable.user">User message:</label>
+          <input type="text" class="edit-input" data-target="ho2-step4-user" value="Please recommend three famous tourist attractions in Thailand.">
+        </div>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl --location https://api.ai.sakura.ad.jp/v1/chat/completions \
+  --header 'Accept: application/json' \
+  --header "Authorization: Bearer ${AI_ENGINE_TOKEN}" \
+  --header 'Content-Type: application/json' \
+  --data '{
+      "model": "gpt-oss-120b",
+      "messages": [
+        { "role": "system", "content": "<span class='editable-content' data-target='ho2-step4-system'>You are a helpful travel guide.</span>" },
+        { "role": "user",   "content": "<span class='editable-content' data-target='ho2-step4-user'>Please recommend three famous tourist attractions in Thailand.</span>" }
+      ],
+      "max_tokens": 300
+    }' </code></pre></div>
+      </li>
+    </ol>
 
     <div class="callout">
       <h4 data-i18n="lecture01.ho2.optional.title">Optional</h4>
