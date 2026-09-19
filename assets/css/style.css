@@ -249,11 +249,6 @@ tr:nth-child(even) td { background: #fafbfc; }
   background: #e8f5e9;
 }
 
-/* Continue step numbering when a steps list is split */
-.steps[start="4"] {
-  counter-reset: step 3;
-}
-
 /* Editable code content */
 .edit-box {
   display: flex;
