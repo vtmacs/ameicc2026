@@ -521,7 +521,7 @@ cat sample_long_en.txt</code></pre></div>
       </li>
       <li>
         <strong data-i18n="lecture02.ho3.s4.title">STEP 4: Summarize the corrected text</strong>
-        <p data-i18n="lecture02.ho3.s4.desc">Use Python and urllib.request to call chat/completions and summarize the file.</p>
+        <p data-i18n="lecture02.ho3.s4.desc">Use Python and urllib.request to call chat/completions and summarize the file. Only the summary text is printed, not the entire JSON response.</p>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">python3 -c "
 import os, json, urllib.request
 token = os.environ.get('AI_ENGINE_TOKEN')
@@ -535,7 +535,8 @@ req = urllib.request.Request(
     headers={'Authorization': f'Bearer {token}',
              'Content-Type': 'application/json'})
 with urllib.request.urlopen(req) as res:
-    print(res.read().decode('utf-8'))
+    data = json.loads(res.read().decode('utf-8'))
+    print(data['choices'][0]['message']['content'])
 "</code></pre></div>
       </li>
       <li>

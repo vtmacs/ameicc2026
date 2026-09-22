@@ -472,7 +472,7 @@
     "lecture02.ho3.s3.title": "STEP 3：誤りを直して保存する",
     "lecture02.ho3.s3.desc": "nano で sample_long_en.txt を新規作成し、文字起こし結果を貼り付けて誤りを1つずつ直します。",
     "lecture02.ho3.s4.title": "STEP 4：直したテキストを要約する",
-    "lecture02.ho3.s4.desc": "Python の urllib.request を使って chat/completions を呼び出し、ファイルを要約します。",
+    "lecture02.ho3.s4.desc": "Python の urllib.request を使って chat/completions を呼び出し、ファイルを要約します。JSON 全体ではなく、要約文だけを表示します。",
     "lecture02.ho3.s5.title": "STEP 5：直す前と後を比べる",
     "lecture02.ho3.s5.desc": "直していないテキストでも同じ要約を実行し、比べてみましょう。文字起こしを直すと固有名詞や日付が正しく入るようになるはずです。",
     "lecture02.ho3.optional.title": "発展課題",
