@@ -463,7 +463,7 @@
     "lecture02.ho3.req.l4": "直す前と後の要約を比べる",
     "lecture02.ho3.steps.title": "手順",
     "lecture02.ho3.s1.title": "STEP 1：台本と1文ずつ比べる",
-    "lecture02.ho3.s1.desc": "まず、修正前の文字起こし結果の要約を保存します。後で比較できるように、以下のコマンドをコピーして実行し、summarize.py を作成して summary_before.txt を生成してください。",
+    "lecture02.ho3.s1.desc": "まず、sample_long_en.wav を文字起こしして結果を sample_long_en_raw.txt に保存し、その後 summarize.py を作成して修正前の要約を summary_before.txt に保存します。後で比較できるように、この時点で保存しておきます。",
     "lecture02.ho3.s1.compare": "その後、WSL の文字起こし結果をコピーし、原文と1文ずつ上から順に比べます。まず固有名詞、次に数字・日付、最後に文全体の意味を確認します。",
     "lecture02.ho3.s2.title": "STEP 2：誤認識をワークシートに書き出す",
     "lecture02.ho3.s2.desc": "見つけた違いを記録します。すべてを書く必要はなく、明らかな誤りに絞りましょう。",

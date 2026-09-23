@@ -490,8 +490,16 @@ ls -l</code></pre></div>
     <ol class="steps">
       <li>
         <strong data-i18n="lecture02.ho3.s1.title">STEP 1: Compare the transcript with the script</strong>
-        <p data-i18n="lecture02.ho3.s1.desc">First, save the summary of the uncorrected transcript so you can compare it later. Copy and run the following command to create summarize.py and generate summary_before.txt.</p>
+        <p data-i18n="lecture02.ho3.s1.desc">First, transcribe sample_long_en.wav and save the result as sample_long_en_raw.txt, then create summarize.py and save the uncorrected summary as summary_before.txt for later comparison.</p>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/02_AI_ASR
+# 1. Save the transcription result as sample_long_en_raw.txt
+curl -s -X POST https://api.ai.sakura.ad.jp/v1/audio/transcriptions \
+  -H "Authorization: Bearer ${AI_ENGINE_TOKEN}" \
+  -F 'file=@sample_long_en.wav' -F 'model=whisper-large-v3-turbo' \
+  -F 'language=en' \
+  | python3 -c "import sys,json; print(json.load(sys.stdin)['text'])" \
+  > sample_long_en_raw.txt
+# 2. Create summarize.py, then summarize the file
 cat > summarize.py << 'EOF'
 import os, sys, json, urllib.request
 token = os.environ.get('AI_ENGINE_TOKEN')
