@@ -490,7 +490,25 @@ ls -l</code></pre></div>
     <ol class="steps">
       <li>
         <strong data-i18n="lecture02.ho3.s1.title">STEP 1: Compare the transcript with the script</strong>
-        <p data-i18n="lecture02.ho3.s1.desc">Copy the transcription result from WSL and compare it with the original script line by line. Check proper nouns first, then numbers and dates, and finally the meaning of each sentence.</p>
+        <p data-i18n="lecture02.ho3.s1.desc">First, save the summary of the uncorrected transcript so you can compare it later. Copy and run the following command to create summarize.py and generate summary_before.txt.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/02_AI_ASR
+cat > summarize.py << 'EOF'
+import os, sys, json, urllib.request
+token = os.environ.get('AI_ENGINE_TOKEN')
+text = open(sys.argv[1], encoding='utf-8').read()
+payload = {'model': 'gpt-oss-120b', 'messages': [{'role': 'user',
+           'content': f'Summarize this in English:\n\n{text}'}]}
+req = urllib.request.Request(
+    'https://api.ai.sakura.ad.jp/v1/chat/completions',
+    data=json.dumps(payload).encode('utf-8'),
+    headers={'Authorization': f'Bearer {token}',
+             'Content-Type': 'application/json'})
+with urllib.request.urlopen(req) as res:
+    d = json.loads(res.read().decode('utf-8'))
+print(d['choices'][0]['message']['content'])
+EOF
+python3 summarize.py sample_long_en_raw.txt > summary_before.txt</code></pre></div>
+        <p data-i18n="lecture02.ho3.s1.compare">Then copy the transcription result from WSL and compare it with the original script line by line. Check proper nouns first, then numbers and dates, and finally the meaning of each sentence.</p>
       </li>
       <li>
         <strong data-i18n="lecture02.ho3.s2.title">STEP 2: Write misrecognitions on the worksheet</strong>
