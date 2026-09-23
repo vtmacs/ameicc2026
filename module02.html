@@ -537,12 +537,12 @@ python3 summarize.py sample_long_en_raw.txt > summary_before.txt</code></pre></d
         </div>
       </li>
       <li>
-        <strong data-i18n="lecture02.ho3.s3.title">STEP 3: Correct errors and save</strong>
-        <p data-i18n="lecture02.ho3.s3.desc">Create sample_long_en.txt with nano, paste the transcription, and correct each error.</p>
+        <strong data-i18n="lecture02.ho3.s3.title">STEP 3: Save the correct text</strong>
+        <p data-i18n="lecture02.ho3.s3.desc">Save the correct text as sample_long_en.txt in the ~/02_AI_ASR folder.</p>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/02_AI_ASR
-nano sample_long_en.txt
-# Right-click to paste, then fix errors
-# Save: Ctrl+O, then Enter  Exit: Ctrl+X
+cat > sample_long_en.txt << 'EOF'
+Safaris are perhaps the greatest tourism draw in Africa and the highlight for many visitors. The Kruger National Park (KNP) lies in the north-east of South Africa and runs along the border of Mozambique in the east, Zimbabwe in the north, and the southern border is the Crocodile River. The park covers 19,500 km² and is divided in 14 different ecozones, each supporting different wildlife. Examples of on-site activities include hunting, fishing, photography, bird watching, and visiting parks and studying information about the ecosystem. Some animals, such as elephants and giraffes, tend to approach closely to cars and standard equipment will allow good viewing.
+EOF
 cat sample_long_en.txt</code></pre></div>
       </li>
       <li>
