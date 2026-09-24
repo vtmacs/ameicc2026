@@ -289,7 +289,7 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
       &quot;temperature&quot;: 0.7,
       &quot;max_tokens&quot;: 200,
       &quot;stream&quot;: false
-    }&#x27; </code></pre></div>
+    }&#x27; | json_pp</code></pre></div>
       </li>
     </ol>
 
@@ -314,7 +314,7 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
 
     <h3 data-i18n="lecture01.ho2.json.title">How to Read the JSON Response</h3>
     <p data-i18n="lecture01.ho2.json.desc">The answer is in choices[0].message.content. usage shows the number of tokens consumed.</p>
-    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-json">{
+    <div class="code-block"><pre><code class="language-json">{
   &quot;id&quot;: &quot;chatcmpl-xxxxxxxx&quot;,
   &quot;object&quot;: &quot;chat.completion&quot;,
   &quot;model&quot;: &quot;gpt-oss-120b&quot;,
@@ -363,7 +363,7 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
         { "role": "user",   "content": "<span class='editable-content' data-target='ho2-step4-user'>Please recommend three famous tourist attractions in Thailand.</span>" }
       ],
       "max_tokens": 300
-    }' </code></pre></div>
+    }' | json_pp</code></pre></div>
       </li>
     </ol>
 
