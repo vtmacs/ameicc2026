@@ -560,7 +560,11 @@ cat summary_after.txt</code></pre></div>
     <div class="callout">
       <h4 data-i18n="lecture02.ho3.optional.title">Optional</h4>
       <p data-i18n="lecture02.ho3.optional.minutes">Output as meeting minutes. Specify the format: Decisions / Action items / Due dates. Notice that without speaker information the "person responsible" field may be blank, unknown, or guessed.</p>
-      <p data-i18n="lecture02.ho3.optional.long">Handle audio over 30 minutes by splitting it into 29-second chunks. Set up a Python virtual environment, install requests and pydub, and use splitmp3.py. A combined splitmp3+summary.py script can produce transcript_full.txt and transcript_summary.md at once.</p>
+      <p data-i18n="lecture02.ho3.optional.long">Handle audio over 30 minutes by splitting it into 29-second chunks. Download the scripts below, set up a Python virtual environment, install requests and pydub, and use splitmp3.py. A combined splitmp3+summary.py script can produce transcript_full.txt and transcript_summary.md at once.</p>
+      <p>
+        <a class="btn btn-secondary" href="assets/downloads/splitmp3.py" download>Download splitmp3.py</a>
+        <a class="btn btn-secondary" href="assets/downloads/splitmp3+summary.py" download>Download splitmp3+summary.py</a>
+      </p>
       <p class="note" data-i18n="lecture02.ho3.optional.env_note">Note: Some of these commands may already be set up in your environment. Use this as a reference, and run only the steps that are not yet done.</p>
       <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/02_AI_ASR
 sudo apt update

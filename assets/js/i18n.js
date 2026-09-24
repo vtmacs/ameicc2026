@@ -478,7 +478,7 @@
     "lecture02.ho3.s5.desc": "直していないテキストでも同じ要約を実行し、比べてみましょう。文字起こしを直すと固有名詞や日付が正しく入るようになるはずです。",
     "lecture02.ho3.optional.title": "発展課題",
     "lecture02.ho3.optional.minutes": "議事録の形式で出力させてみましょう。決定事項／アクション／期限の形式を指定します。話者情報がないため、「担当者」欄は空欄・不明・推測のいずれかになります。",
-    "lecture02.ho3.optional.long": "30分を超える音声は29秒ごとに分割して処理します。Python の仮想環境を用意し、requests と pydub をインストールして splitmp3.py を使います。splitmp3+summary.py を使うと、transcript_full.txt と transcript_summary.md を一度に作れます。",
+    "lecture02.ho3.optional.long": "30分を超える音声は29秒ごとに分割して処理します。下のリンクからスクリプトをダウンロードし、Python の仮想環境を用意して requests と pydub をインストールし、splitmp3.py を使います。splitmp3+summary.py を使うと、transcript_full.txt と transcript_summary.md を一度に作れます。",
     "lecture02.ho3.optional.env_note": "注：これらのコマンドは一部の環境ですでにセットアップ済みのことがあります。こちらは参照として利用し、まだ済んでいない手順のみ実行してください。",
     "lecture02.ho3.check.title": "進捗確認",
     "lecture02.ho3.check.l1": "文字起こし結果を台本と比べられた",
