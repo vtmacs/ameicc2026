@@ -471,7 +471,7 @@
     "lecture02.ho3.ws.mis2": "誤認識 2",
     "lecture02.ho3.ws.mis3": "誤認識 3",
     "lecture02.ho3.s3.title": "STEP 3：正しい文章を保存する",
-    "lecture02.ho3.s3.desc": "正しい文章を ~/02_AI_ASR フォルダの sample_long_en.txt として保存します。",
+    "lecture02.ho3.s3.desc": "正しい文章を sample_long_en.txt として、その要約を summary_after.txt として、~/02_AI_ASR フォルダに保存します。",
     "lecture02.ho3.s4.title": "STEP 4：直したテキストを要約する",
     "lecture02.ho3.s4.desc": "Python の urllib.request を使って chat/completions を呼び出し、ファイルを要約します。JSON 全体ではなく、要約文だけを表示します。",
     "lecture02.ho3.s5.title": "STEP 5：直す前と後を比べる",
