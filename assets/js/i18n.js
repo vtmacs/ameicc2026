@@ -466,7 +466,7 @@
     "lecture02.ho3.s1.desc": "まず、sample_long_en.wav を文字起こしして結果を sample_long_en_raw.txt に保存し、その後 summarize.py を作成して修正前の要約を summary_before.txt に保存します。後で比較できるように、この時点で保存しておきます。",
     "lecture02.ho3.s1.compare": "その後、WSL の文字起こし結果をコピーし、原文と1文ずつ上から順に比べます。まず固有名詞、次に数字・日付、最後に文全体の意味を確認します。",
     "lecture02.ho3.s2.title": "STEP 2：誤認識をワークシートに書き出す",
-    "lecture02.ho3.s2.desc": "見つけた違いを記録します。すべてを書く必要はなく、明らかな誤りに絞りましょう。",
+    "lecture02.ho3.s2.desc": "見つけた違いを記録します。すべてを書く必要はなく、明らかな誤りに絞りましょう。下の原文を正解として参照してください。",
     "lecture02.ho3.ws.mis1": "誤認識 1",
     "lecture02.ho3.ws.mis2": "誤認識 2",
     "lecture02.ho3.ws.mis3": "誤認識 3",
