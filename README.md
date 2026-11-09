@@ -15,7 +15,7 @@ https://vtmacs.github.io/ameicc2026/
 - `module04.html` — Module 4: Building a Web App with AI Engine
 - `assets/css/style.css` — Styles
 - `assets/js/i18n.js` — Language switcher (EN/JA)
-- `assets/downloads/` — RAG practice document and audio samples
+- `assets/downloads/` — RAG practice document, audio samples, and helper scripts (splitmp3.py, splitmp3+summary.py)
 - `assets/materials/` — Slide PDFs for each module
 - `assets/manuals/` — SAKURA AI Engine manual PDFs
 - `assets/references/` — Additional reference PDFs
