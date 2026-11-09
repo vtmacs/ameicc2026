@@ -195,6 +195,7 @@ ls -l</code></pre></div>
   --form 'model=whisper-large-v3-turbo' \
   --form 'language=en'</code></pre></div>
         <p data-i18n="lecture02.ho1.s2.note">Always specify language=en for English. Without it, transcription quality may drop.</p>
+        <p class="note" data-i18n="lecture02.ho1.s2.backslash">The ¥ mark on this slide is a backslash (\). Type \ in your terminal.</p>
       </li>
       <li>
         <strong data-i18n="lecture02.ho1.s3.title">STEP 3: Check the short audio result</strong>
@@ -223,6 +224,7 @@ ls -l</code></pre></div>
           <p><code>Safaris are perhaps the greatest tourism draw in Africa and the highlight for many visitors. The Kruger National Park (KNP) lies in the north-east of South Africa and runs along the border of Mozambique in the east, Zimbabwe in the north, and the southern border is the Crocodile River. The park covers 19,500 km&sup2; and is divided in 14 different ecozones, each supporting different wildlife. Examples of on-site activities include hunting, fishing, photography, bird watching, and visiting parks and studying information about the ecosystem. Some animals, such as elephants and giraffes, tend to approach closely to cars and standard equipment will allow good viewing.</code></p>
           <p data-i18n="lecture02.ho1.s4.script.check">Look for missing words and whether the number of transcription errors increased compared with the short sample.</p>
         </div>
+        <p class="note" data-i18n="lecture02.ho1.s4.backslash">The ¥ mark on this slide is a backslash (\). Type \ in your terminal.</p>
       </li>
     </ol>
 
@@ -256,6 +258,7 @@ ls -l</code></pre></div>
 
     <div class="callout">
       <h4 data-i18n="lecture02.ho1.optional.title">Optional</h4>
+      <p><span class="badge" data-i18n="lecture02.optional.badge">OPTIONAL | Extra Challenge</span> Not covered in class. Try it if you finish early.</p>
       <p data-i18n="lecture02.ho1.optional.desc">Download noisy or fast-speaking samples and compare how accuracy changes.</p>
       <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_long_en_noisy.wav
 curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_long_en_fast.wav</code></pre></div>
@@ -396,6 +399,7 @@ curl -O https://vtmacs.github.io/ameicc2026/assets/downloads/sample_long_en_fast
 
     <div class="callout">
       <h4 data-i18n="lecture02.ho2.optional.title">Optional: Record your own voice</h4>
+      <p><span class="badge" data-i18n="lecture02.optional.badge">OPTIONAL | Extra Challenge</span> Not covered in class. Try it if you finish early.</p>
       <p data-i18n="lecture02.ho2.optional.desc">Use the recording app on your smartphone to capture your own voice.</p>
       <p data-i18n="lecture02.ho2.optional.url">Recording app URL: <a href="https://ai-handson.f5.si/" target="_blank" rel="noopener">https://ai-handson.f5.si/</a></p>
       <p data-i18n="lecture02.ho2.optional.auth">Basic authentication ID: <code>ai-engine</code> / Password: <code>handson-sakura-ai-2026!</code></p>
@@ -478,50 +482,119 @@ ls -l</code></pre></div>
     <h2 data-i18n="lecture02.ho3.title">Hands-On 3: Check Transcription and Summarize</h2>
     <p data-i18n="lecture02.ho3.goal">Compare the long English transcription with the script, correct errors, summarize with Python, and compare before and after correction.</p>
 
+    <!-- HO3-START -->
     <h3 data-i18n="lecture02.ho3.req.title">Required</h3>
     <ul>
-      <li data-i18n="lecture02.ho3.req.l1">Compare the English transcription results with the script sentence by sentence</li>
-      <li data-i18n="lecture02.ho3.req.l2">Correct errors by hand and save the text</li>
-      <li data-i18n="lecture02.ho3.req.l3">Summarize the corrected text using Python</li>
-      <li data-i18n="lecture02.ho3.req.l4">Compare summaries before and after correction</li>
+      <li data-i18n="lecture02.ho3.req.l1">Download and transcribe the meeting audio</li>
+      <li data-i18n="lecture02.ho3.req.l2">Save the correct text</li>
+      <li data-i18n="lecture02.ho3.req.l3">Compare it with your transcription</li>
+      <li data-i18n="lecture02.ho3.req.l4">Write the mistakes that change the meaning on the worksheet</li>
+      <li data-i18n="lecture02.ho3.req.l5">Summarize both texts using generative AI</li>
+      <li data-i18n="lecture02.ho3.req.l6">Compare the two summaries</li>
     </ul>
 
     <h3 data-i18n="lecture02.ho3.steps.title">Steps</h3>
     <ol class="steps">
       <li>
-        <strong data-i18n="lecture02.ho3.s1.title">STEP 1: Compare the transcript with the script</strong>
-        <p data-i18n="lecture02.ho3.s1.desc">First, transcribe sample_long_en.wav and save the result as sample_long_en_raw.txt, then create summarize.py and save the uncorrected summary as summary_before.txt for later comparison.</p>
+        <strong data-i18n="lecture02.ho3.s0.title">STEP 0: Download and transcribe the meeting audio</strong>
+        <p data-i18n="lecture02.ho3.s0.desc">This audio is a recording of a team meeting. It is played fast on purpose, so mistakes are expected. Download it and transcribe the audio, saving the text to a file.</p>
+        <p><a class="btn" href="assets/downloads/sample_meeting_en.wav" download data-i18n="lecture02.ho3.s0.download">Download sample_meeting_en.wav</a></p>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/02_AI_ASR
-# 1. Save the transcription result as sample_long_en_raw.txt
-curl -s -X POST https://api.ai.sakura.ad.jp/v1/audio/transcriptions \
+curl -O https://s3.isk01.sakurastorage.jp/1121-thai-handson/sample_meeting_en.wav
+ls -l</code></pre></div>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -s -X POST https://api.ai.sakura.ad.jp/v1/audio/transcriptions \
   -H "Authorization: Bearer ${AI_ENGINE_TOKEN}" \
-  -F 'file=@sample_long_en.wav' -F 'model=whisper-large-v3-turbo' \
+  -F 'file=@sample_meeting_en.wav' -F 'model=whisper-large-v3-turbo' \
   -F 'language=en' \
   | python3 -c "import sys,json; print(json.load(sys.stdin)['text'])" \
-  > sample_long_en_raw.txt
-# 2. Create summarize.py, then summarize the file
-cat > summarize.py << 'EOF'
-import os, sys, json, urllib.request
-token = os.environ.get('AI_ENGINE_TOKEN')
-text = open(sys.argv[1], encoding='utf-8').read()
-payload = {'model': 'gpt-oss-120b', 'messages': [{'role': 'user',
-           'content': f'Summarize this in English:\n\n{text}'}]}
-req = urllib.request.Request(
-    'https://api.ai.sakura.ad.jp/v1/chat/completions',
-    data=json.dumps(payload).encode('utf-8'),
-    headers={'Authorization': f'Bearer {token}',
-             'Content-Type': 'application/json'})
-with urllib.request.urlopen(req) as res:
-    d = json.loads(res.read().decode('utf-8'))
-print(d['choices'][0]['message']['content'])
-EOF
-python3 summarize.py sample_long_en_raw.txt > summary_before.txt</code></pre></div>
-        <p data-i18n="lecture02.ho3.s1.compare">Then copy the transcription result from WSL and compare it with the original script line by line. Check proper nouns first, then numbers and dates, and finally the meaning of each sentence.</p>
+  > sample_meeting_en_raw.txt
+cat sample_meeting_en_raw.txt</code></pre></div>
+        <p data-i18n="lecture02.ho3.s0.check">Check that text appears on your screen. The file size should be about 2,350,490 bytes. If it is much smaller, the download failed. If you get an authorization error, check your token with echo.</p>
+        <p class="note" data-i18n="lecture02.ho3.s0.backslash">The ¥ mark on this slide is a backslash (\). Type \ in your terminal.</p>
       </li>
       <li>
-        <strong data-i18n="lecture02.ho3.s2.title">STEP 2: Write misrecognitions on the worksheet</strong>
-        <p data-i18n="lecture02.ho3.s2.desc">Record any differences you find. You do not need to write everything; focus on clear mistakes. Use the original text below as the reference.</p>
-        <div class="code-block"><pre style="white-space: pre-wrap; word-wrap: break-word;"><code>Safaris are perhaps the greatest tourism draw in Africa and the highlight for many visitors. The Kruger National Park (KNP) lies in the north-east of South Africa and runs along the border of Mozambique in the east, Zimbabwe in the north, and the southern border is the Crocodile River. The park covers 19,500 km² and is divided in 14 different ecozones, each supporting different wildlife. Examples of on-site activities include hunting, fishing, photography, bird watching, and visiting parks and studying information about the ecosystem. Some animals, such as elephants and giraffes, tend to approach closely to cars and standard equipment will allow good viewing.</code></pre></div>
+        <strong data-i18n="lecture02.ho3.s1.title">STEP 1: Save the correct text</strong>
+        <p data-i18n="lecture02.ho3.s1.desc">Save the correct text to a file. You will use it in the next steps. The speaker labels (A: and B:) have been removed.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/02_AI_ASR
+cat > sample_meeting_en_correct.txt << 'EOF'
+OK, let's start. Um, today we're talking about the summer movie rankings. Right. So, globally, Spider-Man was number one at the box office. Yeah. But in Japan, the number one movie was Chiikawa. Chiikawa? Sorry, what is that? It's a popular Japanese manga and anime. The characters are small and cute. They look simple and friendly, but their world can be difficult, and sometimes a bit scary. Interesting. Can we use it as an example in the presentation? The team said yes. But we can't assume that everyone outside Japan knows it. Good point. How many people joined the survey? 13. 30? No, 13. And the average ticket price was 1,500 yen. OK. And for the survey, I think we can accept most of the results, Yes. Now, the presentation. We can include both movies, but it can't be longer than 15 minutes. except the data from one group. 15. 50 minutes is too long. 15. Uh, I thought 50. Got it. When is the next review meeting? Friday, at 3:30 in the afternoon. Mint, can you send the slides before that? Sure. I'll send them on Thursday. Great. Thank you.
+EOF
+cat sample_meeting_en_correct.txt</code></pre></div>
+      </li>
+      <li>
+        <strong data-i18n="lecture02.ho3.s2.title">STEP 2: Compare with the correct text</strong>
+        <p data-i18n="lecture02.ho3.s2.desc">Create compare.py and run it with the correct text first, then your transcription result. Red [ ] is the correct text, green { } is your result. Red only means missing from your result. Capital letters and punctuation are ignored.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/02_AI_ASR
+cat > compare.py << 'EOF'
+import re, sys, difflib, textwrap
+
+def words(path):
+    t = open(path, encoding='utf-8').read().lower()
+    t = re.sub(r'(?<=\d),(?=\d)', '', t)
+    t = t.replace("'", '')
+    return re.sub(r'[^a-z0-9]+', ' ', t).split()
+
+correct, result = words(sys.argv[1]), words(sys.argv[2])
+RED, GREEN, END = '\033[31m', '\033[32m', '\033[0m'
+out = []
+for tag, a1, a2, b1, b2 in difflib.SequenceMatcher(None, correct, result).get_opcodes():
+    if tag == 'equal':
+        out.append(' '.join(correct[a1:a2]))
+        continue
+    if a2 > a1:
+        out.append(RED + '[' + ' '.join(correct[a1:a2]) + ']' + END)
+    if b2 > b1:
+        out.append(GREEN + '{' + ' '.join(result[b1:b2]) + '}' + END)
+print(textwrap.fill(' '.join(out), 100))
+EOF
+python3 compare.py sample_meeting_en_correct.txt sample_meeting_en_raw.txt</code></pre></div>
+        <p data-i18n="lecture02.ho3.s2.note">Your result may look slightly different; that is OK. Focus on names, numbers and dates, and words that change the meaning. Small differences like "um" or "we are" do not count. Numbers written as words (fifteen) are the same number, but look closely: 50 may become fifteen.</p>
+      </li>
+      <li>
+        <strong data-i18n="lecture02.ho3.s3.title">STEP 3: Write misrecognitions on the worksheet</strong>
+        <p data-i18n="lecture02.ho3.s3.desc">Use the differences from STEP 2. The four examples below change the meaning. Check whether your result has them too, then find two or more other mistakes by yourself. Small differences do not count.</p>
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th data-i18n="lecture02.ho3.table.script">Script (correct)</th>
+              <th data-i18n="lecture02.ho3.table.result">Transcription result</th>
+              <th data-i18n="lecture02.ho3.table.type">Type</th>
+              <th data-i18n="lecture02.ho3.table.why">Why it matters</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>OK, let's start. ... Chiikawa? Sorry, what is that?</code></td>
+              <td data-i18n="lecture02.ho3.table.ex1.result">(missing)</td>
+              <td data-i18n="lecture02.ho3.table.ex1.type">Missing words</td>
+              <td data-i18n="lecture02.ho3.table.ex1.why">Spider-Man and Chiikawa disappear</td>
+            </tr>
+            <tr>
+              <td><code>longer than 15 minutes</code></td>
+              <td><code>longer than 50 minutes</code></td>
+              <td data-i18n="lecture02.ho3.table.ex2.type">Number</td>
+              <td data-i18n="lecture02.ho3.table.ex2.why">The time limit changes</td>
+            </tr>
+            <tr>
+              <td><code>Mint, can you send</code></td>
+              <td><code>meet, can you send</code></td>
+              <td data-i18n="lecture02.ho3.table.ex3.type">Proper noun</td>
+              <td data-i18n="lecture02.ho3.table.ex3.why">The task owner is lost</td>
+            </tr>
+            <tr>
+              <td><code>Interesting. Can we use it as an example?</code></td>
+              <td data-i18n="lecture02.ho3.table.ex4.result">(missing)</td>
+              <td data-i18n="lecture02.ho3.table.ex4.type">Missing words</td>
+              <td data-i18n="lecture02.ho3.table.ex4.why">A whole question is lost</td>
+            </tr>
+            <tr>
+              <td><code>15</code></td>
+              <td><code>fifteen</code></td>
+              <td data-i18n="lecture02.ho3.table.ex5.type">Format only</td>
+              <td data-i18n="lecture02.ho3.table.ex5.why">Numbers written as words do not count</td>
+            </tr>
+          </tbody>
+        </table>
         <div class="worksheet">
           <label>
             <span data-i18n="lecture02.ho3.ws.mis1">Misrecognition 1</span>
@@ -538,28 +611,49 @@ python3 summarize.py sample_long_en_raw.txt > summary_before.txt</code></pre></d
         </div>
       </li>
       <li>
-        <strong data-i18n="lecture02.ho3.s3.title">STEP 3: Save the correct text</strong>
-        <p data-i18n="lecture02.ho3.s3.desc">Save the correct text as sample_long_en.txt and its summary as summary_after.txt in the ~/02_AI_ASR folder.</p>
+        <strong data-i18n="lecture02.ho3.s4.title">STEP 4: Summarize both texts</strong>
+        <p data-i18n="lecture02.ho3.s4.desc">Create summarize.py, then summarize the raw transcription and the correct text.</p>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/02_AI_ASR
-cat > sample_long_en.txt << 'EOF'
-Safaris are perhaps the greatest tourism draw in Africa and the highlight for many visitors. The Kruger National Park (KNP) lies in the north-east of South Africa and runs along the border of Mozambique in the east, Zimbabwe in the north, and the southern border is the Crocodile River. The park covers 19,500 km² and is divided in 14 different ecozones, each supporting different wildlife. Examples of on-site activities include hunting, fishing, photography, bird watching, and visiting parks and studying information about the ecosystem. Some animals, such as elephants and giraffes, tend to approach closely to cars and standard equipment will allow good viewing.
+cat > summarize.py << 'EOF'
+import os, sys, json, urllib.request
+token = os.environ.get('AI_ENGINE_TOKEN')
+text = open(sys.argv[1], encoding='utf-8').read()
+payload = {'model': 'gpt-oss-120b', 'messages': [{'role': 'user',
+           'content': f'Summarize this in English:\n\n{text}'}]}
+req = urllib.request.Request(
+    'https://api.ai.sakura.ad.jp/v1/chat/completions',
+    data=json.dumps(payload).encode('utf-8'),
+    headers={'Authorization': f'Bearer {token}',
+             'Content-Type': 'application/json'})
+with urllib.request.urlopen(req) as res:
+    d = json.loads(res.read().decode('utf-8'))
+print(d['choices'][0]['message']['content'])
 EOF
-# Save the summary of the correct text as summary_after.txt
-python3 summarize.py sample_long_en.txt > summary_after.txt</code></pre></div>
+python3 summarize.py sample_meeting_en_raw.txt > summary_before.txt
+python3 summarize.py sample_meeting_en_correct.txt > summary_after.txt</code></pre></div>
+        <p data-i18n="lecture02.ho3.s4.note">Copy the full commands from the support website. Do not type them by hand. The script reads a text file and sends it to the chat API — the same chat completions API as Module 1.</p>
       </li>
       <li>
-        <strong data-i18n="lecture02.ho3.s4.title">STEP 4: Compare before and after correction</strong>
-        <p data-i18n="lecture02.ho3.s4.desc">Compare summary_before.txt and summary_after.txt. You should see that proper nouns and dates become correct only after fixing the transcript.</p>
-        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">echo "===== summary_before.txt ====="
+        <strong data-i18n="lecture02.ho3.s5.title">STEP 5: Compare the two summaries</strong>
+        <p data-i18n="lecture02.ho3.s5.desc">Show both summaries on your screen, then answer the three questions for each one.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">echo "===== BEFORE ====="
 cat summary_before.txt
-echo ""
-echo "===== summary_after.txt ====="
+echo "===== AFTER ====="
 cat summary_after.txt</code></pre></div>
+        <div class="callout">
+          <h4 data-i18n="lecture02.ho3.s5.questions.title">Three questions</h4>
+          <ol>
+            <li data-i18n="lecture02.ho3.s5.questions.l1">Which movies are mentioned in the summary?</li>
+            <li data-i18n="lecture02.ho3.s5.questions.l2">How long can the presentation be?</li>
+            <li data-i18n="lecture02.ho3.s5.questions.l3">Who will send the slides, and when?</li>
+          </ol>
+        </div>
       </li>
     </ol>
 
     <div class="callout">
       <h4 data-i18n="lecture02.ho3.optional.title">Optional</h4>
+      <p><span class="badge" data-i18n="lecture02.optional.badge">OPTIONAL | Extra Challenge</span> Not covered in class. Try it if you finish early.</p>
       <p data-i18n="lecture02.ho3.optional.minutes">Output as meeting minutes. Specify the format: Decisions / Action items / Due dates. Notice that without speaker information the "person responsible" field may be blank, unknown, or guessed.</p>
       <p data-i18n="lecture02.ho3.optional.long">Handle audio over 30 minutes by splitting it into 29-second chunks. Download the scripts below, set up a Python virtual environment, install requests and pydub, and use splitmp3.py. A combined splitmp3+summary.py script can produce transcript_full.txt and transcript_summary.md at once.</p>
       <p>
@@ -568,49 +662,92 @@ cat summary_after.txt</code></pre></div>
       </p>
       <p class="note" data-i18n="lecture02.ho3.optional.env_note">Note: Some of these commands may already be set up in your environment. Use this as a reference, and run only the steps that are not yet done.</p>
       <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/02_AI_ASR
-sudo apt update
-sudo apt install python3-venv ffmpeg
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv sakura02_audio_venv
+source sakura02_audio_venv/bin/activate
 pip install --upgrade pip
 pip install requests pydub
 python3 splitmp3.py --input sample_long_en.wav
-python3 splitmp3+summary.py --input sample_long_en.wav</code></pre></div>
+python3 splitmp3+summary.py --input sample_long_en.wav
+deactivate</code></pre></div>
     </div>
 
     <h3 data-i18n="lecture02.ho3.check.title">Progress Check</h3>
     <ul>
-      <li data-i18n="lecture02.ho3.check.l1">Compared the transcript with the script</li>
-      <li data-i18n="lecture02.ho3.check.l2">Corrected errors and saved sample_long_en.txt</li>
-      <li data-i18n="lecture02.ho3.check.l3">Summarized the corrected text with Python</li>
-      <li data-i18n="lecture02.ho3.check.l4">Compared summaries before and after correction</li>
+      <li data-i18n="lecture02.ho3.check.l1">Downloaded and transcribed the meeting audio</li>
+      <li data-i18n="lecture02.ho3.check.l2">Saved the correct text</li>
+      <li data-i18n="lecture02.ho3.check.l3">Compared the two texts with compare.py</li>
+      <li data-i18n="lecture02.ho3.check.l4">Compared the two summaries</li>
+    </ul>
+    <!-- HO3-END -->
+  </div>
+</section>
+<section class="section" id="review">
+  <div class="container">
+    <h2 data-i18n="lecture02.review.title">Review</h2>
+    <p data-i18n="lecture02.review.desc">Try to see if you can explain the following three points in your own words.</p>
+    <ul>
+      <li data-i18n="lecture02.review.l1"><strong>Q1:</strong> Where did you tend to make mistakes with transcription?</li>
+      <li data-i18n="lecture02.review.l2"><strong>Q2:</strong> How did the summary change before and after correcting the error?</li>
+      <li data-i18n="lecture02.review.l3"><strong>Q3:</strong> At which stage do you need to check with people?</li>
+    </ul>
+    <p data-i18n="lecture02.review.note">If you don't fix the previous process, you can't fix it in the next one. That's why you need a step to check.</p>
+  </div>
+</section>
+
+<section class="section section-alt" id="automation">
+  <div class="container">
+    <h2 data-i18n="lecture02.automation.title">Processes That Can Be Automated / Processes That People Check</h2>
+    <p data-i18n="lecture02.automation.desc">Recordings → Transcription → Text → Summary → Human Review and Sharing.</p>
+    <ul>
+      <li data-i18n="lecture02.automation.l1"><strong>Leave it to AI:</strong> turn audio to text, summarize long sentences, shape it to a set format</li>
+      <li data-i18n="lecture02.automation.l2"><strong>People check:</strong> whether proper nouns and numbers are correct, whether the meaning has changed, whether anything is missing</li>
+    </ul>
+    <p data-i18n="lecture02.automation.summary">Design is not about "leaving everything to you" or "doing everything," but about deciding the scope of delegation.</p>
+  </div>
+</section>
+
+<section class="section" id="apis">
+  <div class="container">
+    <h2 data-i18n="lecture02.apis.title">APIs Used Today</h2>
+    <p data-i18n="lecture02.apis.desc">We connected and used two SAKURA AI Engine APIs in order.</p>
+    <ul>
+      <li data-i18n="lecture02.apis.transcriptions"><code>/v1/audio/transcriptions</code> — convert audio files to text. Send files using multipart/form-data. Model: whisper-large-v3-turbo.</li>
+      <li data-i18n="lecture02.apis.chat"><code>/v1/chat/completions</code> — summarize the text. Send prompts in JSON. The same API used in Module 1.</li>
+    </ul>
+    <p data-i18n="lecture02.apis.summary">By combining APIs, you can create a single flow from voice to summarization.</p>
+  </div>
+</section>
+
+<section class="section section-alt" id="practical">
+  <div class="container">
+    <h2 data-i18n="lecture02.summary.practical.title">Practical Use Cases</h2>
+    <ul>
+      <li data-i18n="lecture02.summary.practical.l1">Meeting minutes: record and share on the same day</li>
+      <li data-i18n="lecture02.summary.practical.l2">Call centers: convert call records to text for quality analysis</li>
+      <li data-i18n="lecture02.summary.practical.l3">Video subtitles: add captions to lectures and explanatory videos</li>
     </ul>
   </div>
 </section>
-<section class="section" id="summary">
-  <div class="container">
-    <h2 data-i18n="lecture02.summary.title">Summary / Practical Use / What Lies Ahead</h2>
 
-    <h3 data-i18n="lecture02.summary.checklist.title">Summary Checklist</h3>
+<section class="section" id="future">
+  <div class="container">
+    <h2 data-i18n="lecture02.summary.future.title">What Lies Ahead</h2>
+    <ul>
+      <li data-i18n="lecture02.summary.future.l1">Register transcripts in RAG to search past audio</li>
+      <li data-i18n="lecture02.summary.future.l2">Combine with images using a multimodal model</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section-alt" id="summary">
+  <div class="container">
+    <h2 data-i18n="lecture02.summary.title">Summary</h2>
     <p data-i18n="lecture02.summary.checklist.desc">After this class you can do the following.</p>
     <ul>
       <li data-i18n="lecture02.summary.checklist.l1">Run the speech transcription API with curl</li>
       <li data-i18n="lecture02.summary.checklist.l2">Explain the process and limits for passing audio to the API</li>
       <li data-i18n="lecture02.summary.checklist.l3">Compare transcription accuracy with the script</li>
       <li data-i18n="lecture02.summary.checklist.l4">Explain how transcription errors affect summarization</li>
-    </ul>
-
-    <h3 data-i18n="lecture02.summary.practical.title">Practical Use Cases</h3>
-    <ul>
-      <li data-i18n="lecture02.summary.practical.l1">Meeting minutes: record and share on the same day</li>
-      <li data-i18n="lecture02.summary.practical.l2">Call centers: convert call records to text for quality analysis</li>
-      <li data-i18n="lecture02.summary.practical.l3">Video subtitles: add captions to lectures and explanatory videos</li>
-    </ul>
-
-    <h3 data-i18n="lecture02.summary.future.title">What Lies Ahead</h3>
-    <ul>
-      <li data-i18n="lecture02.summary.future.l1">Register transcripts in RAG to search past audio</li>
-      <li data-i18n="lecture02.summary.future.l2">Combine with images using a multimodal model</li>
     </ul>
   </div>
 </section>

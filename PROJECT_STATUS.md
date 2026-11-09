@@ -68,6 +68,31 @@
   - HO3 STEP4: 要約結果を JSON 全体ではなく要約文だけ表示するよう Python コードを変更
   - Optional（30分以上の音声対応）: `splitmp3.py` / `splitmp3+summary.py` を `assets/downloads/` に保存し、ダウンロードボタンを追加（日本語コメント・メッセージを英語に翻訳）
 
+### スライド差分反映（2026-11-10）
+
+- **Module 2 スライド差分反映**
+  - スライドを `SAKURA_AI_Engine_Hands-on_Practice_02_EN.pptx` から `1121_AI_Engine_Hands-on_Practice_02_EN_script.pptx` に変更
+  - HO3 を `sample_meeting_en.wav`（チーム会議音声）向けに全面書き換え
+    - STEP 0: 会議音声のダウンロード（`sample_meeting_en.wav`）と文字起こし
+    - STEP 1: 正解テキスト `sample_meeting_en_correct.txt` の保存
+    - STEP 2: `compare.py` による差分比較（赤 [ ] = 正解、緑 { } = 結果）
+    - STEP 3: ワークシートへの意味を変える誤りの記録（例：15→50、Mint→meet、欠落など）
+    - STEP 4: `summarize.py` で `sample_meeting_en_raw.txt` / `sample_meeting_en_correct.txt` の両方を要約
+    - STEP 5: 要約の比較と 3 つの質問
+  - Optional（長音声対応）: venv 名を `sakura02_audio_venv` に変更、処理後に `deactivate` を追加
+  - ハンズオン内の curl コマンドに対し、¥ = バックスラッシュ（`\`）の注釈を追加
+  - Optional セクションに「OPTIONAL | Extra Challenge」注釈を追加
+  - 最終セクションを Review / 自動化できる工程と人が確認する工程 / 今日使った API / 実務での使いどころ / この先にあるもの / まとめ に再構成
+- **Module 4 スライド差分反映**
+  - スライドを `04-1_AIEngineHandson_EN.pptx` から `1121_04-1_AIEngineHandson_読み原稿.pptx` に変更
+  - 作業フォルダ名を `04_rag-web-app` から `04_rag_web_app` に変更
+  - venv 名を `venv` から `sakura04_flask_venv` に変更
+  - ZIP ダウンロード失敗時のフォールバック URL（`https://s3.isk01.sakurastorage.jp/1121-thai-handson/module4-src.zip`）を追加
+  - HO2 の穴埋めを「2 groups, 5 blanks」から「3 groups, 7 blanks」に更新（app.js の `data.answer` / `data.sources` を追加）
+- **ダウンロード資料追加**
+  - `assets/downloads/sample_meeting_en.wav` を追加
+  - `assets/downloads/module4-src.zip` を追加
+
 ## 未完了
 
 - GitHub Pages の反映を待ち、公開 URL で最終確認

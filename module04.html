@@ -74,7 +74,7 @@
     <h2 data-i18n="lecture04.ov1.title">Overview 1: The Environment We’ll Build</h2>
 
     <h3 data-i18n="lecture04.ov1.stack.title">The Environment We’ll Build</h3>
-    <p data-i18n="lecture04.ov1.stack.desc">Set up a Windows + Linux environment, and inside that a Python virtual environment, on your PC. The stack is WSL + Python virtual env (venv) + Flask.</p>
+    <p data-i18n="lecture04.ov1.stack.desc">Set up a Windows + Linux environment, and inside that a Python virtual environment, on your PC. The stack is WSL + Python virtual env (sakura04_flask_venv) + Flask.</p>
 
     <h3 data-i18n="lecture04.ov1.system.title">The System We’ll Build</h3>
     <p data-i18n="lecture04.ov1.system.desc">The question goes out, and the answer comes back. The account token is held only by Flask; it stays hidden from the browser and JavaScript.</p>
@@ -112,7 +112,7 @@
 
     <h3 data-i18n="lecture04.ov1.dir.title">Directory Structure</h3>
     <p data-i18n="lecture04.ov1.dir.desc">Extract the distributed zip and lay it out like this. Flask auto-loads templates and static from fixed locations, so it must be laid out this way.</p>
-    <div class="code-block"><pre><code class="language-bash">04_rag-web-app/
+    <div class="code-block"><pre><code class="language-bash">04_rag_web_app/
 ├── app.py
 ├── requirements.txt
 ├── README.md
@@ -181,11 +181,13 @@
     <ol class="steps">
       <li>
         <strong data-i18n="lecture04.ho1.s1.title">STEP 1: Download and extract the files</strong>
-        <p data-i18n="lecture04.ho1.s1.desc">Do everything from your WSL terminal: no browser or Explorer needed. Download the ZIP with wget and extract it straight into 04_rag-web-app.</p>
+        <p data-i18n="lecture04.ho1.s1.desc">Do everything from your WSL terminal: no browser or Explorer needed. Download the ZIP with wget and extract it straight into 04_rag_web_app.</p>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~
 wget https://github.com/onigiribouya/sakura-ai-engine-module4-download-zip/raw/refs/heads/main/module4-src.zip
-python3 -m zipfile -e module4-src.zip 04_rag-web-app</code></pre></div>
+python3 -m zipfile -e module4-src.zip 04_rag_web_app</code></pre></div>
         <p data-i18n="lecture04.ho1.s1.note">No output after these commands is normal — it means they worked. If you run wget more than once, it may save as module4-src.zip.1 or .2 instead of overwriting; if extraction looks wrong, run <code>rm -f module4-src.zip*</code> and try again. This already lays the files out correctly for Flask, with no extra folder work needed.</p>
+        <p><a class="btn" href="assets/downloads/module4-src.zip" download data-i18n="lecture04.ho1.s1.download">Download module4-src.zip</a></p>
+        <p class="note" data-i18n="lecture04.ho1.s1.fallback_url">If the GitHub URL does not work, use this URL: <code>https://s3.isk01.sakurastorage.jp/1121-thai-handson/module4-src.zip</code></p>
         <p data-i18n="lecture04.ho1.s1.fallback_title"><strong>If the ZIP download doesn’t work:</strong></p>
         <ol>
           <li data-i18n="lecture04.ho1.s1.fallback_l1">Go to this page: <a href="https://github.com/onigiribouya/sakura-ai-engine-rag-web-app-exercise" target="_blank" rel="noopener">https://github.com/onigiribouya/sakura-ai-engine-rag-web-app-exercise</a></li>
@@ -196,20 +198,20 @@ python3 -m zipfile -e module4-src.zip 04_rag-web-app</code></pre></div>
       <li>
         <strong data-i18n="lecture04.ho1.s2.title">STEP 2: Check the folder structure</strong>
         <p data-i18n="lecture04.ho1.s2.desc">Confirm the extracted files match the target layout.</p>
-        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/04_rag-web-app
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~/04_rag_web_app
 ls -l
 ls templates static</code></pre></div>
         <p data-i18n="lecture04.ho1.s2.note">You should see app.py, requirements.txt, README.md, templates/, and static/ at the top level; templates/ has index.html, and static/ has app.js and style.css.</p>
       </li>
       <li>
         <strong data-i18n="lecture04.ho1.s3.title">STEP 3: Create a virtual environment</strong>
-        <p data-i18n="lecture04.ho1.s3.desc">Create a dedicated Python environment inside 04_rag-web-app. You only need to do this once.</p>
-        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">python3 -m venv venv</code></pre></div>
+        <p data-i18n="lecture04.ho1.s3.desc">Create a dedicated Python environment inside 04_rag_web_app. You only need to do this once.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">python3 -m venv sakura04_flask_venv</code></pre></div>
       </li>
       <li>
         <strong data-i18n="lecture04.ho1.s4.title">STEP 4: Enter the virtual environment</strong>
-        <p data-i18n="lecture04.ho1.s4.desc">Activate the environment. The prompt will show (venv) at the front. Do all remaining work with (venv) showing.</p>
-        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">source venv/bin/activate</code></pre></div>
+        <p data-i18n="lecture04.ho1.s4.desc">Activate the environment. The prompt will show (sakura04_flask_venv) at the front. Do all remaining work with (sakura04_flask_venv) showing.</p>
+        <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">source sakura04_flask_venv/bin/activate</code></pre></div>
         <p data-i18n="lecture04.ho1.s4.deactivate">To leave the virtual environment later, use <code>deactivate</code>.</p>
       </li>
       <li>
@@ -230,8 +232,8 @@ pip list | grep -E "Flask|requests"</code></pre></div>
 
     <h3 data-i18n="lecture04.ho1.check.title">Setup Complete Checklist</h3>
     <ul>
-      <li data-i18n="lecture04.ho1.check.l1">04_rag-web-app has templates/ and static/ laid out correctly</li>
-      <li data-i18n="lecture04.ho1.check.l2">(venv) shows at the start of the prompt</li>
+      <li data-i18n="lecture04.ho1.check.l1">04_rag_web_app has templates/ and static/ laid out correctly</li>
+      <li data-i18n="lecture04.ho1.check.l2">(sakura04_flask_venv) shows at the start of the prompt</li>
       <li data-i18n="lecture04.ho1.check.l3">pip list has Flask and requests</li>
       <li data-i18n="lecture04.ho1.check.l4">echo $AI_ENGINE_TOKEN shows the token</li>
     </ul>
@@ -263,11 +265,12 @@ pip list | grep -E "Flask|requests"</code></pre></div>
       </tbody>
     </table>
 
-    <h3 data-i18n="lecture04.ho2.blanks.title">Filling In app.py</h3>
-    <p data-i18n="lecture04.ho2.blanks.desc">There are 2 groups, 5 blanks in total, both in app.py. Build → Send — that’s the order we’ll follow. app.js is already complete; we’ll just read through how it uses the response.</p>
+    <h3 data-i18n="lecture04.ho2.blanks.title">Filling In the Code</h3>
+    <p data-i18n="lecture04.ho2.blanks.desc">There are 3 groups, 7 blanks in total. Build → Send → Receive — that’s the order we’ll follow. app.js is already complete; we’ll just read through how it uses the response.</p>
     <ul>
-      <li data-i18n="lecture04.ho2.blanks.l1"><strong>Build what to send:</strong> app.py <code>build_payload</code> (lines 213–215: blanks __(1)__ __(2)__ __(3)__)</li>
-      <li data-i18n="lecture04.ho2.blanks.l2"><strong>Send what you built:</strong> app.py <code>requests.post</code> (lines 134 and 136: blanks __(4)__ __(5)__)</li>
+      <li data-i18n="lecture04.ho2.blanks.l1"><strong>Build what to send:</strong> app.py <code>build_payload</code> (blanks __(1)__ __(2)__ __(3)__)</li>
+      <li data-i18n="lecture04.ho2.blanks.l2"><strong>Send what you built:</strong> app.py <code>requests.post</code> (blanks __(4)__ __(5)__)</li>
+      <li data-i18n="lecture04.ho2.blanks.l3"><strong>Retrieve the result that comes back:</strong> app.js <code>data.answer</code> / <code>data.sources</code> (blanks __(6)__ __(7)__)</li>
     </ul>
 
     <h3 data-i18n="lecture04.ho2.s1.title">Build What to Send</h3>
@@ -336,19 +339,19 @@ showSources(data.sources);</code></pre></div>
 
     <h3 data-i18n="lecture04.ho3.flow.title">Running Flow</h3>
     <ol>
-      <li data-i18n="lecture04.ho3.flow.l1">Enter (venv) if it’s not showing</li>
+      <li data-i18n="lecture04.ho3.flow.l1">Enter (sakura04_flask_venv) if it’s not showing</li>
       <li data-i18n="lecture04.ho3.flow.l2">Start the server with <code>python app.py</code></li>
       <li data-i18n="lecture04.ho3.flow.l3">Open the displayed URL in your browser</li>
       <li data-i18n="lecture04.ho3.flow.l4">Shut it down with Ctrl + C</li>
     </ol>
 
     <h3 data-i18n="lecture04.ho3.s1.title">Start the Server</h3>
-    <p data-i18n="lecture04.ho3.s1.desc">Make sure (venv) is active and the token is set, then start the Flask development server.</p>
+    <p data-i18n="lecture04.ho3.s1.desc">Make sure (sakura04_flask_venv) is active and the token is set, then start the Flask development server.</p>
     <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">echo $AI_ENGINE_TOKEN
 python app.py</code></pre></div>
 
     <h3 data-i18n="lecture04.ho3.s2.title">What You’ll See on Startup</h3>
-    <p data-i18n="lecture04.ho3.s2.desc">Once it starts, the terminal shows the app URL. Debug mode is on, so saving your code reloads it automatically.</p>
+    <p data-i18n="lecture04.ho3.s2.desc">Once it starts, the terminal shows the web app URL. Debug mode is on, so saving your code reloads it automatically.</p>
     <div class="code-block"><pre><code class="language-text"> * Serving Flask app 'app'
  * Debug mode: on
  * Running on http://127.0.0.1:5000
@@ -394,6 +397,7 @@ Press CTRL+C to quit</code></pre></div>
     print(f"answer={result['answer'][:40]}")</code></pre></div>
 
     <h3 data-i18n="lecture04.optional.tts.title">Add a Read-Aloud Feature</h3>
+    <p><span class="badge" data-i18n="lecture04.optional.badge">OPTIONAL | Extra Challenge</span> Not covered in class. Try it if you finish early.</p>
     <p data-i18n="lecture04.optional.tts.desc">This challenge uses AI Engine’s text-to-speech API. Before using it, you must agree to the relevant terms of service. Check the slide for the exact terms and procedure. If anything is unclear, ask the instructor.</p>
   </div>
 </section>
