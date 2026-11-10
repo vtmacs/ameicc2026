@@ -36,10 +36,10 @@
 <section class="section" id="how-it-works">
   <div class="container">
     <h2 data-i18n="lecture01.how.title">How This Class Works</h2>
-    <p data-i18n="lecture01.how.desc">Keep the slides open to see the current task. Use this site for detailed steps, copy-and-paste commands, extra challenges, and downloads.</p>
+    <p data-i18n="lecture01.how.desc">Work from the supporting website during the exercises. The slides stay on the screen at the front of the room.</p>
     <ul>
-<li data-i18n="lecture01.how.l1">Slides: explanations and the current task</li>
-<li data-i18n="lecture01.how.l2">Website: detailed steps, commands, and extra challenges</li>
+<li data-i18n="lecture01.how.l1">Slides: explanations and the current task on the front screen</li>
+<li data-i18n="lecture01.how.l2">Website: detailed steps, commands, and extra challenges on your own PC</li>
 <li data-i18n="lecture01.how.l3">Each hands-on has required and optional tasks</li>
       <li data-i18n="lecture01.how.l4">If You Get Stuck, search Troubleshooting or ask the instructor or a TA</li>
 </ul>
@@ -62,7 +62,7 @@
         </tr>
         <tr>
           <td>10 - 25</td>
-          <td data-i18n="lecture01.schedule.r2">Hands-On 1: Log In and Use Playground</td>
+          <td data-i18n="lecture01.schedule.r2">Hands-On 1: Try It — Log In and Use Playground</td>
         </tr>
         <tr>
           <td>25 - 35</td>
@@ -70,7 +70,7 @@
         </tr>
         <tr>
           <td>35 - 55</td>
-          <td data-i18n="lecture01.schedule.r4">Hands-On 2: Run with curl</td>
+          <td data-i18n="lecture01.schedule.r4">Hands-On 2: Try It — Run with curl</td>
         </tr>
         <tr>
           <td>55 - 65</td>
@@ -78,11 +78,11 @@
         </tr>
         <tr>
           <td>65 - 85</td>
-          <td data-i18n="lecture01.schedule.r6">Hands-On 3: Build a RAG Chatbot</td>
+          <td data-i18n="lecture01.schedule.r6">Hands-On 3: Try It — Build a RAG Chatbot</td>
         </tr>
         <tr>
           <td>85 - 90</td>
-          <td data-i18n="lecture01.schedule.r7">Summary, OpenWebUI, and Next Steps</td>
+          <td data-i18n="lecture01.schedule.r7">Wrap-Up: Summary, OpenWebUI, and Next Steps</td>
         </tr>
       </tbody>
     </table>
@@ -93,23 +93,29 @@
     <h2 data-i18n="lecture01.ov1.title">Overview 1: What Is SAKURA AI Engine?</h2>
 
     <h3 data-i18n="lecture01.ov1.genai.title">What Is Generative AI?</h3>
-    <p data-i18n="lecture01.ov1.genai.desc">Generative AI learns from large amounts of text and creates answers by predicting what comes next. Unlike search, it generates an answer rather than finding existing text.</p>
+    <p data-i18n="lecture01.ov1.genai.desc">Generative AI learns patterns from large amounts of data and uses them to create responses. Unlike search, it creates new responses rather than finding existing text.</p>
     <ul>
 <li data-i18n="lecture01.ov1.genai.l1">Responses may vary even for the same question</li>
-<li data-i18n="lecture01.ov1.genai.l2">It cannot answer from documents it has never received</li>
+<li data-i18n="lecture01.ov1.genai.l2">It may not know information from your university or private documents</li>
 <li data-i18n="lecture01.ov1.genai.l3">This limitation leads directly to RAG</li>
 </ul>
 
-    <h3 data-i18n="lecture01.ov1.sae.title">What Is SAKURA AI Engine?</h3>
-    <p data-i18n="lecture01.ov1.sae.desc">SAKURA AI Engine is a secure and flexible API platform for building generative AI applications. Data processing is completed in data centers in Japan.</p>
-    <ul>
-<li data-i18n="lecture01.ov1.sae.l1">Multiple foundation models to choose from</li>
-<li data-i18n="lecture01.ov1.sae.l2">Document management and RAG</li>
-<li data-i18n="lecture01.ov1.sae.l3">Audio transcription, TTS (Text-to-Speech), and image input</li>
-</ul>
+    <h3 data-i18n="lecture01.ov1.model.title">What Is an AI Model?</h3>
+    <p data-i18n="lecture01.ov1.model.desc">An AI model is a program created by training on data. Running it requires heavy computing power and specialized GPU infrastructure. Building and maintaining your own GPU server is costly and complex.</p>
+    <p data-i18n="lecture01.ov1.model.solution"><strong>SAKURA AI Engine</strong> eliminates GPU and infrastructure setup via simple API calls.</p>
 
-    <h3 data-i18n="lecture01.ov1.model.title">Understanding the Concept of a Model</h3>
-    <p data-i18n="lecture01.ov1.model.desc">A model is the brain of an AI system. Models differ in what they have learned, their size, and what they are good at.</p>
+    <h3 data-i18n="lecture01.ov1.sae.title">What Is SAKURA AI Engine?</h3>
+    <p data-i18n="lecture01.ov1.sae.desc">SAKURA AI Engine makes it easy to use generative AI in your applications. No need to prepare GPUs or AI models — just send a request and receive an AI-generated response.</p>
+    <ul>
+<li data-i18n="lecture01.ov1.sae.l1">Choose from different AI models</li>
+<li data-i18n="lecture01.ov1.sae.l2">Use your own documents with RAG</li>
+<li data-i18n="lecture01.ov1.sae.l3">Use audio and images (audio transcription, TTS, image input)</li>
+<li data-i18n="lecture01.ov1.sae.l4">Processing in Japan</li>
+</ul>
+    <p data-i18n="lecture01.ov1.focus">In this class, we focus on two features: Chat with AI and RAG (use your own documents to answer questions).</p>
+
+    <h3 data-i18n="lecture01.ov1.types.title">Types of AI Models</h3>
+    <p data-i18n="lecture01.ov1.types.desc">A model is the brain of an AI system. Models differ in what they have learned, their size, and what they are good at.</p>
     <table class="info-table">
       <thead>
         <tr>
@@ -152,19 +158,20 @@
 <li data-i18n="lecture01.ho1.req.l4">Select a model in Playground and ask a question</li>
 </ul>
 
-    <h3 data-i18n="lecture01.ho1.prep.title">Prerequisites</h3>
+    <h3 data-i18n="lecture01.ho1.prep.title">Before You Start</h3>
     <p data-i18n="lecture01.ho1.prep.desc">Make sure the following are ready.</p>
-    <ul>
-<li data-i18n="lecture01.ho1.prep.l1">User Code, Member ID, and Password</li>
-<li data-i18n="lecture01.ho1.prep.l2">A SAKURA Cloud project already created or selected</li>
-</ul>
+    <ol>
+      <li data-i18n="lecture01.ho1.prep.l1">Translate the Control Panel into English. Right-click the page and select Translate to English. Do this again if another page opens in Japanese.</li>
+      <li data-i18n="lecture01.ho1.prep.l2">Check your login information: User Code, Member ID, and Password.</li>
+    </ol>
     <p><a class="btn" href="https://secure.sakura.ad.jp/cloud/" target="_blank" rel="noopener">Open Control Panel</a></p>
 
     <h3 data-i18n="lecture01.ho1.steps.title">Steps</h3>
     <ol class="steps">
       <li>
         <strong data-i18n="lecture01.ho1.s1.title">STEP 1: Log in to the Control Panel</strong>
-        <p data-i18n="lecture01.ho1.s1.desc">Enter your User Code, Member ID, and Password. Check that all three fields are filled in.</p>
+        <p data-i18n="lecture01.ho1.s1.desc">Open the URL above in your browser, then enter your User Code, Member ID, and Password. All three fields are required.</p>
+        <p data-i18n="lecture01.ho1.s1.note">If the page is in Japanese, right-click and select Translate to English. If you cannot log in, check all three fields and remove any extra spaces before or after the values.</p>
       </li>
       <li>
         <strong data-i18n="lecture01.ho1.s2.title">STEP 2: Open SAKURA AI Engine</strong>
@@ -173,6 +180,7 @@
       <li>
         <strong data-i18n="lecture01.ho1.s3.title">STEP 3: Select a Model in Playground</strong>
         <p data-i18n="lecture01.ho1.s3.desc">Open Playground from the left menu and select a model such as gpt-oss-120b from the model selector at the bottom of the screen.</p>
+        <p class="note" data-i18n="lecture01.ho1.s3.note">Some parts of the screen may be in Japanese. Please don't worry about it.</p>
       </li>
       <li>
         <strong data-i18n="lecture01.ho1.s4.title">STEP 4: Enter and Submit a Prompt</strong>
@@ -181,21 +189,25 @@
           <button class="copy-btn" data-i18n="common.copy">Copy</button>
           <pre><code>Please recommend three famous tourist attractions in Thailand.</code></pre>
         </div>
+        <p class="note" data-i18n="lecture01.ho1.s4.note">If the translation doesn't work properly and some text appears in Japanese, please don't worry about it.</p>
       </li>
     </ol>
 
     <div class="callout">
       <h4 data-i18n="lecture01.ho1.optional.title">Optional</h4>
+      <p><span class="badge" data-i18n="lecture01.optional.badge">OPTIONAL | Extra Challenge</span> Not covered in class. Try it if you finish early.</p>
       <p data-i18n="lecture01.ho1.optional.desc">Ask the same question with a different model and compare the length, style, and content of the answers.</p>
     </div>
 
     <h3 data-i18n="lecture01.ho1.check.title">Progress Check</h3>
+    <p data-i18n="lecture01.ho1.check.desc">Before moving on, confirm that you have completed each required item.</p>
     <ul>
 <li data-i18n="lecture01.ho1.check.l1">Logged in to SAKURA Cloud</li>
 <li data-i18n="lecture01.ho1.check.l2">Opened SAKURA AI Engine</li>
-<li data-i18n="lecture01.ho1.check.l3">Selected a model and asked a question</li>
+<li data-i18n="lecture01.ho1.check.l3">Selected a model and asked a question in Playground</li>
 <li data-i18n="lecture01.ho1.check.l4">Confirmed that a response appeared</li>
 </ul>
+    <p data-i18n="lecture01.ho1.check.proceed">The model comparison is optional. If you are stuck on a required item, ask the instructor or a TA.</p>
   </div>
 </section>
 <section class="section" id="overview2">
@@ -236,6 +248,19 @@
       </tbody>
     </table>
     <p data-i18n="lecture01.ov2.note">Everything you did in Playground also uses this API behind the scenes.</p>
+
+    <h3 data-i18n="lecture01.ov2.curl.title">What Is curl?</h3>
+    <p data-i18n="lecture01.ov2.curl.desc">curl is a tool that lets you send requests to an API by typing a command. We will use curl to send a question to SAKURA AI Engine and get an answer.</p>
+    <ul>
+      <li data-i18n="lecture01.ov2.curl.l1"><strong>Where to send:</strong> the API address (URL)</li>
+      <li data-i18n="lecture01.ov2.curl.l2"><strong>Who sent the request:</strong> your Account Token</li>
+      <li data-i18n="lecture01.ov2.curl.l3"><strong>What to ask:</strong> model name and question</li>
+    </ul>
+
+    <h3 data-i18n="lecture01.ov2.wsl.title">We Will Now Use the Terminal (WSL)</h3>
+    <p data-i18n="lecture01.ov2.wsl.desc">From this point, use WSL (Ubuntu), which runs a Linux environment on Windows. This hands-on uses Linux commands, and WSL lets you run them on Windows.</p>
+    <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">wsl</code></pre></div>
+    <p data-i18n="lecture01.ov2.wsl.note">WSL is ready when the prompt changes from <code>C:\...</code> to <code>...</code>$.</p>
   </div>
 </section>
 <section class="section section-alt" id="ho2">
@@ -271,7 +296,7 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
         <p data-i18n="lecture01.ho2.s2.note">This setting remains active until you close the terminal. Run export again after reopening it.</p>
       </li>
       <li>
-        <strong data-i18n="lecture01.ho2.s3.title">STEP 3: Ask a Question with curl</strong>
+        <strong data-i18n="lecture01.ho2.s3.title">STEP 3: Ask AI a Question with curl</strong>
         <p data-i18n="lecture01.ho2.s3.desc">Copy and run the following command. Check where the endpoint, authentication, request, and response are written.</p>
         <div class="edit-box">
           <label data-i18n="lecture01.editable.user">User message:</label>
@@ -290,6 +315,7 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
       &quot;max_tokens&quot;: 200,
       &quot;stream&quot;: false
     }&#x27; | json_pp</code></pre></div>
+        <p class="note" data-i18n="lecture01.ho2.s3.backslash">In Japanese environments, the backslash (\) is often displayed as a yen sign (¥). If you see a yen sign, please don't worry about it.</p>
       </li>
     </ol>
 
@@ -315,20 +341,25 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
     <h3 data-i18n="lecture01.ho2.json.title">How to Read the JSON Response</h3>
     <p data-i18n="lecture01.ho2.json.desc">The answer is in choices[0].message.content. usage shows the number of tokens consumed.</p>
     <div class="code-block"><pre><code class="language-json">{
-  &quot;id&quot;: &quot;chatcmpl-xxxxxxxx&quot;,
-  &quot;object&quot;: &quot;chat.completion&quot;,
-  &quot;model&quot;: &quot;gpt-oss-120b&quot;,
   &quot;choices&quot;: [
     {
+      &quot;finish_reason&quot;: &quot;stop&quot;,
       &quot;index&quot;: 0,
       &quot;message&quot;: {
-        &quot;role&quot;: &quot;assistant&quot;,
-        &quot;content&quot;: &quot;Hello! How can I help you today?&quot;
-      },
-      &quot;finish_reason&quot;: &quot;stop&quot;
+        &quot;content&quot;: &quot;Hello! 👋 How can I help you today?&quot;,
+        &quot;role&quot;: &quot;assistant&quot;
+      }
     }
   ],
-  &quot;usage&quot;: { &quot;prompt_tokens&quot;: 12, &quot;completion_tokens&quot;: 20 }
+  &quot;created&quot;: xxxxxxxx,
+  &quot;id&quot;: &quot;chatcmpl-xxxxxxxxxxx&quot;,
+  &quot;model&quot;: &quot;gpt-oss-120b&quot;,
+  &quot;object&quot;: &quot;chat.completion&quot;,
+  &quot;usage&quot;: {
+    &quot;completion_tokens&quot;: 47,
+    &quot;prompt_tokens&quot;: 69,
+    &quot;total_tokens&quot;: 116
+  }
 }</code></pre></div>
 
     <h3 data-i18n="lecture01.ho2.extract.title">Extract Only the Answer</h3>
@@ -342,8 +373,8 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
 
     <ol class="steps" start="4" style="counter-reset: step 3;">
       <li>
-        <strong data-i18n="lecture01.ho2.s4.title">STEP 4: Edit the Prompt and Run Again</strong>
-        <p data-i18n="lecture01.ho2.s4.desc">Copy and run the following complete command with the edited prompt.</p>
+        <strong data-i18n="lecture01.ho2.s4.title">STEP 4: Set the AI's Role and Ask a Question</strong>
+        <p data-i18n="lecture01.ho2.s4.desc">Add a system message to set the AI's role, then ask a question and run the command.</p>
         <div class="edit-box">
           <label data-i18n="lecture01.editable.system">System instruction:</label>
           <input type="text" class="edit-input" data-target="ho2-step4-system" value="You are a helpful travel guide.">
@@ -364,15 +395,36 @@ echo $AI_ENGINE_TOKEN</code></pre></div>
       ],
       "max_tokens": 300
     }' | json_pp</code></pre></div>
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th data-i18n="lecture01.ho2.s4.role">Role</th>
+              <th data-i18n="lecture01.ho2.s4.content">Content</th>
+              <th data-i18n="lecture01.ho2.s4.meaning">Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>system</code></td>
+              <td><code>You are a helpful travel guide.</code></td>
+              <td data-i18n="lecture01.ho2.s4.system_meaning">Instructions that define how the AI should behave</td>
+            </tr>
+            <tr>
+              <td><code>user</code></td>
+              <td><code>Please recommend three famous tourist attractions in Thailand.</code></td>
+              <td data-i18n="lecture01.ho2.s4.user_meaning">The question you ask the AI</td>
+            </tr>
+          </tbody>
+        </table>
       </li>
     </ol>
 
     <div class="callout">
       <h4 data-i18n="lecture01.ho2.optional.title">Optional</h4>
-      <ul>
-        <li data-i18n="lecture01.ho2.optional.l1">Change temperature and max_tokens to compare responses</li>
-        <li data-i18n="lecture01.ho2.optional.l2">Call the same API from Python</li>
-      </ul>
+      <p><span class="badge" data-i18n="lecture01.optional.badge">OPTIONAL | Extra Challenge</span> Not covered in class. Try it if you finish early.</p>
+      <p data-i18n="lecture01.ho2.optional.l1">1. Add instructions to your question</p>
+      <p data-i18n="lecture01.ho2.optional.l2">2. Change API settings</p>
+      <p data-i18n="lecture01.ho2.optional.py">Call the same API from Python:</p>
       <p data-i18n="lecture01.ho2.optional.py">Python example:</p>
       <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-python">import os, requests
 url = &quot;https://api.ai.sakura.ad.jp/v1/chat/completions&quot;
@@ -410,20 +462,27 @@ print(res.json()[&quot;choices&quot;][0][&quot;message&quot;][&quot;content&quot
           <td data-i18n="lecture01.ho2.errors.e2.fix">Use straight quotes, turn off IME, no space after backslash</td>
         </tr>
         <tr>
-          <td data-i18n="lecture01.ho2.errors.e3.title">Cannot connect / no response</td>
-          <td data-i18n="lecture01.ho2.errors.e3.cause">Network or proxy issue</td>
-          <td data-i18n="lecture01.ho2.errors.e3.fix">Check Wi-Fi and campus network restrictions</td>
+          <td data-i18n="lecture01.ho2.errors.e3.title">If “&gt;” appears and nothing happens</td>
+          <td data-i18n="lecture01.ho2.errors.e3.cause">A quote or brace is not closed, so the shell keeps waiting</td>
+          <td data-i18n="lecture01.ho2.errors.e3.fix">Press Ctrl + C, then retype the command. Check that every " and { } is closed, with no space after a line-ending backslash.</td>
+        </tr>
+        <tr>
+          <td data-i18n="lecture01.ho2.errors.e4.title">Cannot connect / no response</td>
+          <td data-i18n="lecture01.ho2.errors.e4.cause">Network or proxy issue</td>
+          <td data-i18n="lecture01.ho2.errors.e4.fix">Check Wi-Fi and campus network restrictions</td>
         </tr>
       </tbody>
     </table>
 
     <h3 data-i18n="lecture01.ho2.check.title">Progress Check</h3>
+    <p data-i18n="lecture01.ho2.check.desc">Before moving on, confirm that you have completed each required item.</p>
     <ul>
 <li data-i18n="lecture01.ho2.check.l1">Issued and saved an Account Token</li>
 <li data-i18n="lecture01.ho2.check.l2">Stored the token in an environment variable</li>
 <li data-i18n="lecture01.ho2.check.l3">Received an AI response using curl</li>
-<li data-i18n="lecture01.ho2.check.l4">Edited the prompt and ran the command again</li>
+<li data-i18n="lecture01.ho2.check.l4">Set the AI's role and asked a question</li>
 </ul>
+    <p data-i18n="lecture01.ho2.check.proceed">If you are finished, continue to the optional challenge. If you are stuck on a required item, ask the instructor or a TA.</p>
   </div>
 </section>
 <section class="section" id="overview3">
@@ -438,6 +497,30 @@ print(res.json()[&quot;choices&quot;][0][&quot;message&quot;][&quot;content&quot
 <li data-i18n="lecture01.ov3.rag.l3">Show which documents were referenced</li>
 <li data-i18n="lecture01.ov3.rag.l4">Cannot use unregistered information as evidence</li>
 </ul>
+
+    <h3 data-i18n="lecture01.ov3.terms.title">Three Key Terms for RAG</h3>
+    <table class="info-table">
+      <thead>
+        <tr>
+          <th data-i18n="lecture01.ov3.terms.term">Term</th>
+          <th data-i18n="lecture01.ov3.terms.meaning">Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-i18n="lecture01.ov3.terms.token.title">Token</td>
+          <td data-i18n="lecture01.ov3.terms.token.desc">A text processing unit. AI reads text in small units called tokens (words, sub-words, or punctuation). 1 token ≠ 1 word.</td>
+        </tr>
+        <tr>
+          <td data-i18n="lecture01.ov3.terms.chunk.title">Chunk</td>
+          <td data-i18n="lecture01.ov3.terms.chunk.desc">A document section. A full document is split into smaller sections called chunks. Each chunk contains many tokens.</td>
+        </tr>
+        <tr>
+          <td data-i18n="lecture01.ov3.terms.vector.title">Vector</td>
+          <td data-i18n="lecture01.ov3.terms.vector.desc">Numerical meaning. A chunk is converted into an array of numbers. Similar meanings have numerical values close to each other.</td>
+        </tr>
+      </tbody>
+    </table>
 
     <h3 data-i18n="lecture01.ov3.chunk.title">Understanding Chunks</h3>
     <p data-i18n="lecture01.ov3.chunk.desc">Registered documents are divided into sections of a specified token length. Each section is called a chunk.</p>
@@ -471,25 +554,35 @@ print(res.json()[&quot;choices&quot;][0][&quot;message&quot;][&quot;content&quot
     <h3 data-i18n="lecture01.ho3.steps.title">Steps</h3>
     <ol class="steps">
       <li>
-        <strong data-i18n="lecture01.ho3.s1.title">STEP 1: Download the Document and Place It in WSL</strong>
-        <p data-i18n="lecture01.ho3.s1.desc">Download the PDF from the link below, create a 01_AI_RAG folder in your WSL home directory, and copy the file there. Use File Explorer drag-and-drop for copying.</p>
-        <p><a class="btn" href="assets/downloads/annual-report-2564.pdf" download data-i18n="lecture01.ho3.download">Download Annual Report 2564 (PDF)</a></p>
+        <strong data-i18n="lecture01.ho3.s1.title">STEP 1: Prepare the Document</strong>
+        <p data-i18n="lecture01.ho3.s1.desc">Download the PDF from the link below to your Windows PC. Using the same document and questions makes it easier to compare results with and without RAG.</p>
+        <p><a class="btn" href="assets/downloads/IKURA_Internet_Company_Profile_EN.pdf" download data-i18n="lecture01.ho3.download">Download IKURA Internet Company Profile (PDF)</a></p>
+        <h4 data-i18n="lecture01.ho3.s1.folder_title">Create a Folder in WSL</h4>
+        <p data-i18n="lecture01.ho3.s1.folder_desc">Create the 01_AI_RAG folder with commands in WSL.</p>
         <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">cd ~
 mkdir -p 01_AI_RAG
 cd 01_AI_RAG
 ls -l</code></pre></div>
+        <h4 data-i18n="lecture01.ho3.s1.copy_title">Copy the PDF into the Folder</h4>
+        <p data-i18n="lecture01.ho3.s1.copy_desc">Copy the file using File Explorer, not a command. Open File Explorer, scroll down and click Linux &gt; Ubuntu, then drag and drop the PDF into home &gt; user name &gt; 01_AI_RAG. If Linux is not listed, enter <code>\\wsl$\Ubuntu\home</code> in the address bar.</p>
       </li>
       <li>
         <strong data-i18n="lecture01.ho3.s2.title">STEP 2: Register the Document</strong>
-        <p data-i18n="lecture01.ho3.s2.desc">Select Documents (RAG) from the left menu and click Add Document. Enter the name, file, embedding model, and chunk size, then upload. Wait until the status changes from pending to available.</p>
+        <p data-i18n="lecture01.ho3.s2.desc">Select Documents (RAG) from the left menu and click Add Document. Enter the name, document file, tag, model, and chunk size, then upload. Wait until the status changes from pending to available.</p>
+        <p class="note" data-i18n="lecture01.ho3.s2.note">An error may appear while you are adding the document, but the document is actually added. Please ignore it and continue.</p>
+      </li>
+      <li>
+        <strong data-i18n="lecture01.ho3.s2check.title">STEP 2 Continued: Check the Registration Result</strong>
+        <p data-i18n="lecture01.ho3.s2check.desc">Open Documents (RAG) from the left menu and check that the status is available and the number of chunks is shown. You can also open the chunk tab and see the split text.</p>
       </li>
       <li>
         <strong data-i18n="lecture01.ho3.s3.title">STEP 3: Run a RAG Query</strong>
         <p data-i18n="lecture01.ho3.s3.desc">Open Documents (RAG), click Operation, select Query Search, enter the question below, and run.</p>
         <div class="prompt-box">
           <button class="copy-btn" data-i18n="common.copy">Copy</button>
-          <pre><code>Explain KOSEN-KMITL and Monozukuri.</code></pre>
+          <pre><code>Who is the CEO of Ikura Internet?</code></pre>
         </div>
+        <p class="note" data-i18n="lecture01.ho3.s3.note">Errors may occur here as well. If so, skip this step and continue.</p>
       </li>
       <li>
         <strong data-i18n="lecture01.ho3.s4.title">STEP 4: Use RAG in Playground</strong>
@@ -510,7 +603,14 @@ ls -l</code></pre></div>
       </li>
       <li>
         <strong data-i18n="lecture01.ho3.s5.title">STEP 5: Compare Results Without and With RAG</strong>
-        <p data-i18n="lecture01.ho3.s5.desc">Ask the same question with the Document button off (without RAG) and on (with RAG). Also ask something not in the document, such as “Who will win the next FIFA World Cup?”</p>
+        <p data-i18n="lecture01.ho3.s5.desc">Ask the same question with the Document button off (without RAG) and on (with RAG). Also ask something not in the document, such as “What is the weather in Bangkok today?”</p>
+        <div class="callout">
+          <h4 data-i18n="lecture01.ho3.s5.questions.title">Questions for Everyone</h4>
+          <ol>
+            <li><code>What are the values of IKURA INTERNET?</code></li>
+            <li><code>What is the weather in Bangkok today?</code></li>
+          </ol>
+        </div>
       </li>
     </ol>
 
@@ -533,6 +633,7 @@ ls -l</code></pre></div>
 
     <div class="callout">
       <h4 data-i18n="lecture01.ho3.optional.title">Optional: Run RAG via API</h4>
+      <p><span class="badge" data-i18n="lecture01.optional.badge">OPTIONAL | Extra Challenge</span> Not covered in class. Try it if you finish early.</p>
       <p data-i18n="lecture01.ho3.optional.desc">The same operations can be performed through the API.</p>
       <p data-i18n="lecture01.ho3.optional.upload">1. Upload the document:</p>
       <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl --request POST \
@@ -540,7 +641,7 @@ ls -l</code></pre></div>
   --header &#x27;Accept: application/json&#x27; \
   --header &quot;Authorization: Bearer ${AI_ENGINE_TOKEN}&quot; \
   --header &#x27;Content-Type: multipart/form-data&#x27; \
-  --form &quot;file=@annual-report-2564.pdf&quot; </code></pre></div>
+  --form &quot;file=@IKURA_Internet_Company_Profile_EN.pdf&quot; </code></pre></div>
       <p data-i18n="lecture01.ho3.optional.status">2. Check the status:</p>
       <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl -s --location &#x27;https://api.ai.sakura.ad.jp/v1/documents/&lt;document-id&gt;/&#x27; \
   --header &quot;Authorization: Bearer ${AI_ENGINE_TOKEN}&quot; \
@@ -548,7 +649,7 @@ ls -l</code></pre></div>
       <p data-i18n="lecture01.ho3.optional.query">3. Run a RAG query:</p>
       <div class="edit-box">
         <label data-i18n="lecture01.editable.query">RAG query:</label>
-        <input type="text" class="edit-input" data-target="ho3-rag-query" value="Explain KOSEN-KMITL and Monozukuri.">
+        <input type="text" class="edit-input" data-target="ho3-rag-query" value="Who is the CEO of Ikura Internet?">
       </div>
       <div class="code-block"><button class="copy-btn" data-i18n="common.copy">Copy</button><pre><code class="language-bash">curl --request POST \
   --url https://api.ai.sakura.ad.jp/v1/documents/chat/ \
@@ -559,8 +660,8 @@ ls -l</code></pre></div>
       &quot;model&quot;: &quot;multilingual-e5-large&quot;,
       &quot;chat_model&quot;: &quot;gpt-oss-120b&quot;,
       &quot;query&quot;: &quot;<span class='editable-content' data-target='ho3-rag-query'>Explain KOSEN-KMITL and Monozukuri.</span>&quot;,
-      &quot;top_k&quot;: 3,
-      &quot;threshold&quot;: 0.6,
+      &quot;top_k&quot;: 5,
+      &quot;threshold&quot;: 0.3,
       &quot;distance_type&quot;: &quot;cosine&quot;
     }&#x27; </code></pre></div>
       <table class="info-table">

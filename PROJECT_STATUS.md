@@ -92,6 +92,16 @@
 - **ダウンロード資料追加**
   - `assets/downloads/sample_meeting_en.wav` を追加
   - `assets/downloads/module4-src.zip` を追加
+- **Module 1 スライド差分反映（2026-11-11）**
+  - スライドを `SAKURA_AI_Engine_Hands-on_Practice_01_EN.pptx` から `1121_SAKURA_AI_Engine_Hands-on_Practice_01_EN.pptx` に変更
+  - Overview 1: AI モデルの説明を強化、SAKURA AI Engine の価値説明を追加
+  - How This Class Works / Schedule を新スライドに合わせ更新
+  - HO1: コントロールパネル英語化の注釈、STEP 注釈、Optional バッジを追加
+  - HO2: curl / WSL の説明追加、JSON 例更新、STEP4 タイトル変更、Common Errors に「&gt; が表示される」ケースを追加、Optional バッジを追加
+  - HO3: RAG 資料を `annual-report-2564.pdf` から `IKURA_Internet_Company_Profile_EN.pdf` に変更
+  - HO3: 質問を「Who is the CEO of Ikura Internet?」等に変更、RAG API 例の top_k/threshold を 5/0.3 に更新
+  - HO3: STEP 1（資料準備・WSL フォルダ作成・PDF コピー）、STEP 2 続き（登録結果確認）を追加
+  - Overview 3: Token / Chunk / Vector の用語説明を追加
 
 ## 未完了
 
@@ -118,7 +128,7 @@ ameicc2026/
 │   ├── css/style.css                   # サイト共通スタイル
 │   ├── js/i18n.js                      # 日英切り替え・翻訳辞書
 │   ├── downloads/                      # 音声・PDF・スクリプト等のダウンロード資料
-│   │   ├── annual-report-2564.pdf
+│   │   ├── IKURA_Internet_Company_Profile_EN.pdf
 │   │   ├── sample_long_en.wav
 │   │   ├── sample_long_en_fast.wav
 │   │   ├── sample_long_en_noisy.wav

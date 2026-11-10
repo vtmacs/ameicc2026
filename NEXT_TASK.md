@@ -11,7 +11,9 @@
    - 公開 URL https://vtmacs.github.io/ameicc2026/ で各モジュールを確認。
 
 2. **最終確認項目**
-   - Module 1 HO2: `| json_pp` がコマンド末尾に追加されているか、JSON Response 例に Copy ボタンがないか。
+   - Module 1 HO1: コントロールパネル英語化の注釈、STEP 注釈、Optional バッジの表示。
+   - Module 1 HO2: curl / WSL の説明、JSON 例、STEP4 の役割設定表、Common Errors の「&gt;」項目、Optional バッジの表示。
+   - Module 1 HO3: `IKURA_Internet_Company_Profile_EN.pdf` ダウンロードリンク、質問「Who is the CEO of Ikura Internet?」、RAG API 例の top_k=5 / threshold=0.3 の表示。
    - Module 2 HO3: STEP0〜STEP5 の流れ、`sample_meeting_en.wav` / `compare.py` / `summary_before.txt` / `summary_after.txt` の表示。
    - Module 2 最終セクション: Review / 自動化できる工程と人が確認する工程 / 今日使った API の表示。
    - Module 2 Optional: `splitmp3.py` / `splitmp3+summary.py` のダウンロードリンク、`sakura02_audio_venv` / `deactivate` の記述。
