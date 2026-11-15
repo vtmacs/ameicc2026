@@ -88,7 +88,7 @@
   - 作業フォルダ名を `04_rag-web-app` から `04_rag_web_app` に変更
   - venv 名を `venv` から `sakura04_flask_venv` に変更
   - ZIP ダウンロード失敗時のフォールバック URL（`https://s3.isk01.sakurastorage.jp/1121-thai-handson/module4-src.zip`）を追加
-  - HO2 の穴埋めを「2 groups, 5 blanks」から「3 groups, 7 blanks」に更新（app.js の `data.answer` / `data.sources` を追加）
+  - HO2 の穴埋めを「2 groups, 5 blanks」に維持（app.py の `build_payload` 3 か所 + `requests.post` 2 か所）
 - **ダウンロード資料追加**
   - `assets/downloads/sample_meeting_en.wav` を追加
   - `assets/downloads/module4-src.zip` を追加

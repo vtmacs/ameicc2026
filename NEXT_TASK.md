@@ -18,7 +18,7 @@
    - Module 2 最終セクション: Review / 自動化できる工程と人が確認する工程 / 今日使った API の表示。
    - Module 2 Optional: `splitmp3.py` / `splitmp3+summary.py` のダウンロードリンク、`sakura02_audio_venv` / `deactivate` の記述。
    - Module 4 HO1: フォルダ名 `04_rag_web_app`、venv 名 `sakura04_flask_venv`、フォールバック URL の表示。
-   - Module 4 HO2: 「3 groups, 7 blanks」の表示。
+   - Module 4 HO2: 「2 groups, 5 blanks」の表示。
    - 全モジュール: 日本語・英語切り替え時の表示崩れがないか。
 
 3. **必要に応じて**
